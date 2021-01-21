@@ -24,6 +24,13 @@ namespace FabioCosta.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            //services.AddMvc();
+            services.AddWebOptimizer(pipeline =>
+            {
+                pipeline.AddScssBundle("/bundle.css", "/css/main.scss");
+                pipeline.AddScssBundle("/noscript.css", "/css/noscript.scss");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,6 +47,9 @@ namespace FabioCosta.Web
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
+
+            app.UseWebOptimizer();
+
             app.UseStaticFiles();
 
             app.UseRouting();
