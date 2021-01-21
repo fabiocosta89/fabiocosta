@@ -1,13 +1,9 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FabioCosta.Web
 {
@@ -23,12 +19,15 @@ namespace FabioCosta.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews(options =>
+            {
+                options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+            });
 
             //services.AddMvc();
             services.AddWebOptimizer(pipeline =>
             {
-                pipeline.AddScssBundle("/bundle.css", "/css/main.scss");
+                pipeline.AddScssBundle("/bundle.css", "/css/main.scss", "/css/site.scss");
                 pipeline.AddScssBundle("/noscript.css", "/css/noscript.scss");
             });
         }

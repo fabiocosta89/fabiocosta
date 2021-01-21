@@ -1,0 +1,42 @@
+﻿@model FabioCosta.Web.Models.ContactViewModel 
+@{
+    ViewData["Title"] = "Contact";
+}
+
+<header class="special container">
+    <span class="icon solid fa-envelope"></span>
+    <h2>Contact me</h2>
+    <p>Use the form below to get in touch with me.</p>
+</header>
+
+<!-- 1 -->
+<section class="wrapper style4 special container medium">
+    <!-- Content -->
+    <div class="content">
+        <form method="post">
+            <div class="row gtr-50">
+                <div class="col-6 col-12-mobile">
+                    <input type="text" asp-for="Name" placeholder="Name" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="col-6 col-12-mobile">
+                    <input type="text" asp-for="Email" placeholder="Email" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="col-12">
+                    <input type="text" asp-for="Subject" placeholder="Subject" />
+                    <span asp-validation-for="Subject" class="text-danger"></span>
+                </div>
+                <div class="col-12">
+                    <textarea asp-for="Message" placeholder="Message" rows="7"></textarea>
+                    <span asp-validation-for="Message" class="text-danger"></span>
+                </div>
+                <div class="col-12">
+                    <ul class="buttons">
+                        <li><input type="submit" class="special" value="Send Message" /></li>
+                    </ul>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
