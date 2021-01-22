@@ -1,0 +1,17 @@
+{
+  "name": "fabiocosta",
+  "homepage": "https://github.com/fabiocosta89/fabiocosta",
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "v4.6.0"
+  }
+}

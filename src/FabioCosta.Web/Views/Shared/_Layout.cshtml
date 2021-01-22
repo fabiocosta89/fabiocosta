@@ -9,32 +9,33 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <title>@ViewData["Title"] - Fabio Costa</title>
-    <link rel="stylesheet" href="/bundle.css" />
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="/bundle.css" asp-append-version="true" />
     <noscript><link rel="stylesheet" href="/noscript.css" /></noscript>
 </head>
 <body class="no-sidebar is-preload">
     <div id="page-wrapper">
         @*<header>
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-                <div class="container">
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">FabioCosta</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                        <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                            </li>
-                        </ul>
+                <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                    <div class="container">
+                        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">FabioCosta</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                            <ul class="navbar-nav flex-grow-1">
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-            </nav>
-        </header>*@
+                </nav>
+            </header>*@
         <!-- Header -->
         <header id="header">
             <h1 id="logo"><a asp-area="" asp-controller="Home" asp-action="Index"><span>Fábio</span> Costa</a></h1>
@@ -45,22 +46,22 @@
                 </ul>
             </nav>
         </header>
-        
+
         <!-- Main -->
         <article id="main">
             @RenderBody()
         </article>
         @*<div class="container">
-            <main role="main" class="pb-3">
-                @RenderBody()
-            </main>
-        </div>*@
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main>
+            </div>*@
 
         @*<footer class="border-top footer text-muted">
-            <div class="container">
-                &copy; 2021 - Fabio Costa - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-            </div>
-        </footer>*@
+                <div class="container">
+                    &copy; 2021 - Fabio Costa - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                </div>
+            </footer>*@
         <!-- Footer -->
         <footer id="footer">
             <ul class="icons">
@@ -75,6 +76,7 @@
         </footer>
     </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
     <script src="~/js/jquery.dropotron.min.js"></script>
     <script src="~/js/jquery.scrolly.min.js"></script>
     <script src="~/js/jquery.scrollex.min.js"></script>
