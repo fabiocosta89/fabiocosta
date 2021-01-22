@@ -14,6 +14,18 @@
     <!-- Content -->
     <div class="content">
         <form method="post">
+            @if (ViewData["Sucess"] != null)
+            {
+                <div class="alert alert-success col-12 col-12-mobile" role="alert">
+                    @ViewData["Sucess"]
+                </div>
+            }
+            @if (ViewData["Error"] != null)
+            {
+                <div class="alert alert-danger col-12 col-12-mobile" role="alert">
+                    @ViewData["Error"]
+                </div>
+            }
             <div class="row gtr-50">
                 <div class="col-6 col-12-mobile">
                     <input type="text" asp-for="Name" placeholder="Name" />

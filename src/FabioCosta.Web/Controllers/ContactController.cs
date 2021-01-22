@@ -41,6 +41,10 @@ namespace FabioCosta.Web.Controllers
                     ViewData["Sucess"] = "Message sent.";
                 }
             }
+            else
+            {
+                ViewData["Error"] = "The form is not valid.";
+            }
 
             return View(contact);
         }
