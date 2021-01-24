@@ -7,7 +7,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{643B88A5-6CC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "web", "web", "{875C9BAD-6DC7-4E8B-B786-CC0B8A3CA9DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FabioCosta.Web", "src\FabioCosta.Web\FabioCosta.Web.csproj", "{C7500327-2BA2-451A-9603-07EA6940DDC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FabioCosta.Web", "src\FabioCosta.Web\FabioCosta.Web.csproj", "{C7500327-2BA2-451A-9603-07EA6940DDC8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D53277F7-DA9F-42D8-A429-95166C33919D} = {D53277F7-DA9F-42D8-A429-95166C33919D}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "utils", "utils", "{6A832C11-F15E-4493-A930-A754772BBE39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FabioCosta.Utils", "src\FabioCosta.Utils\FabioCosta.Utils.csproj", "{D53277F7-DA9F-42D8-A429-95166C33919D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,6 +26,10 @@ Global
 		{C7500327-2BA2-451A-9603-07EA6940DDC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7500327-2BA2-451A-9603-07EA6940DDC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7500327-2BA2-451A-9603-07EA6940DDC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D53277F7-DA9F-42D8-A429-95166C33919D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D53277F7-DA9F-42D8-A429-95166C33919D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D53277F7-DA9F-42D8-A429-95166C33919D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D53277F7-DA9F-42D8-A429-95166C33919D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -26,6 +37,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{875C9BAD-6DC7-4E8B-B786-CC0B8A3CA9DF} = {643B88A5-6CC0-4827-A71C-1914F4769788}
 		{C7500327-2BA2-451A-9603-07EA6940DDC8} = {875C9BAD-6DC7-4E8B-B786-CC0B8A3CA9DF}
+		{6A832C11-F15E-4493-A930-A754772BBE39} = {643B88A5-6CC0-4827-A71C-1914F4769788}
+		{D53277F7-DA9F-42D8-A429-95166C33919D} = {6A832C11-F15E-4493-A930-A754772BBE39}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EB1471FB-5CBF-49BC-837E-1FB36BF44ED8}

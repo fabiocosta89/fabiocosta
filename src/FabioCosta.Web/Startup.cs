@@ -1,3 +1,4 @@
+using FabioCosta.Utils.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -30,6 +31,10 @@ namespace FabioCosta.Web
                 pipeline.AddScssBundle("/bundle.css", "/css/main.scss", "/css/site.scss");
                 pipeline.AddScssBundle("/noscript.css", "/css/noscript.scss");
             });
+
+            var notificationMetadata = Configuration.GetSection("NotificationMetadata").Get<NotificationMetadata>();
+            services.AddSingleton(notificationMetadata);
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

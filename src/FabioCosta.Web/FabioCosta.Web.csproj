@@ -22,4 +22,8 @@
     <PackageReference Include="LigerShark.WebOptimizer.Sass" Version="3.0.43-beta" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FabioCosta.Utils\FabioCosta.Utils.csproj" />
+  </ItemGroup>
+
 </Project>
