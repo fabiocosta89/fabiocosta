@@ -7,6 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{89E92884-C55
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FabioCosta.Web", "src\FabioCosta.Web\FabioCosta.Web.csproj", "{83C52C37-2BCC-4EEF-99B6-9DC5287628E6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "web", "web", "{B84667E8-4762-469E-A063-11B73AAF7133}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,7 +24,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{83C52C37-2BCC-4EEF-99B6-9DC5287628E6} = {89E92884-C554-4363-BF9E-AE2E0A5B8146}
+		{83C52C37-2BCC-4EEF-99B6-9DC5287628E6} = {B84667E8-4762-469E-A063-11B73AAF7133}
+		{B84667E8-4762-469E-A063-11B73AAF7133} = {89E92884-C554-4363-BF9E-AE2E0A5B8146}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A6A4E3BA-C703-421C-AC07-1CEAFAA20811}
