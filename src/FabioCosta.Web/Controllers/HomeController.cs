@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 
 using FabioCosta.Web.Models;
 
@@ -19,13 +15,7 @@ namespace FabioCosta.Web.Controllers
         {
             _logger = logger;
         }
-
         public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
         {
             return View();
         }
