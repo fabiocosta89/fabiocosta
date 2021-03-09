@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/FabioCosta
+/src/FabioCosta.Web/bin/Debug/net5.0
+/src/FabioCosta.Web/obj
