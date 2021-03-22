@@ -19,103 +19,16 @@
 
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="~/css/templatemo-digital-trend.css">
+    <link rel="stylesheet" href="/css/site.css" asp-append-version="true" />
 </head>
 <body>
     <!-- MENU BAR -->
-    <nav class="navbar navbar-expand-lg">
-        <div class="container">
-            <a class="navbar-brand" asp-controller="Home" asp-action="Index">
-                <i class="fas fa-laptop-code"></i>
-                Fábio Costa
-            </a>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a href="#about" class="nav-link smoothScroll">Studio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#project" class="nav-link smoothScroll">Our Works</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="blog.html" class="nav-link">Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="contact.html" class="nav-link contact">Contact</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <partial name="_Menu" />
 
     @RenderBody()
 
     <!-- Footer -->
-    <footer class="site-footer">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-lg-5 mx-lg-auto col-md-8 col-10">
-                    <h1 class="text-white" data-aos="fade-up" data-aos-delay="100">We make creative <strong>brands</strong> only.</h1>
-                </div>
-
-                <div class="col-lg-3 col-md-6 col-12" data-aos="fade-up" data-aos-delay="200">
-                    <h4 class="my-4">Contact Info</h4>
-
-                    <p class="mb-1">
-                        <i class="fa fa-phone mr-2 footer-icon"></i>
-                        +99 080 070 4224
-                    </p>
-
-                    <p>
-                        <a href="#">
-                            <i class="fa fa-envelope mr-2 footer-icon"></i>
-                            hello@company.com
-                        </a>
-                    </p>
-                </div>
-
-                <div class="col-lg-3 col-md-6 col-12" data-aos="fade-up" data-aos-delay="300">
-                    <h4 class="my-4">Our Studio</h4>
-
-                    <p class="mb-1">
-                        <i class="fa fa-home mr-2 footer-icon"></i>
-                        Av. Lúcio Costa - Barra da Tijuca, Rio de Janeiro - RJ, Brazil
-                    </p>
-                </div>
-
-                <div class="col-lg-4 mx-lg-auto text-center col-md-8 col-12" data-aos="fade-up" data-aos-delay="400">
-                    <p class="copyright-text">
-                        Copyright &copy; @DateTime.Now.Year Fábio Costa
-                    </p>
-                </div>
-
-                <div class="col-lg-4 mx-lg-auto col-md-6 col-12" data-aos="fade-up" data-aos-delay="500">
-
-                    <ul class="footer-link">
-                        <li><a href="#">Test</a></li>
-                        <li><a href="#">Test2</a></li>
-                        <li><a href="#">Privacy</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-lg-3 mx-lg-auto col-md-6 col-12" data-aos="fade-up" data-aos-delay="600">
-                    <ul class="social-icon">
-                        <li><a title="Facebook" href="#" class="fab fa-facebook"></a></li>
-                        <li><a title="Instagram" href="#" class="fab fa-instagram"></a></li>
-                        <li><a title="Twitter" href="#" class="fab fa-twitter"></a></li>
-                        <li><a title="Github" href="#" class="fab fa-github"></a></li>
-                    </ul>
-                </div>
-
-            </div>
-        </div>
-    </footer>
+    <partial name="_Footer" />
 
     <!-- SCRIPTS -->
     <script src="~/lib/jquery/jquery.js"></script>

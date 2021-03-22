@@ -1,1 +1,23 @@
-﻿
+﻿/* w3schools card style*/
+/* Add shadows to create the "card" effect */
+.alt-card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px;
+    background-color: var(--white-color)
+}
+
+/* On mouse-over, add a deeper shadow */
+.alt-card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.alt-card.item {
+    padding: 2rem 3rem;
+    height: 450px;
+}
+
+.owl-carousel .owl-stage {
+    height: 460px;
+}
