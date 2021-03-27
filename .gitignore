@@ -3,5 +3,7 @@
 ################################################################################
 
 /.vs/FabioCosta
-/src/FabioCosta.Web/bin/Debug/net5.0
-/src/FabioCosta.Web/obj
+/src/FabioCosta.Web/bin/
+/src/FabioCosta.Web/obj/
+*.user
+/src/FabioCosta.Web/.config
