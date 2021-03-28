@@ -16,7 +16,7 @@
 
     // SMOOTH SCROLL
     $(function () {
-        $('.nav-link').on('click', function (event) {
+        $('.smoothScroll').on('click', function (event) {
             var $anchor = $(this);
             $('html, body').stop().animate({
                 scrollTop: $($anchor.attr('href')).offset().top - 0
@@ -32,7 +32,7 @@
         center: true,
         autoplayHoverPause: false,
         autoplay: true,
-        margin: 30,
+        margin: 40,
         responsiveClass: true,
         responsive: {
             0: {
