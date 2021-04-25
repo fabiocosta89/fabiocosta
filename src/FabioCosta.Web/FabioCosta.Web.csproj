@@ -8,6 +8,7 @@
   <ItemGroup>
     <Folder Include="wwwroot\lib\" />
     <Folder Include="wwwroot\favicon\" />
+    <Folder Include="wwwroot\images\home\" />
   </ItemGroup>
 
   <ItemGroup>
