@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.IO.Compression;
 
 namespace FabioCosta.Web
 {
@@ -29,7 +30,12 @@ namespace FabioCosta.Web
                 options.Providers.Add<GzipCompressionProvider>();
                 options.MimeTypes =
                     ResponseCompressionDefaults.MimeTypes.Concat(
-                        new[] { "image/svg+xml" });
+                        new[] { "image/svg+xml", "text / json", "application/json", "text/css", "text/html" });
+            });
+
+            services.Configure<GzipCompressionProviderOptions>(options =>
+            {
+                options.Level = CompressionLevel.Optimal;
             });
 
             services.AddWebOptimizer(pipeline =>

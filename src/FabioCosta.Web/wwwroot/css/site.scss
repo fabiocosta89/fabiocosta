@@ -1,11 +1,24 @@
-﻿/* w3schools card style*/
+﻿/* Template colour override */
+:root {
+    --primary-color: #4191EB;
+    --secondary-color: #FFD359;
+    --white-color: #ffffff;
+    --dark-color: #171819;
+    --project-bg: #C2C2C2;
+    --menu-bg: #4191EB;
+
+    --title-color: #3261E3;
+    --gray-color: #C2C2C2;
+    --link-color: #3261E3;
+    --p-color: #666262;
+}
+/* w3schools card style*/
 /* Add shadows to create the "card" effect */
 .alt-card {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     border-radius: 5px;
     background-color: var(--white-color);
-
     /* On mouse-over, add a deeper shadow */
     &:hover {
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
