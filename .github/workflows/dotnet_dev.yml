@@ -16,13 +16,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
-      
       with:
         dotnet-version: 5.0.x
-        
-    # dotnet build and publish
-    - name: Build with dotnet
-      run: dotnet build --configuration Release ./src/FabioCosta.Web/FabioCosta.Web.csproj
       
     - name: dotnet publish
       run: dotnet publish -p:PublishProfile=FolderProfile
@@ -38,6 +33,6 @@ jobs:
         # ftp password
         password: ${{ secrets.PASSWORD }}
         # Folder to upload from, must end with trailing slash /
-        local-dir: ./src/FabioCosta.Web/bin/Release/net5.0/
+        local-dir: ./src/FabioCosta.Web/bin/Release/
         # Path to upload to on the server. Must end with trailing slash /
         server-dir: ${{ secrets.SERVER_DIR }}
