@@ -1,0 +1,38 @@
+name: .NET dev
+
+on: [push]
+
+jobs:
+  build-and-deploy:
+    environment: Production
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+        
+    # dotnet build and publish
+    - name: Build with dotnet
+      run: dotnet build --configuration Release ./src/FabioCosta.Web/FabioCosta.Web.csproj
+      
+    - name: dotnet publish
+      run: dotnet publish -c Release -o fabiocosta ./src/FabioCosta.Web/
+      
+    # ftp deploy
+    - name: FTP Deploy
+      uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      with:
+        # ftp server
+        server: ${{ github.SERVER }}
+        # ftp username
+        username: ${{ github.USERNAME }}
+        # ftp password
+        password: ${{ github.PASSWORD }}
+        # Folder to upload from, must end with trailing slash /
+        local-dir: ${{ github.LOCAL_DIR }}
+        # Path to upload to on the server. Must end with trailing slash /
+        server-dir: ${{ github.SERVER_DIR }}
