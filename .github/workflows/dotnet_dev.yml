@@ -33,6 +33,6 @@ jobs:
         # ftp password
         password: ${{ github.PASSWORD }}
         # Folder to upload from, must end with trailing slash /
-        local-dir: ${{ github.LOCAL_DIR }}
+        local-dir: ./src/FabioCosta.Web/
         # Path to upload to on the server. Must end with trailing slash /
         server-dir: ${{ github.SERVER_DIR }}
