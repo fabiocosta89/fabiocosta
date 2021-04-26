@@ -27,12 +27,12 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
       with:
         # ftp server
-        server: ${{ github.SERVER }}
+        server: ${{ secrets.SERVER }}
         # ftp username
-        username: ${{ github.USERNAME }}
+        username: ${{ secrets.USERNAME }}
         # ftp password
-        password: ${{ github.PASSWORD }}
+        password: ${{ secrets.PASSWORD }}
         # Folder to upload from, must end with trailing slash /
         local-dir: ./src/FabioCosta.Web/
         # Path to upload to on the server. Must end with trailing slash /
-        server-dir: ${{ github.SERVER_DIR }}
+        server-dir: ${{ secrets.SERVER_DIR }}
