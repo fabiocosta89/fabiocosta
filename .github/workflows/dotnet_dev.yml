@@ -1,5 +1,7 @@
 name: .NET dev
 
+on: workflow_dispatch
+
 jobs:
   build-and-deploy:
     environment: DEV
