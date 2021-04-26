@@ -1,6 +1,10 @@
 name: .NET dev
 
-on: workflow_dispatch
+on:
+  workflow_dispatch: 
+    inputs:
+      tags:
+        description: 'Test scenario tags'
 
 jobs:
   build-and-deploy:
