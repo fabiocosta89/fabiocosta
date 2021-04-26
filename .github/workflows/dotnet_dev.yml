@@ -20,7 +20,7 @@ jobs:
       run: dotnet build --configuration Release ./src/FabioCosta.Web/FabioCosta.Web.csproj
       
     - name: dotnet publish
-      run: dotnet publish -c Release -o fabiocosta ./src/FabioCosta.Web/
+      run: dotnet publish -c Release -r win-x64 -p:PublishReadyToRun=true -o fabiocosta ./src/FabioCosta.Web/
       
     # ftp deploy
     - name: FTP Deploy
@@ -33,6 +33,6 @@ jobs:
         # ftp password
         password: ${{ secrets.PASSWORD }}
         # Folder to upload from, must end with trailing slash /
-        local-dir: ./src/FabioCosta.Web/
+        local-dir: ./src/FabioCosta.Web/bin/Release/net5.0/
         # Path to upload to on the server. Must end with trailing slash /
         server-dir: ${{ secrets.SERVER_DIR }}
