@@ -20,7 +20,7 @@ jobs:
       run: dotnet build --configuration Release ./src/FabioCosta.Web/FabioCosta.Web.csproj
       
     - name: dotnet publish
-      run: dotnet publish -c Release -r win-x64 -p:PublishReadyToRun=true -o fabiocosta ./src/FabioCosta.Web/
+      run: dotnet publish -c Release -o fabiocosta ./src/FabioCosta.Web/
       
     # ftp deploy
     - name: FTP Deploy
