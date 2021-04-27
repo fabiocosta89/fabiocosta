@@ -36,9 +36,3 @@ jobs:
         local-dir: ./src/FabioCosta.Web/bin/Debug/net5.0/publish/
         # Path to upload to on the server. Must end with trailing slash /
         server-dir: ${{ secrets.SERVER_DIR }}
-        # Deletes ALL contents of server-dir, even items in excluded with exclude argument
-        dangerous-clean-slate: "true"
-        # An array of glob patterns, these files will not be included in the publish/delete process
-        exclude: .user.ini
-          - .well-known/**
-          - .well-known/**/*
