@@ -30,18 +30,13 @@
     <meta name="msapplication-wide310x150logo" content="favicon/mstile-310x150.png" />
     <meta name="msapplication-square310x310logo" content="favicon/mstile-310x310.png" />
 
-
     <!-- Libraries -->
-    <link rel="stylesheet" href="~/lib/twitter-bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="~/lib/font-awesome/css/fontawesome.css">
-    <link rel="stylesheet" href="~/lib/font-awesome/css/solid.css">
-    <link rel="stylesheet" href="~/lib/font-awesome/css/brands.css">
-    <link rel="stylesheet" href="~/lib/aos/aos.css">
-    <link rel="stylesheet" href="~/lib/OwlCarousel2/assets/owl.carousel.css">
-    <link rel="stylesheet" href="~/lib/OwlCarousel2/assets/owl.theme.default.css">
+    <link rel="stylesheet" href="/css/bundleLibs.css" asp-append-version="true" />
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="/css/bundleFonts.css" asp-append-version="true" />
 
     <!-- MAIN CSS -->
-    <link rel="stylesheet" href="~/css/templatemo-digital-trend.css">
     <link rel="stylesheet" href="/css/bundle.css" asp-append-version="true" />
 
     <!-- Google analytics -->
@@ -64,13 +59,8 @@
     <partial name="_Footer" />
 
     <!-- SCRIPTS -->
-    <script src="~/lib/jquery/jquery.js"></script>
-    <script src="~/lib/twitter-bootstrap/js/bootstrap.js"></script>
-    <script src="~/lib/aos/aos.js"></script>
-    <script src="~/lib/OwlCarousel2/owl.carousel.js"></script>
-    <script src="~/lib/smoothscroll/SmoothScroll.js"></script>
-    <script src="~/lib/rellax/rellax.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/bundleLibs.js" asp-append-version="true"></script>
+    <script src="~/js/bundle.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

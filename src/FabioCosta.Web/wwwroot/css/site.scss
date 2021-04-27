@@ -35,3 +35,8 @@
         height: 460px;
     }
 }
+
+/* Define that all images should keep the same aspect ratio*/
+img {
+    aspect-ratio: attr(width) / attr(height);
+}

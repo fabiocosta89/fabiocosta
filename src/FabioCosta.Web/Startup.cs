@@ -40,7 +40,28 @@ namespace FabioCosta.Web
 
             services.AddWebOptimizer(pipeline =>
             {
-                pipeline.AddScssBundle("/css/bundle.css", "/css/site.scss");
+                pipeline.AddScssBundle("/css/bundle.css",
+                    "/css/templatemo-digital-trend.css",
+                    "/css/site.scss");
+                pipeline.AddCssBundle("/css/bundleLibs.css",
+                    "/lib/twitter-bootstrap/css/bootstrap.css",
+                    "/lib/aos/aos.css",
+                    "/lib/OwlCarousel2/assets/owl.carousel.css",
+                    "/lib/OwlCarousel2/assets/owl.theme.default.css");
+                pipeline.AddCssBundle("/css/bundleFonts.css",
+                    "/lib/font-awesome/css/fontawesome.css",
+                    "/lib/font-awesome/css/solid.css",
+                    "/lib/font-awesome/css/brands.css");
+
+                pipeline.AddJavaScriptBundle("/js/bundle.js",
+                    "/js/site.js");
+                pipeline.AddJavaScriptBundle("/js/bundleLibs.js",
+                    "/lib/jquery/jquery.js",
+                    "/lib/twitter-bootstrap/js/bootstrap.js",
+                    "/lib/aos/aos.js",
+                    "/lib/OwlCarousel2/owl.carousel.js",
+                    "/lib/smoothscroll/SmoothScroll.js",
+                    "/lib/rellax/rellax.js");
             });
         }
 
