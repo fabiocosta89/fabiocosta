@@ -46,3 +46,10 @@
 img {
     aspect-ratio: attr(width) / attr(height);
 }
+
+/* Move the hero upper on tablet and mobile */
+@media screen and (max-width: 991px) {
+    .hero {
+        padding-top: 6em;
+    }
+}
