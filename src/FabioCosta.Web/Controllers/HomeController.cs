@@ -1,12 +1,11 @@
-﻿using System.Diagnostics;
-
-using FabioCosta.Web.Models;
-
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-
-namespace FabioCosta.Web.Controllers
+﻿namespace FabioCosta.Web.Controllers
 {
+    using System.Diagnostics;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Logging;
+
+    using FabioCosta.Web.Models;
+
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
