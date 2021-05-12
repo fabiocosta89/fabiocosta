@@ -17,9 +17,18 @@
     font-size: 40px;
 }
 
-/* Nav custumizations */
+/* Nav */
 .nav-link {
     margin: 0 0.3em;
+}
+
+/* Footer */
+.site-footer {
+    padding: 0 0 0 0;
+}
+
+.copyright-text, .footer-link {
+    margin-top: 1em;
 }
 
 /* w3schools card style*/
@@ -38,7 +47,6 @@
         padding: 2rem 3rem;
         height: 450px;
     }
-
     /* Move the bullet points closer to the text */
     .list-detail li::before {
         position: fixed;
