@@ -31,4 +31,4 @@ jobs:
     needs: build
     steps:
     - name: dotnet publish
-      run: dotnet publish -c Release -p:PublishProfile=${{secrets.PUBLISH_PROFILE}}
+      run: dotnet publish -p:PublishProfile=PTisp -p:UserName=${{secrets.PUBLISH_USERNAME}} -p:Password=${{secrets.PUBLISH_PASSWORD}}
