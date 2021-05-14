@@ -9,7 +9,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v2
@@ -23,12 +23,5 @@ jobs:
       run: dotnet build --no-restore --configuration Release
     - name: Test
       run: dotnet test --no-build --verbosity normal
-      
-  deploy:
-    environment: Production
-    
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
     - name: dotnet publish
-      run: dotnet publish -c Release -p:PublishProfile=${{secrets.PUBLISH_PROFILE}}
+      run: dotnet publish -p:PublishProfile=PTisp -p:UserName=${{secrets.PUBLISH_USERNAME}} -p:Password=${{secrets.PUBLISH_PASSWORD}}
