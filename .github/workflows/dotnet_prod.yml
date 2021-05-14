@@ -28,7 +28,7 @@ jobs:
     environment: Production
     
     runs-on: ubuntu-latest
-    
+    needs: build
     steps:
     - name: dotnet publish
       run: dotnet publish -c Release -p:PublishProfile=${{secrets.PUBLISH_PROFILE}}
