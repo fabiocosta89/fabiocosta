@@ -61,9 +61,19 @@
     }
 }
 
+.img-center {
+    display: grid;
+    align-content: center;
+}
+
 /* Define that all images should keep the same aspect ratio*/
 img {
     aspect-ratio: attr(width) / attr(height);
+}
+
+.img-fluid-70 {
+    max-width: 70%;
+    height: auto;
 }
 
 /* Move the hero upper on tablet and mobile */
