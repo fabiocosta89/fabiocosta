@@ -1,0 +1,84 @@
+﻿/* Template colour override */
+:root {
+    --primary-color: #4191EB;
+    --secondary-color: #f1c111;
+    --white-color: #ffffff;
+    --dark-color: #171819;
+    --project-bg: #f0f8ff;
+    --menu-bg: #4191EB;
+    --title-color: #3261E3;
+    --gray-color: #C2C2C2;
+    --link-color: #3261E3;
+    --p-color: #666262;
+}
+
+/* Increase of the contact logos from */
+.fab, .fa {
+    font-size: 40px;
+}
+
+/* Nav */
+.nav-link {
+    margin: 0 0.3em;
+}
+
+/* Footer */
+.site-footer {
+    padding: 0 0 0 0;
+}
+
+.copyright-text, .footer-link {
+    margin-top: 1em;
+}
+
+/* w3schools card style*/
+/* Add shadows to create the "card" effect */
+.alt-card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px;
+    background-color: var(--white-color);
+    /* On mouse-over, add a deeper shadow */
+    &:hover {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+    /* Add some padding inside the card container */
+    &.item {
+        padding: 2rem 3rem;
+        height: 350px;
+    }
+    /* Move the bullet points closer to the text */
+    .list-detail li::before {
+        position: fixed;
+        left: 18%;
+    }
+}
+
+/* Size of the skills carousel*/
+.owl-carousel {
+    &.owl-stage {
+        height: 460px;
+    }
+}
+
+.img-center {
+    display: grid;
+    align-content: center;
+}
+
+/* Define that all images should keep the same aspect ratio*/
+img {
+    aspect-ratio: attr(width) / attr(height);
+}
+
+.img-fluid-70 {
+    max-width: 70%;
+    height: auto;
+}
+
+/* Move the hero upper on tablet and mobile */
+@media screen and (max-width: 991px) {
+    .hero {
+        padding-top: 6em;
+    }
+}
