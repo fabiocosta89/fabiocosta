@@ -14,6 +14,7 @@
         {
             _logger = logger;
         }
+
         public IActionResult Index()
         {
             return View();
