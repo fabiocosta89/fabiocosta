@@ -24,4 +24,4 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: dotnet publish
-      run: dotnet publish -p:PublishProfile=PTisp -p:UserName=${{secrets.PUBLISH_USERNAME}} -p:Password=${{secrets.PUBLISH_PASSWORD}}
+      run: dotnet publish -p:PublishProfile=PTisp -p:Password=${{secrets.PUBLISH_PASSWORD}}
