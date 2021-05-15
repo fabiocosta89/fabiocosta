@@ -107,13 +107,6 @@ img {
     }
 }
 
-@keyframes underline {
-    to {
-        text-decoration: line-through;
-        text-decoration-color: var(--secondary-color);
-    }
-}
-
 /* Move the hero upper on tablet and mobile */
 @media screen and (max-width: 991px) {
     .hero {
