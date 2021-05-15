@@ -76,6 +76,29 @@ img {
     height: auto;
 }
 
+.hero-bg {
+    background: linear-gradient( 170deg,var(--primary-color) 71%,var(--white-color) 30%);
+}
+
+.del-effect {
+    animation-name: underline;
+    animation-timing-function: ease-in-out;
+    animation-duration: 1s;
+    animation-delay: 1s;
+    animation-fill-mode: forwards;
+
+    &.del-effect2 {
+        animation-delay: 2s;
+    }
+}
+
+@keyframes underline {
+    to {
+        text-decoration: line-through;
+        text-decoration-color: var(--secondary-color);
+    }
+}
+
 /* Move the hero upper on tablet and mobile */
 @media screen and (max-width: 991px) {
     .hero {
