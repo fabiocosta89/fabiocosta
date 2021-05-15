@@ -83,20 +83,26 @@ img {
 /* Hero animation */
 .del-effect {
     animation-name: underline;
+    -webkit-animation-name: underline;
     animation-timing-function: ease-in-out;
+    -webkit-animation-timing-function: ease-in-out;
     animation-duration: 1s;
+    -webkit-animation-duration: 1s;
     animation-delay: 1s;
+    -webkit-animation-delay: 1s;
     animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
 
     &.del-effect2 {
         animation-delay: 2s;
+        -webkit-animation-delay: 2s;
     }
 }
 
 @-webkit-keyframes underline {
     to {
-        -webkit-text-decoration-line: line-through;
-        -webkit-text-decoration-color: var(--secondary-color);
+        text-decoration-line: line-through;
+        text-decoration-color: var(--secondary-color);
     }
 }
 
