@@ -80,34 +80,41 @@ img {
     background: linear-gradient( 170deg,var(--primary-color) 71%,var(--white-color) 30%);
 }
 
-/* Hero animation */
-.del-effect {
-    animation-name: underline;
-    -webkit-animation-name: underline;
-    animation-timing-function: ease-in-out;
-    -webkit-animation-timing-function: ease-in-out;
-    animation-duration: 1s;
-    -webkit-animation-duration: 1s;
-    animation-delay: 1s;
-    -webkit-animation-delay: 1s;
-    animation-fill-mode: forwards;
-    -webkit-animation-fill-mode: forwards;
-
-    &.del-effect2 {
-        animation-delay: 2s;
-        -webkit-animation-delay: 2s;
-    }
-}
-
 @-webkit-keyframes underline {
     to {
-        text-decoration-line: line-through;
+        text-decoration: line-through;
         text-decoration-color: var(--secondary-color);
     }
 }
 
 @keyframes underline {
     to {
+        text-decoration: line-through;
+        text-decoration-color: var(--secondary-color);
+    }
+}
+
+/* Hero animation */
+.del-effect {
+    -webkit-animation-name: underline;
+    animation-name: underline;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-delay: 1s;
+    animation-delay: 1s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+
+    &.del-effect2 {
+        -webkit-animation-delay: 2s;
+        animation-delay: 2s;
+    }
+}
+
+@supports (-webkit-touch-callout: none) {
+    .del-effect {
         text-decoration: line-through;
         text-decoration-color: var(--secondary-color);
     }
