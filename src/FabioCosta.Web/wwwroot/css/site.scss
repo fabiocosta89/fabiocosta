@@ -126,3 +126,44 @@ img {
         padding-top: 5em;
     }
 }
+
+/* Back to Top Button */
+#backTopButton {
+    display: inline-block;
+    background-color: var(--primary-color);
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    border-radius: 4px;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    transition: background-color .3s, opacity .5s, visibility .5s;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1000;
+
+    &::after {
+        content: "\f077";
+        font-family: 'Font Awesome 5 Free';
+        font-weight: normal;
+        font-style: normal;
+        font-size: 2em;
+        line-height: 60px;
+        color: #fff;
+    }
+
+    &:hover {
+        cursor: pointer;
+        background-color: var(--secondary-color);
+    }
+
+    &:active {
+        background-color: var(--secondary-color);
+    }
+
+    &.show {
+        opacity: 1;
+        visibility: visible;
+    }
+}
