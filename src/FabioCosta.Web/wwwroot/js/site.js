@@ -43,6 +43,17 @@
         }
     });
 
+    // When the user scrolls down 80px from the top of the document, resize the navbar's padding
+    window.onscroll = function () { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+            document.getElementById("navbar").classList.add("navbar-small");
+        } else {
+            document.getElementById("navbar").classList.remove("navbar-small");
+        }
+    }
+
     // Back to top button
     var btn = $('#backTopButton');
 

@@ -12,12 +12,29 @@
     --p-color: #666262;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 /* Increase of the contact logos from */
 .fab, .fa {
     font-size: 40px;
 }
 
 /* Nav */
+/* Only stick if you can fit */
+@media (min-height: 300px) {
+    .navbar, .container {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+    }
+}
+
+.navbar-small {
+    padding: 0 0 0 1em;
+}
+
 .nav-link {
     margin: 0 0.3em;
 }
