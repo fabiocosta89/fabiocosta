@@ -99,9 +99,18 @@ img {
     height: auto;
 }
 
+/* Hero */
 .hero-bg {
     background: linear-gradient( 170deg,var(--primary-color) 71%,var(--white-color) 30%);
 }
+
+/* Hero image */
+.hero-img {
+    background-color: var(--secondary-color);
+    border: 2px solid var(--primary-color);
+}
+
+
 
 @-webkit-keyframes underline {
     to {
