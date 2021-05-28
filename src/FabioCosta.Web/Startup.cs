@@ -8,6 +8,8 @@ namespace FabioCosta.Web
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using System.IO.Compression;
+    using Microsoft.AspNetCore.Mvc;
+    using FabioCosta.Web.Constants;
 
     public class Startup
     {
@@ -62,6 +64,24 @@ namespace FabioCosta.Web
                     "/lib/smoothscroll/SmoothScroll.js",
                     "/lib/rellax/rellax.js");
             });
+
+            services.AddMvc(options =>
+            {
+                options.CacheProfiles.Add(CacheConstants.Hourly, new CacheProfile()
+                {
+                    Duration = DurationConstants.DurationInSeconds.Hour // 1 hour
+                });;
+                options.CacheProfiles.Add(CacheConstants.Daily, new CacheProfile()
+                {
+                    Duration = DurationConstants.DurationInSeconds.Day // 1 day
+                });
+                options.CacheProfiles.Add(CacheConstants.Weekly, new CacheProfile()
+                {
+                    Duration = DurationConstants.DurationInSeconds.Week // 7 days
+                });
+            });
+
+            services.AddResponseCaching();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

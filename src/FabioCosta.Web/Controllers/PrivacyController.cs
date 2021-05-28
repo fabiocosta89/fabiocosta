@@ -1,5 +1,7 @@
 ﻿namespace FabioCosta.Web.Controllers
 {
+    using FabioCosta.Web.Constants;
+
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
 
@@ -12,6 +14,7 @@
             _logger = logger;
         }
 
+        [ResponseCache(CacheProfileName = CacheConstants.Weekly)]
         public IActionResult Index()
         {
             return View();

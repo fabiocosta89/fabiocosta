@@ -1,10 +1,12 @@
 ﻿namespace FabioCosta.Web.Controllers
 {
-    using System.Diagnostics;
+    using FabioCosta.Web.Constants;
+    using FabioCosta.Web.Models;
+
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
 
-    using FabioCosta.Web.Models;
+    using System.Diagnostics;
 
     public class HomeController : Controller
     {
@@ -15,6 +17,7 @@
             _logger = logger;
         }
 
+        [ResponseCache(CacheProfileName = CacheConstants.Daily)]
         public IActionResult Index()
         {
             return View();
