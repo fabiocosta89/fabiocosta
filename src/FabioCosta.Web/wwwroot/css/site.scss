@@ -33,6 +33,9 @@ html {
 
 .navbar-small {
     padding: 0 0 0 1em;
+    -webkit-box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+    -moz-box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
 }
 
 .nav-link {
@@ -42,6 +45,9 @@ html {
 /* Footer */
 .site-footer {
     padding: 0 0 0 0;
+    -webkit-box-shadow: 5px -5px 10px rgba(0,0,0,0.5);
+    -moz-box-shadow: 5px -5px 10px rgba(0,0,0,0.5);
+    box-shadow: 5px -5px 10px rgba(0,0,0,0.5);
 }
 
 .copyright-text, .footer-link {
@@ -159,6 +165,9 @@ img {
     opacity: 0;
     visibility: hidden;
     z-index: 1000;
+    -webkit-box-shadow: 3px 3px 10px rgba(0,0,0,0.5);
+    -moz-box-shadow: 3px 3px 10px rgba(0,0,0,0.5);
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.5);
 
     &::after {
         content: "\f077";
