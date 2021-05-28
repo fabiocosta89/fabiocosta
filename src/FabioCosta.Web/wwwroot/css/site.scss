@@ -193,3 +193,18 @@ img {
         visibility: visible;
     }
 }
+
+.currentJob {
+    border: 1px solid var(--secondary-color);
+    border-radius: 16px;
+    -webkit-box-shadow: 3px 3px 5px var(--secondary-color);
+    -moz-box-shadow: 3px 3px 5px var(--secondary-color);
+    box-shadow: 3px 3px 5px var(--secondary-color);
+    margin-bottom: 20px;
+
+    @media (max-width: 600px) {
+        margin-right: 0;
+        margin-left: 0;
+        margin-bottom: 40px;
+    }
+}
