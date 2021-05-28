@@ -2,11 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="author" content="Fábio Costa">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+
     <title>@ViewData["Title"] - Fabio Costa</title>
+
+    <meta name="description" content=@ViewData["Description"]>
+    <meta name="author" content="Fábio Costa">
+
+    <meta property="og:title" content=$"@ViewData["Title"] - Fabio Costa">
+    <meta property="og:description" content=@ViewData["Description"]>
+    <meta property="og:image" content="/images/home/FabioEmoji.PNG">
+    <meta property="og:image:alt" content="My Emoji">
+    <meta property="og:locale" content="en_GB">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content=@Context.Request.Host@Context.Request.Path>
+    <meta property="og:site_name" content="Fábio Costa" />
+    <link rel="canonical" href=@Context.Request.Host@Context.Request.Path>
+    <meta name="theme-color" content="#4191EB">
+    <meta name="twitter:title" content=$"@ViewData["Title"] - Fabio Costa">
+    <meta name="twitter:description" content=@ViewData["Description"]>
+    <meta name="twitter:image" content="/images/home/FabioEmoji.PNG">
+    <meta name="twitter:site" content="@@fabioocosta89">
+    <meta name="twitter:creator" content="@@fabioocosta89">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:dnt" content="on">
+    <meta name="robots" content="index, follow">
 
     <!-- Favicon -->
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="favicon/apple-touch-icon-57x57.png" />
