@@ -31,6 +31,10 @@ html {
     }
 }
 
+.nav-logo {
+    width: var(--h2-font-size);
+}
+
 .navbar-small {
     padding: 0 0 0 1em;
     -webkit-box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
@@ -216,4 +220,10 @@ img {
         margin-left: 0;
         margin-bottom: 40px;
     }
+}
+
+/* Generic */
+
+.blog-category {
+    color: var(--secondary-color);
 }
