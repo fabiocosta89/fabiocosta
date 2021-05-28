@@ -12,12 +12,36 @@
     --p-color: #666262;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 /* Increase of the contact logos from */
 .fab, .fa {
     font-size: 40px;
 }
 
 /* Nav */
+/* Only stick if you can fit */
+@media (min-height: 300px) {
+    .navbar, .container {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+    }
+}
+
+.nav-logo {
+    width: var(--h2-font-size);
+}
+
+.navbar-small {
+    padding: 0 0 0 1em;
+    -webkit-box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+    -moz-box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+}
+
 .nav-link {
     margin: 0 0.3em;
 }
@@ -25,6 +49,9 @@
 /* Footer */
 .site-footer {
     padding: 0 0 0 0;
+    -webkit-box-shadow: 5px -5px 10px rgba(0,0,0,0.5);
+    -moz-box-shadow: 5px -5px 10px rgba(0,0,0,0.5);
+    box-shadow: 5px -5px 10px rgba(0,0,0,0.5);
 }
 
 .copyright-text, .footer-link {
@@ -76,9 +103,18 @@ img {
     height: auto;
 }
 
+/* Hero */
 .hero-bg {
     background: linear-gradient( 170deg,var(--primary-color) 71%,var(--white-color) 30%);
 }
+
+/* Hero image */
+.hero-img {
+    background-color: var(--secondary-color);
+    border: 2px solid var(--primary-color);
+}
+
+
 
 @-webkit-keyframes underline {
     to {
@@ -125,4 +161,69 @@ img {
     .hero {
         padding-top: 5em;
     }
+}
+
+/* Back to Top Button */
+#backTopButton {
+    display: inline-block;
+    background-color: var(--primary-color);
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    border-radius: 4px;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    transition: background-color .3s, opacity .5s, visibility .5s;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1000;
+    -webkit-box-shadow: 3px 3px 10px rgba(0,0,0,0.5);
+    -moz-box-shadow: 3px 3px 10px rgba(0,0,0,0.5);
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.5);
+
+    &::after {
+        content: "\f077";
+        font-family: 'Font Awesome 5 Free';
+        font-weight: normal;
+        font-style: normal;
+        font-size: 2em;
+        line-height: 60px;
+        color: #fff;
+    }
+
+    &:hover {
+        cursor: pointer;
+        background-color: var(--secondary-color);
+    }
+
+    &:active {
+        background-color: var(--secondary-color);
+    }
+
+    &.show {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.currentJob {
+    border: 1px solid var(--secondary-color);
+    border-radius: 16px;
+    -webkit-box-shadow: 3px 3px 5px var(--secondary-color);
+    -moz-box-shadow: 3px 3px 5px var(--secondary-color);
+    box-shadow: 3px 3px 5px var(--secondary-color);
+    margin-bottom: 20px;
+
+    @media (max-width: 600px) {
+        margin-right: 0;
+        margin-left: 0;
+        margin-bottom: 40px;
+    }
+}
+
+/* Generic */
+
+.blog-category {
+    color: var(--secondary-color);
 }

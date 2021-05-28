@@ -1,13 +1,16 @@
-﻿<footer class="site-footer">
+﻿@using FabioCosta.Web.Helper;
+
+<footer class="site-footer">
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
                 <p class="copyright-text">
-                    Copyright &copy; @DateTime.Now.Year <a asp-controller="Home" asp-action="Index">Fábio Costa</a>
+                    Copyright &copy; @DateTime.Now.Year <a asp-controller="Home">Fábio Costa</a>
                 </p>
                 <ul class="footer-link">
-                    <li><a href="#">v1.0</a></li>
-                    <li><a asp-controller="Privacy" asp-action="Index">Privacy</a></li>
+                    <li><a asp-controller="Version">@AssemblyHelper.GetAppVersion()</a></li>
+                    <li><a asp-controller="Privacy">Privacy</a></li>
+                    <li><a asp-controller="SiteMap">SiteMap</a></li>
                 </ul>
             </div>
         </div>
