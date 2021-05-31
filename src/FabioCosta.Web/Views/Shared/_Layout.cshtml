@@ -51,10 +51,14 @@
     <meta name="msapplication-square310x310logo" content="favicon/mstile-310x310.png" />
 
     <!-- Libraries -->
-    <link async rel="stylesheet" href="/css/bundleLibs.css" asp-append-version="true" />
-
+    <link async rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
+    <link async href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link async href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" rel="stylesheet" />
+    <link async href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" rel="stylesheet" />
     <!-- Fonts -->
-    <link async rel="stylesheet" href="/css/bundleFonts.css" asp-append-version="true" />
+    <link async href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css" rel="stylesheet" />
+    <link async href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/brands.min.css" rel="stylesheet" />
+    <link async href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/solid.min.css" rel="stylesheet" />
 
     <!-- MAIN CSS -->
     <link async rel="stylesheet" href="/css/bundle.css" asp-append-version="true" />
@@ -82,8 +86,14 @@
     <partial name="_Footer" />
 
     <!-- SCRIPTS -->
-    <script src="~/js/bundleLibs.js" asp-append-version="true"></script>
-    <script src="~/js/bundle.js" asp-append-version="true"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <script async src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    <script async src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/rellax/1.12.1/rellax.min.js"></script>
+
+    <script async src="~/js/bundle.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
