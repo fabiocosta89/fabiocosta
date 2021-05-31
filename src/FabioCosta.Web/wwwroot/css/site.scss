@@ -58,6 +58,13 @@ html {
     margin-top: 1em;
 }
 
+/* Add extra space to footer on iPhone */
+@media screen and (max-width: 767px) {
+    _::-webkit-full-page-media, _:future, :root .safari_only {
+        padding-bottom: 25px; //resize
+    }
+}
+
 /* w3schools card style*/
 /* Add shadows to create the "card" effect */
 .alt-card {
