@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <UserSecretsId>0cc6c1d1-a8c8-46e7-8b51-000a03bb8bb8</UserSecretsId>
-    <Version>1.1.0</Version>
+    <Version>1.2.0</Version>
     <Authors>Fabio Costa</Authors>
     <Product>FabioCosta</Product>
   </PropertyGroup>
