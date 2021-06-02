@@ -16,6 +16,16 @@ html {
     scroll-behavior: smooth;
 }
 
+.btn-primary {
+    background: var(--secondary-color);
+    border-radius: var(--border-radius-large);
+    color: var(--white-color);
+    cursor: pointer;
+    font-size: var(--p-font-size);
+    line-height: 0px;
+    padding: 1.5em 1.3em;
+}
+
 /* Increase of the contact logos from */
 .fab, .fa {
     font-size: 40px;
@@ -46,8 +56,22 @@ html {
     margin: 0 0.3em;
 }
 
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+#content-wrap {
+    padding-bottom: 2.5rem; /* Footer height */
+}
+
+.text-shadow {
+    text-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+}
+
 /* Footer */
 .site-footer {
+    width: 100%;
     padding: 0 0 0 0;
     -webkit-box-shadow: 5px -5px 10px rgba(0,0,0,0.5);
     -moz-box-shadow: 5px -5px 10px rgba(0,0,0,0.5);
@@ -56,6 +80,13 @@ html {
 
 .copyright-text, .footer-link {
     margin-top: 1em;
+}
+
+/* Add extra space to footer on iPhone */
+@media screen and (max-width: 767px) {
+    _::-webkit-full-page-media, _:future, :root .safari_only {
+        padding-bottom: 25px; //resize
+    }
 }
 
 /* w3schools card style*/
@@ -113,8 +144,6 @@ img {
     background-color: var(--secondary-color);
     border: 2px solid var(--primary-color);
 }
-
-
 
 @-webkit-keyframes underline {
     to {
@@ -226,4 +255,26 @@ img {
 
 .blog-category {
     color: var(--secondary-color);
+}
+
+/* Chart */
+.chart-container {
+    height: 100%;
+    width: 100%;
+}
+
+.chart-tooltip {
+    position: absolute;
+    //left: 50%;
+    width: fit-content;
+    -webkit-transform: translate(-50%, 0);
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    transition: all .1s ease;
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    -webkit-box-shadow: 3px 3px 5px var(--secondary-color);
+    -moz-box-shadow: 3px 3px 5px var(--secondary-color);
+    box-shadow: 3px 3px 5px var(--secondary-color);
 }

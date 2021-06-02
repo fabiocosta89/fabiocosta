@@ -24,25 +24,6 @@
         });
     });
 
-
-    // PROJECT SLIDE
-    $('#project-slide').owlCarousel({
-        loop: true,
-        center: true,
-        autoplayHoverPause: false,
-        autoplay: true,
-        margin: 40,
-        responsiveClass: true,
-        responsive: {
-            0: {
-                items: 1,
-            },
-            768: {
-                items: 2,
-            }
-        }
-    });
-
     // When the user scrolls down 80px from the top of the document, resize the navbar's padding
     window.onscroll = function () { scrollFunction() };
 

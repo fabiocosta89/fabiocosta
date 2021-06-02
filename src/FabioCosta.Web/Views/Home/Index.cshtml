@@ -3,14 +3,19 @@
     ViewData["Description"] = "Hello, my name is Fabio and I am a Fullstack Developer. This is my Portfolio Website.";
 }
 
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js"></script>
+    <script async src="~/js/bundleHome.js" asp-append-version="true"></script>
+}
+
 <!-- Hero -->
 <partial name="_Hero" />
 
 <!-- About -->
 <partial name="_About" />
 
-<!-- Curriculum -->
-<partial name="_Curriculum" />
+<!-- Skills -->
+<partial name="_Skills" />
 
 <!-- Experiences -->
 <partial name="_Experiences" />
