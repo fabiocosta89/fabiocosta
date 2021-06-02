@@ -147,8 +147,6 @@ img {
     border: 2px solid var(--primary-color);
 }
 
-
-
 @-webkit-keyframes underline {
     to {
         text-decoration: line-through;
@@ -259,4 +257,26 @@ img {
 
 .blog-category {
     color: var(--secondary-color);
+}
+
+/* Chart */
+.chart-container {
+    height: 100%;
+    width: 100%;
+}
+
+.chart-tooltip {
+    position: absolute;
+    //left: 50%;
+    width: fit-content;
+    -webkit-transform: translate(-50%, 0);
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    transition: all .1s ease;
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    -webkit-box-shadow: 3px 3px 5px var(--secondary-color);
+    -moz-box-shadow: 3px 3px 5px var(--secondary-color);
+    box-shadow: 3px 3px 5px var(--secondary-color);
 }
