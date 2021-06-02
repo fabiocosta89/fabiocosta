@@ -45,8 +45,12 @@ namespace FabioCosta.Web
                     "/css/templatemo-digital-trend.css",
                     "/css/site.scss");
 
-                pipeline.AddJavaScriptBundle("/js/bundle.js",
+                pipeline.AddJavaScriptBundle("/js/bundleSite.js",
                     "/js/site.js");
+
+                pipeline.AddJavaScriptBundle("/js/bundleHome.js",
+                    "/js/site.js",
+                    "/js/home.js");
             });
 
             services.AddMvc(options =>

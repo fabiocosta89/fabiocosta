@@ -4,6 +4,10 @@
     ViewData["Description"] = "Something went wrong!";
 }
 
+@section Scripts {
+    <script async src="~/js/bundleSite.js" asp-append-version="true"></script>
+}
+
 <section class="project-detail">
     <div class="container">
         <div class="row">
@@ -11,7 +15,7 @@
             <div class="col-lg-8 mx-auto col-md-9 col-12 mt-lg-5 text-center" data-aos="zoom-in-down">
 
                 <h1 class="display-1 text-shadow">@Model.Code</h1>
-                 
+
                 <h3 class="mb-3">Oh no... Something went wrong!</h3>
 
                 <p>
