@@ -1,15 +1,19 @@
 namespace FabioCosta.Web
 {
-    using System.Linq;
+    using FabioCosta.Web.Constants;
+
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.ResponseCompression;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+
+    using SimpleMvcSitemap;
+
     using System.IO.Compression;
-    using Microsoft.AspNetCore.Mvc;
-    using FabioCosta.Web.Constants;
+    using System.Linq;
 
     public class Startup
     {
@@ -23,7 +27,18 @@ namespace FabioCosta.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Application Insights
+            services.AddApplicationInsightsTelemetry();
+
+            // Services
+            services.AddSingleton<ISitemapProvider, SitemapProvider>();
+
             services.AddControllersWithViews();
+
+            services.Configure<GzipCompressionProviderOptions>(options =>
+            {
+                options.Level = CompressionLevel.Fastest;
+            });
 
             services.AddResponseCompression(options =>
             {
@@ -31,12 +46,7 @@ namespace FabioCosta.Web
                 options.Providers.Add<GzipCompressionProvider>();
                 options.MimeTypes =
                     ResponseCompressionDefaults.MimeTypes.Concat(
-                        new[] { "image/svg+xml", "text / json", "application/json", "text/css", "text/html" });
-            });
-
-            services.Configure<GzipCompressionProviderOptions>(options =>
-            {
-                options.Level = CompressionLevel.Optimal;
+                        new[] { "image/svg+xml" });
             });
 
             services.AddWebOptimizer(pipeline =>
@@ -92,6 +102,8 @@ namespace FabioCosta.Web
             app.UseHttpsRedirection();
 
             app.UseWebOptimizer();
+
+            app.UseResponseCaching();
 
             app.UseStaticFiles();
 

@@ -3,9 +3,10 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <UserSecretsId>0cc6c1d1-a8c8-46e7-8b51-000a03bb8bb8</UserSecretsId>
-    <Version>1.2.0</Version>
+    <Version>1.2.1</Version>
     <Authors>Fabio Costa</Authors>
     <Product>FabioCosta</Product>
+    <ApplicationInsightsResourceId>/subscriptions/053f2733-8d6c-4dec-9877-c55c43048bc1/resourceGroups/fabiocosta/providers/microsoft.insights/components/fabiocosta_insights</ApplicationInsightsResourceId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -26,6 +27,7 @@
   <ItemGroup>
     <PackageReference Include="LigerShark.WebOptimizer.Core" Version="3.0.311" />
     <PackageReference Include="LigerShark.WebOptimizer.Sass" Version="3.0.58-beta" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.17.0" />
     <PackageReference Include="Microsoft.AspNetCore.ResponseCaching" Version="2.2.0" />
     <PackageReference Include="SimpleMvcSitemap" Version="4.0.1" />
   </ItemGroup>

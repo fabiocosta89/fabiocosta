@@ -24,5 +24,12 @@ jobs:
       run: dotnet build --no-restore --configuration Release
     - name: Test
       run: dotnet test --no-build --verbosity normal
+    - name: App Settings Variable Substitution
+      uses: microsoft/variable-substitution@v1
+      with:
+        files: ${{ secrets.APPSETTINGS_PATH }}
+      env:
+        ApplicationInsights.InstrumentationKey: ${{ secrets.APPLICATIONINSIGHTS_INSTRUMENTATIONKEY }}
+        GoogleAnalytics.ConfigKey: ${{ secrets.GOOGLEANALYTICS_CONFIGKEY }}
     - name: dotnet publish
-      run: dotnet publish -p:PublishProfile=PTisp -p:Password=${{secrets.PUBLISH_PASSWORD}}
+      run: dotnet publish -c Release --no-restore --no-build -p:PublishProfile=PTisp -p:Password=${{secrets.PUBLISH_PASSWORD}} -o ${{ secrets.PUBLISH_OUTPUT }}
