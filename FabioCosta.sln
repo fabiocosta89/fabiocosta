@@ -5,9 +5,15 @@ VisualStudioVersion = 16.0.31025.194
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{89E92884-C554-4363-BF9E-AE2E0A5B8146}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FabioCosta.Web", "src\FabioCosta.Web\FabioCosta.Web.csproj", "{83C52C37-2BCC-4EEF-99B6-9DC5287628E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FabioCosta.Web", "src\FabioCosta.Web\FabioCosta.Web.csproj", "{83C52C37-2BCC-4EEF-99B6-9DC5287628E6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "web", "web", "{B84667E8-4762-469E-A063-11B73AAF7133}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Github", "Github", "{A8417FEE-114F-460A-A566-BEC0C52DD8CE}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\dotnet_dev.yml = .github\workflows\dotnet_dev.yml
+		.github\workflows\dotnet_prod.yml = .github\workflows\dotnet_prod.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
