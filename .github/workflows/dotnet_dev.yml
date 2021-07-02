@@ -29,7 +29,7 @@ jobs:
       with:
         files: 'D:\a\fabiocosta\fabiocosta\src\FabioCosta.Web\bin\Release\net5.0\appsettings.json'
       env:
-        ApplicationInsights.InstrumentationKey: ${{ env.APPLICATIONINSIGHTS_INSTRUMENTATIONKEY }}
-        GoogleAnalytics.ConfigKey: ${{ env.GOOGLEANALYTICS_CONFIGKEY }}
+        ApplicationInsights.InstrumentationKey: ${{ secrets.APPLICATIONINSIGHTS_INSTRUMENTATIONKEY }}
+        GoogleAnalytics.ConfigKey: ${{ secrets.GOOGLEANALYTICS_CONFIGKEY }}
     - name: dotnet publish
       run: dotnet publish -c Release -p:PublishProfile=PTisp_dev -p:Password=${{secrets.PUBLISH_PASSWORD}}
