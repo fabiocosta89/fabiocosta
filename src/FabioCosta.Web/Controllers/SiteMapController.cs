@@ -11,6 +11,7 @@
 
     public class SiteMapController : Controller
     {
+        [HttpGet]
         [ResponseCache(CacheProfileName = CacheConstants.Weekly)]
         public IActionResult Index()
         {

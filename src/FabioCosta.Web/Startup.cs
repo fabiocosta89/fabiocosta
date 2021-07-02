@@ -1,15 +1,17 @@
 namespace FabioCosta.Web
 {
-    using System.Linq;
+    using FabioCosta.Web.Constants;
+
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.ResponseCompression;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+
     using System.IO.Compression;
-    using Microsoft.AspNetCore.Mvc;
-    using FabioCosta.Web.Constants;
+    using System.Linq;
 
     public class Startup
     {
@@ -25,18 +27,18 @@ namespace FabioCosta.Web
         {
             services.AddControllersWithViews();
 
+            services.Configure<GzipCompressionProviderOptions>(options =>
+            {
+                options.Level = CompressionLevel.Fastest;
+            });
+
             services.AddResponseCompression(options =>
             {
                 options.Providers.Add<BrotliCompressionProvider>();
                 options.Providers.Add<GzipCompressionProvider>();
                 options.MimeTypes =
                     ResponseCompressionDefaults.MimeTypes.Concat(
-                        new[] { "image/svg+xml", "text / json", "application/json", "text/css", "text/html" });
-            });
-
-            services.Configure<GzipCompressionProviderOptions>(options =>
-            {
-                options.Level = CompressionLevel.Optimal;
+                        new[] { "image/svg+xml" });
             });
 
             services.AddWebOptimizer(pipeline =>
@@ -52,6 +54,9 @@ namespace FabioCosta.Web
                     "/js/site.js",
                     "/js/home.js");
             });
+
+            // Application Insights
+            services.AddApplicationInsightsTelemetry();
 
             services.AddMvc(options =>
             {
@@ -92,6 +97,8 @@ namespace FabioCosta.Web
             app.UseHttpsRedirection();
 
             app.UseWebOptimizer();
+
+            app.UseResponseCaching();
 
             app.UseStaticFiles();
 
