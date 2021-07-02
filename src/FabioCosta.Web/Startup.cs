@@ -10,6 +10,8 @@ namespace FabioCosta.Web
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
 
+    using SimpleMvcSitemap;
+
     using System.IO.Compression;
     using System.Linq;
 
@@ -25,6 +27,12 @@ namespace FabioCosta.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Application Insights
+            services.AddApplicationInsightsTelemetry();
+
+            // Services
+            services.AddSingleton<ISitemapProvider, SitemapProvider>();
+
             services.AddControllersWithViews();
 
             services.Configure<GzipCompressionProviderOptions>(options =>
@@ -54,9 +62,6 @@ namespace FabioCosta.Web
                     "/js/site.js",
                     "/js/home.js");
             });
-
-            // Application Insights
-            services.AddApplicationInsightsTelemetry();
 
             services.AddMvc(options =>
             {

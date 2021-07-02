@@ -11,6 +11,13 @@
 
     public class SiteMapController : Controller
     {
+        private readonly ISitemapProvider _sitemapProvider;
+
+        public SiteMapController(ISitemapProvider sitemapProvider)
+        {
+            _sitemapProvider = sitemapProvider;
+        }
+
         [HttpGet]
         [ResponseCache(CacheProfileName = CacheConstants.Weekly)]
         public IActionResult Index()
@@ -39,7 +46,8 @@
                 }
             };
 
-            return new SitemapProvider().CreateSitemap(new SitemapModel(nodes));
+            //return new SitemapProvider().CreateSitemap(new SitemapModel(nodes));
+            return _sitemapProvider.CreateSitemap(new SitemapModel(nodes));
         }
     }
 }
