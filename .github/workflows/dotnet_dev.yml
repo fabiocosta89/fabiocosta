@@ -27,9 +27,9 @@ jobs:
     - name: App Settings Variable Substitution
       uses: microsoft/variable-substitution@v1
       with:
-        files: 'D:\a\fabiocosta\fabiocosta\src\FabioCosta.Web\bin\Release\net5.0\appsettings.json'
+        files: ${{ secrets.APPSETTINGS_PATH }}
       env:
         ApplicationInsights.InstrumentationKey: ${{ secrets.APPLICATIONINSIGHTS_INSTRUMENTATIONKEY }}
         GoogleAnalytics.ConfigKey: ${{ secrets.GOOGLEANALYTICS_CONFIGKEY }}
     - name: dotnet publish
-      run: dotnet publish -c Release -p:PublishProfile=PTisp_dev -p:Password=${{secrets.PUBLISH_PASSWORD}}
+      run: dotnet publish -c Release --no-restore --no-build -p:PublishProfile=PTisp_dev -p:Password=${{secrets.PUBLISH_PASSWORD}} -o ${{ secrets.PUBLISH_OUTPUT }}
