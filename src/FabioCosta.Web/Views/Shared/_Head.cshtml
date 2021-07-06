@@ -60,10 +60,4 @@
 
 <!-- Google analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=@Configuration["GoogleAnalytics:ConfigKey"]"></script>
-<script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', '@Configuration["GoogleAnalytics:ConfigKey"]');
-</script>
+<script src="~/js/gtag.js" ></script>

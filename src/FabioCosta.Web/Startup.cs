@@ -1,6 +1,7 @@
 namespace FabioCosta.Web
 {
     using FabioCosta.Web.Constants;
+    using FabioCosta.Web.Security.Head.Csp;
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -110,6 +111,35 @@ namespace FabioCosta.Web
                 app.UseHsts();
             }
             app.UseStatusCodePagesWithReExecute("/Error/{0}");
+
+            // Content-Security-Policy
+            app.UseCsp(builder =>
+            {
+                builder.Defaults
+                       .AllowSelf()
+                       .Allow("https://analytics.google.com/");
+
+                builder.Scripts
+                       .AllowSelf()
+                       .Allow("https://code.jquery.com")
+                       .Allow("https://cdn.jsdelivr.net")
+                       .Allow("https://cdnjs.cloudflare.com")
+                       .Allow("https://www.googletagmanager.com")
+                       .Allow("https://unpkg.com");
+
+                builder.Styles
+                       .AllowSelf()
+                       .Allow("https://cdn.jsdelivr.net")
+                       .Allow("https://cdnjs.cloudflare.com")
+                       .Allow("https://unpkg.com");
+
+                builder.Fonts
+                       .AllowSelf()
+                       .Allow("https://cdnjs.cloudflare.com");
+
+                builder.Images
+                       .AllowAny();
+            });
 
             app.UseHttpsRedirection();
             app.UseWebOptimizer();
