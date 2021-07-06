@@ -33,6 +33,8 @@ namespace FabioCosta.Web
             // Services
             services.AddSingleton<ISitemapProvider, SitemapProvider>();
 
+            services.AddCors();
+
             services.AddControllersWithViews();
 
             services.Configure<GzipCompressionProviderOptions>(options =>
@@ -100,16 +102,17 @@ namespace FabioCosta.Web
             app.UseStatusCodePagesWithReExecute("/Error/{0}");
 
             app.UseHttpsRedirection();
-
             app.UseWebOptimizer();
-
-            app.UseResponseCaching();
-
             app.UseStaticFiles();
 
             app.UseRouting();
 
+            app.UseCors();
+
             app.UseAuthorization();
+
+            app.UseResponseCompression();
+            app.UseResponseCaching();
 
             app.UseEndpoints(endpoints =>
             {
