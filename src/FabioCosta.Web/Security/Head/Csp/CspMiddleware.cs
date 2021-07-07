@@ -27,6 +27,7 @@
         private string GetHeaderValue()
         {
             var value = "";
+            value += GetDirective("connect-src", this.options.Connects);
             value += GetDirective("default-src", this.options.Defaults);
             value += GetDirective("script-src", this.options.Scripts);
             value += GetDirective("style-src", this.options.Styles);

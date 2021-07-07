@@ -8,6 +8,7 @@
 
         internal CspOptionsBuilder() { }
 
+        public CspDirectiveBuilder Connects { get; set; } = new CspDirectiveBuilder();
         public CspDirectiveBuilder Defaults { get; set; } = new CspDirectiveBuilder();
         public CspDirectiveBuilder Scripts { get; set; } = new CspDirectiveBuilder();
         public CspDirectiveBuilder Styles { get; set; } = new CspDirectiveBuilder();
@@ -17,6 +18,7 @@
 
         internal CspOptions Build()
         {
+            this.options.Connects = this.Defaults.Sources;
             this.options.Defaults = this.Defaults.Sources;
             this.options.Scripts = this.Scripts.Sources;
             this.options.Styles = this.Styles.Sources;

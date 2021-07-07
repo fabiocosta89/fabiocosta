@@ -116,8 +116,7 @@ namespace FabioCosta.Web
             app.UseCsp(builder =>
             {
                 builder.Defaults
-                       .AllowSelf()
-                       .Allow("https://analytics.google.com/");
+                       .AllowAny();
 
                 builder.Scripts
                        .AllowSelf()
