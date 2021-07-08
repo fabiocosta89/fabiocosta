@@ -69,6 +69,34 @@ html {
     text-shadow: 5px 5px 10px rgba(0,0,0,0.5);
 }
 
+/* Cookie consent */
+#cookieConsent {
+    position: sticky;
+    bottom: 0;
+    z-index: 1100;
+
+    button.close {
+        color: var(--secondary-color);
+        position: inherit;
+        opacity: 1;
+        text-shadow: none;
+    }
+}
+
+.alert-info {
+    color: var(--white-color);
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+
+    p {
+        color: var(---white-color);
+    }
+
+    a {
+        color: var(---secondary-color);
+    }
+}
+
 /* Footer */
 .site-footer {
     width: 100%;
