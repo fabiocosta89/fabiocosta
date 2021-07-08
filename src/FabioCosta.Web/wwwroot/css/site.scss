@@ -97,6 +97,17 @@ html {
     }
 }
 
+/* Horizontal divider */
+hr {
+    border: 0;
+    height: 1px;
+    width: 70%;
+    background-image: -o-linear-gradient(left, var(--project-bg), var(--primary-color), var(--project-bg));
+    background-image: -moz-linear-gradient(left, var(--project-bg), var(--primary-color), var(--project-bg));
+    background-image: -ms-linear-gradient(left, var(--project-bg), var(--primary-color), var(--project-bg));
+    background-image: -webkit-linear-gradient(left, var(--project-bg), var(--primary-color), var(--project-bg));
+}
+
 /* Footer */
 .site-footer {
     width: 100%;
