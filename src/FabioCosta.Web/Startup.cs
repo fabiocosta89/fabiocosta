@@ -69,10 +69,16 @@ namespace FabioCosta.Web
 
             services.AddMvc(options =>
             {
+                options.CacheProfiles.Add(CacheConstants.NoCache, new CacheProfile()
+                {
+                    Duration = DurationConstants.DurationInSeconds.None,
+                    Location = ResponseCacheLocation.None,
+                    NoStore = true
+                });
                 options.CacheProfiles.Add(CacheConstants.Hourly, new CacheProfile()
                 {
                     Duration = DurationConstants.DurationInSeconds.Hour // 1 hour
-                });;
+                });
                 options.CacheProfiles.Add(CacheConstants.Daily, new CacheProfile()
                 {
                     Duration = DurationConstants.DurationInSeconds.Day // 1 day

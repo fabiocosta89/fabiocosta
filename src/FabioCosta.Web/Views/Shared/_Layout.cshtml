@@ -19,7 +19,8 @@
         <partial name="_Footer" />
 
         <!-- Cookie consent -->
-        <partial name="_CookieConsentPartial" />
+        @*<partial name="_CookieConsentPartial" />*@
+        @await Component.InvokeAsync("CookieConsent")
     </div>
 
     <!-- SCRIPTS -->
