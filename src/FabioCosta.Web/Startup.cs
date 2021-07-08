@@ -1,9 +1,11 @@
 namespace FabioCosta.Web
 {
     using FabioCosta.Web.Constants;
+    using FabioCosta.Web.Security.Head.Csp;
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.ResponseCompression;
     using Microsoft.Extensions.Configuration;
@@ -32,6 +34,8 @@ namespace FabioCosta.Web
 
             // Services
             services.AddSingleton<ISitemapProvider, SitemapProvider>();
+
+            services.AddCors();
 
             services.AddControllersWithViews();
 
@@ -65,10 +69,16 @@ namespace FabioCosta.Web
 
             services.AddMvc(options =>
             {
+                options.CacheProfiles.Add(CacheConstants.NoCache, new CacheProfile()
+                {
+                    Duration = DurationConstants.DurationInSeconds.None,
+                    Location = ResponseCacheLocation.None,
+                    NoStore = true
+                });
                 options.CacheProfiles.Add(CacheConstants.Hourly, new CacheProfile()
                 {
                     Duration = DurationConstants.DurationInSeconds.Hour // 1 hour
-                });;
+                });
                 options.CacheProfiles.Add(CacheConstants.Daily, new CacheProfile()
                 {
                     Duration = DurationConstants.DurationInSeconds.Day // 1 day
@@ -77,6 +87,15 @@ namespace FabioCosta.Web
                 {
                     Duration = DurationConstants.DurationInSeconds.Week // 7 days
                 });
+            });
+
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                // This lambda determines whether user consent for non-essential 
+                // cookies is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+                // requires using Microsoft.AspNetCore.Http;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
             services.AddResponseCaching();
@@ -99,17 +118,48 @@ namespace FabioCosta.Web
             }
             app.UseStatusCodePagesWithReExecute("/Error/{0}");
 
+            // Content-Security-Policy
+            app.UseCsp(builder =>
+            {
+                builder.Defaults
+                       .AllowAny();
+
+                builder.Scripts
+                       .AllowSelf()
+                       .Allow("https://code.jquery.com")
+                       .Allow("https://cdn.jsdelivr.net")
+                       .Allow("https://cdnjs.cloudflare.com")
+                       .Allow("https://www.googletagmanager.com")
+                       .Allow("https://unpkg.com");
+
+                builder.Styles
+                       .AllowSelf()
+                       .Allow("https://cdn.jsdelivr.net")
+                       .Allow("https://cdnjs.cloudflare.com")
+                       .Allow("https://unpkg.com");
+
+                builder.Fonts
+                       .AllowSelf()
+                       .Allow("https://cdnjs.cloudflare.com");
+
+                builder.Images
+                       .AllowAny();
+            });
+
             app.UseHttpsRedirection();
-
             app.UseWebOptimizer();
-
-            app.UseResponseCaching();
-
             app.UseStaticFiles();
+
+            app.UseCookiePolicy();
 
             app.UseRouting();
 
+            app.UseCors();
+
             app.UseAuthorization();
+
+            app.UseResponseCompression();
+            app.UseResponseCaching();
 
             app.UseEndpoints(endpoints =>
             {

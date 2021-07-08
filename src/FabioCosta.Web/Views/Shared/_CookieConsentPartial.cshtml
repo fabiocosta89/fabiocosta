@@ -1,0 +1,16 @@
+﻿@model FabioCosta.Web.Models.CookieConsentModel
+
+@if (Model.ShowBanner)
+{
+    <div id="cookieConsent" class="alert alert-info alert-dismissible fade show" role="alert">
+        <div class="row">
+            <p class="col-12 col-md-8">This website use cookies and other tracking technologies to improve your browsing experience on our website <a asp-controller="Privacy" asp-action="Index">Privacy Policy</a>.</p>
+            <button id="acceptCookie" type="button" class="col-6 col-md-2 accept-policy close" data-dismiss="alert" aria-label="Close" data-cookie-string="@Model.CookieString">
+                <span aria-hidden="true">Accept</span>
+            </button>
+            <button type="button" class="col-6 col-md-2 reject-policy close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">Reject</span>
+            </button>
+        </div>
+    </div>
+}

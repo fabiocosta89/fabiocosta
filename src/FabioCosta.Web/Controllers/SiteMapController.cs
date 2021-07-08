@@ -18,7 +18,7 @@
             _sitemapProvider = sitemapProvider;
         }
 
-        [HttpGet]
+        [HttpGet("SiteMap.xml")]
         [ResponseCache(CacheProfileName = CacheConstants.Weekly)]
         public IActionResult Index()
         {
@@ -46,7 +46,6 @@
                 }
             };
 
-            //return new SitemapProvider().CreateSitemap(new SitemapModel(nodes));
             return _sitemapProvider.CreateSitemap(new SitemapModel(nodes));
         }
     }
