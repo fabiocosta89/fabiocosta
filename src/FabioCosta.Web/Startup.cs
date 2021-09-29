@@ -17,14 +17,20 @@ namespace FabioCosta.Web
     using System.IO.Compression;
     using System.Linq;
 
+    using Microsoft.EntityFrameworkCore;
+    using Piranha;
+    using Piranha.AspNetCore.Identity.SQLServer;
+    using Piranha.AttributeBuilder;
+    using Piranha.Data.EF.SQLServer;
+
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -34,6 +40,28 @@ namespace FabioCosta.Web
 
             // Services
             services.AddSingleton<ISitemapProvider, SitemapProvider>();
+
+            // Service setup
+            services.AddPiranha(options =>
+            {
+                /**
+                 * This will enable automatic reload of .cshtml
+                 * without restarting the application. However since
+                 * this adds a slight overhead it should not be
+                 * enabled in production.
+                 */
+                options.AddRazorRuntimeCompilation = true;
+
+                options.UseFileStorage(naming: Piranha.Local.FileStorageNaming.UniqueFolderNames);
+                options.UseImageSharp();
+                options.UseManager();
+                options.UseTinyMCE();
+                options.UseMemoryCache();
+                options.UseEF<SQLServerDb>(db =>
+                    db.UseSqlServer(Configuration.GetConnectionString("ConnectionString")));
+                options.UseIdentityWithSeed<IdentitySQLServerDb>(db =>
+                    db.UseSqlServer(Configuration.GetConnectionString("ConnectionString")));
+            });
 
             services.AddCors();
 
