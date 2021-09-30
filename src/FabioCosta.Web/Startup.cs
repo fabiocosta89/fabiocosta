@@ -8,20 +8,21 @@ namespace FabioCosta.Web
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.ResponseCompression;
+    using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+
+    using Piranha;
+    using Piranha.AspNetCore.Identity.SQLServer;
+    using Piranha.AttributeBuilder;
+    using Piranha.Data.EF.SQLServer;
+    using Piranha.Manager.Editor;
 
     using SimpleMvcSitemap;
 
     using System.IO.Compression;
     using System.Linq;
-
-    using Microsoft.EntityFrameworkCore;
-    using Piranha;
-    using Piranha.AspNetCore.Identity.SQLServer;
-    using Piranha.AttributeBuilder;
-    using Piranha.Data.EF.SQLServer;
 
     public class Startup
     {
@@ -52,15 +53,16 @@ namespace FabioCosta.Web
                  */
                 options.AddRazorRuntimeCompilation = true;
 
+                options.DisableRouting();
                 options.UseFileStorage(naming: Piranha.Local.FileStorageNaming.UniqueFolderNames);
                 options.UseImageSharp();
                 options.UseManager();
                 options.UseTinyMCE();
                 options.UseMemoryCache();
                 options.UseEF<SQLServerDb>(db =>
-                    db.UseSqlServer(Configuration.GetConnectionString("ConnectionString")));
+                    db.UseSqlServer(Configuration.GetConnectionString("Database")));
                 options.UseIdentityWithSeed<IdentitySQLServerDb>(db =>
-                    db.UseSqlServer(Configuration.GetConnectionString("ConnectionString")));
+                    db.UseSqlServer(Configuration.GetConnectionString("Database")));
             });
 
             services.AddCors();
@@ -130,7 +132,7 @@ namespace FabioCosta.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApi api)
         {
             app.UseResponseCompression();
 
@@ -145,6 +147,25 @@ namespace FabioCosta.Web
                 app.UseHsts();
             }
             app.UseStatusCodePagesWithReExecute("/Error/{0}");
+
+            // Initialize Piranha
+            App.Init(api);
+
+            // Build content types
+            new ContentTypeBuilder(api)
+                .AddAssembly(typeof(Startup).Assembly)
+                .Build()
+                .DeleteOrphans();
+
+            // Configure Tiny MCE
+            EditorConfig.FromFile("editorconfig.json");
+
+            // Middleware setup
+            app.UsePiranha(options => {
+                options.UseManager();
+                options.UseTinyMCE();
+                options.UseIdentity();
+            });
 
             // Content-Security-Policy
             app.UseCsp(builder =>
