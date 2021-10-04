@@ -350,3 +350,4 @@ MigrationBackup/
 .ionide/
 /src/FabioCosta.Web/.config/dotnet-tools.json
 /src/FabioCosta.Web/appsettings.local.json
+/src/FabioCosta.Web/appsettings.Development.json
