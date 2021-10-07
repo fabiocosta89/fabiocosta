@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
     <partial name="_Head" />
+    <!-- Page Specific -->
+    @RenderSection("Head", required: false)
 </head>
 <body>
     <div id="page-container">
-        <div id="content-wrap">
+        <main id="content-wrap">
             <!-- Back to Top Button -->
             <partial name="_BackTopButton" />
 
@@ -13,7 +15,7 @@
             <partial name="_Menu" />
 
             @RenderBody()
-        </div>
+        </main>
 
         <!-- Footer -->
         <partial name="_Footer" />
