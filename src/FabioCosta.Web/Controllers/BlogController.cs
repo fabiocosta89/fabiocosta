@@ -1,13 +1,9 @@
 ﻿namespace FabioCosta.Web.Controllers
 {
-    using FabioCosta.Web.Models;
+    using FabioCosta.Web.Interfaces;
 
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
-
-    using Piranha;
-    using Piranha.AspNetCore.Services;
-    using Piranha.Models;
 
     using System;
     using System.Threading.Tasks;
@@ -15,17 +11,12 @@
     public class BlogController : Controller
     {
         private readonly ILogger<BlogController> _logger;
-        private readonly IApi _api;
-        private readonly IModelLoader _loader;
-        private readonly IApplicationService _webApp;
+        private readonly IBlogService _blogService;
 
-        public BlogController(ILogger<BlogController> logger, IApi api, IModelLoader loader,
-            IApplicationService webApp)
+        public BlogController(ILogger<BlogController> logger, IBlogService blogService)
         {
             _logger = logger;
-            _api = api;
-            _loader = loader;
-            _webApp = webApp;
+            _blogService = blogService;
         }
 
         /// <summary>
@@ -35,7 +26,7 @@
         {
             try
             {
-                var model = await GetBlogPosts();
+                var model = await _blogService.GetBlogPosts(HttpContext.User);
 
                 return View(model);
             }
@@ -44,19 +35,5 @@
                 return Unauthorized();
             }
         }
-
-        #region Private Methods
-
-        // Get list of blog posts
-        private async Task<StandardArchive> GetBlogPosts()
-        {
-            var id = _webApp.CurrentPage.Id;
-            var model = await _loader.GetPageAsync<StandardArchive>(id, HttpContext.User);
-            model.Archive = await _api.Archives.GetByIdAsync<PostInfo>(id);
-
-            return model;
-        }
-
-        #endregion
     }
 }

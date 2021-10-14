@@ -1,7 +1,9 @@
 namespace FabioCosta.Web
 {
     using FabioCosta.Web.Constants;
+    using FabioCosta.Web.Interfaces;
     using FabioCosta.Web.Security.Head.Csp;
+    using FabioCosta.Web.Services;
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -41,6 +43,7 @@ namespace FabioCosta.Web
 
             // Services
             services.AddSingleton<ISitemapProvider, SitemapProvider>();
+            services.AddScoped<IBlogService, BlogService>();
 
             // Service setup
             services.AddPiranha(options =>
