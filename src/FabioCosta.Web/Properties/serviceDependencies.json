@@ -1,11 +1,10 @@
 {
   "dependencies": {
-    "secrets1": {
-      "type": "secrets"
-    },
     "appInsights1": {
       "type": "appInsights",
-      "connectionId": "APPINSIGHTS_CONNECTIONSTRING"
+      "connectionId": "",
+      "suggestion": "true",
+      "ignored": "true"
     }
   }
 }

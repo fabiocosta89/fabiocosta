@@ -17,13 +17,17 @@ html {
 }
 
 .btn-primary {
-    background: var(--secondary-color);
-    border-radius: var(--border-radius-large);
-    color: var(--white-color);
-    cursor: pointer;
-    font-size: var(--p-font-size);
-    line-height: 0px;
-    padding: 1.5em 1.3em;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+
+    &:hover {
+        cursor: pointer;
+        background-color: var(--secondary-color);
+    }
+
+    &:active {
+        background-color: var(--secondary-color);
+    }
 }
 
 /* Increase of the contact logos from */
@@ -275,7 +279,7 @@ img {
     }
 }
 
-.currentJob {
+.highLight {
     border: 1px solid var(--secondary-color);
     border-radius: 16px;
     -webkit-box-shadow: 3px 3px 5px var(--secondary-color);
@@ -316,4 +320,10 @@ img {
     -webkit-box-shadow: 3px 3px 5px var(--secondary-color);
     -moz-box-shadow: 3px 3px 5px var(--secondary-color);
     box-shadow: 3px 3px 5px var(--secondary-color);
+}
+
+/* Blog */
+
+.post-meta {
+    font-size: .875rem;
 }
