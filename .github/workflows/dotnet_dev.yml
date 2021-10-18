@@ -31,5 +31,6 @@ jobs:
       env:
         ApplicationInsights.InstrumentationKey: ${{ secrets.APPLICATIONINSIGHTS_INSTRUMENTATIONKEY }}
         GoogleAnalytics.ConfigKey: ${{ secrets.GOOGLEANALYTICS_CONFIGKEY }}
+        ConnectionStrings.Database: ${{ secrets.CONNECTIONSTRING_DATABASE }}
     - name: dotnet publish
       run: dotnet publish -c Release --no-restore --no-build -p:PublishProfile=PTisp_dev -p:Password=${{secrets.PUBLISH_PASSWORD}} -o ${{ secrets.PUBLISH_OUTPUT }}
