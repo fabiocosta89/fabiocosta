@@ -60,6 +60,11 @@ html {
     margin: 0 0.3em;
 }
 
+.nav-text {
+    margin: 0 1em;
+    font-size: var(--h2-font-size);
+}
+
 #page-container {
     position: relative;
     min-height: 100vh;
