@@ -28,13 +28,26 @@
         /// </summary>
         /// <param name="user">User Context</param>
         /// <returns>List of blog posts</returns>
-        public async Task<StandardArchive> GetBlogPosts(ClaimsPrincipal user)
+        public async Task<StandardArchive> GetBlogPostsAsync(ClaimsPrincipal user)
         {
             var id = _webApp.CurrentPage.Id;
             var model = await _loader.GetPageAsync<StandardArchive>(id, user);
             model.Archive = await _api.Archives.GetByIdAsync<PostInfo>(id);
 
             return model;
+        }
+
+        public async Task<StandardPost> GetBlogPostBySlugAsync(string slug, ClaimsPrincipal user, bool draft)
+        {
+            var id = _webApp.CurrentPage.Id;
+            var post = await _api.Posts.GetBySlugAsync<StandardPost>(id, slug);
+
+            if (post.IsCommentsOpen)
+            {
+                post.Comments = await _api.Posts.GetAllCommentsAsync(post.Id, true);
+            }
+
+            return post;
         }
     }
 }

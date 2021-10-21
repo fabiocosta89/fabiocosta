@@ -6,12 +6,12 @@
     using System.Collections.Generic;
 
     [PostType(Title = "Standard post")]
-    internal class StandardPost : Post<StandardPost>
+    public class StandardPost : Post<StandardPost>
     {
         /// <summary>
         /// Gets/sets the available comments if these
         /// have been loaded from the database.
         /// </summary>
-        internal IEnumerable<Comment> Comments { get; set; } = new List<Comment>();
+        public IEnumerable<Comment> Comments { get; set; } = new List<Comment>();
     }
 }

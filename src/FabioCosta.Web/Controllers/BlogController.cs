@@ -22,15 +22,36 @@
         /// <summary>
         /// Gets the blog archive with the given id.
         /// </summary>
+        [Route("/blog")]
         public async Task<IActionResult> Index()
         {
             try
             {
-                var model = await _blogService.GetBlogPosts(HttpContext.User);
+                var model = await _blogService.GetBlogPostsAsync(HttpContext.User);
 
                 return View(model);
             }
             catch (UnauthorizedAccessException)
+            {
+                return Unauthorized();
+            }
+        }
+
+        /// <summary>
+        /// Gets the post with the given id.
+        /// </summary>
+        /// <param name="id">The unique post id</param>
+        /// <param name="draft">If a draft is requested</param>
+        [Route("blog/{slug}/{draft?}")]
+        public async Task<IActionResult> Post(string slug, bool draft = false)
+        {
+            try
+            {
+                var model = await _blogService.GetBlogPostBySlugAsync(slug, HttpContext.User, draft);
+
+                return View(model);
+            }
+            catch
             {
                 return Unauthorized();
             }

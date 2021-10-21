@@ -12,6 +12,8 @@
         /// </summary>
         /// <param name="user">User Context</param>
         /// <returns>List of blog posts</returns>
-        Task<StandardArchive> GetBlogPosts(ClaimsPrincipal user);
+        Task<StandardArchive> GetBlogPostsAsync(ClaimsPrincipal user);
+
+        Task<StandardPost> GetBlogPostBySlugAsync(string slug, ClaimsPrincipal user, bool draft);
     }
 }
