@@ -42,7 +42,7 @@
         /// </summary>
         /// <param name="id">The unique post id</param>
         /// <param name="draft">If a draft is requested</param>
-        [Route("blog/{slug}/{draft?}")]
+        [Route("/blog/{slug}")]
         public async Task<IActionResult> Post(string slug, bool draft = false)
         {
             try
