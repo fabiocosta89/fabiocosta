@@ -38,7 +38,7 @@
 @if (hasImage)
 {
     <div class="full-image text-center" data-aos="zoom-in">
-        <img src=@Url.Content(WebApp.Media.ResizeImage(Model.PrimaryImage, Model.PrimaryImage.Media.Width.Value)) class="img-fluid-70" alt="blog header">
+        <img src=@Url.Content(WebApp.Media.ResizeImage(Model.PrimaryImage, Model.PrimaryImage.Media.Width.Value)) class="img-fluid-70" title="@Model.PrimaryImage.Media.Title" alt="@Model.PrimaryImage.Media.AltText">
     </div>
 }
 
