@@ -16,11 +16,11 @@
 }
 
 <!-- Post -->
-<section class="project-detail section-padding-half">
+<section class="project-detail section-padding-quarter">
     <div class="container">
         <div class="row">
-            <div class="col-lg-9 mx-auto col-md-10 col-12 mt-lg-5 text-center" data-aos="fade-up">
-                <h4 class="blog-category text-info">@Model.Category.Title</h4>
+            <div class="col-lg-9 mx-auto col-md-10 col-12 mt-lg-4 text-center" data-aos="fade-up">
+                <h4 class="blog-category">@Model.Category.Title</h4>
                 <h1>@Model.Title</h1>
                 <div class="client-info">
                     <div class="d-flex justify-content-center align-items-center mt-3">
@@ -38,14 +38,14 @@
 @if (hasImage)
 {
     <div class="full-image text-center" data-aos="zoom-in">
-        <img src=@Url.Content(WebApp.Media.ResizeImage(Model.PrimaryImage, 500)) class="img-fluid" alt="blog header" width="500" height="500">
+        <img src=@Url.Content(WebApp.Media.ResizeImage(Model.PrimaryImage, Model.PrimaryImage.Media.Width.Value)) class="img-fluid-70" alt="blog header">
     </div>
 }
 
 <!-- Post Content -->
 <section class="project-detail">
     <div class="container">
-        <div class="col-lg-9 mx-auto col-md-11 col-12 my-5 pt-3" data-aos="fade-up">
+        <div class="col-lg-9 mx-auto col-md-11 col-12 my-3 pt-3" data-aos="fade-up">
             @foreach (var block in Model.Blocks)
             {
                 <div class="row block @block.CssName()">

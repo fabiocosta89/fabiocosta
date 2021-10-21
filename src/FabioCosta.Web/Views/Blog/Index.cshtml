@@ -41,13 +41,13 @@
         foreach (var post in Model.Archive.Posts)
         {
             <div class="row" data-aos="fade-up" data-aos-delay="@aosDelay">
-                <div class="col-lg-6 col-md-6 col-12 mb-5">
+                <div class="col-lg-6 col-md-6 col-12 mb-5 img-center">
                     <a href="@post.Permalink">
                         <img src="@Url.Content(WebApp.Media.ResizeImage(post.PrimaryImage, 300))" class="img-fluid-70 mx-auto d-block" alt="@post.PrimaryImage.Media.AltText">
                     </a>
                 </div>
 
-                <div class="col-lg-5 col-md-6 mr-lg-auto mt-lg-5 col-12">
+                <div class="col-lg-5 col-md-6 mr-lg-auto mt-lg-1 col-12">
                     <h2 class="mb-3"><a href="@post.Permalink">@post.Title</a></h2>
 
                     <p class="post-meta">
