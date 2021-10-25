@@ -5,7 +5,6 @@
     ViewData["Description"] = "This is my blog. You can find some of my thougths in here.";
 
     var posts = Model.Archive.Posts.Count;
-    var aosDelay = 100;
 }
 
 @section Scripts {
@@ -40,14 +39,16 @@
     {
         foreach (var post in Model.Archive.Posts)
         {
-            <div class="row" data-aos="fade-up" data-aos-delay="@aosDelay">
-                <div class="col-lg-6 col-md-6 col-12 mb-5 img-center">
+            <div class="row" data-aos="fade-up">
+                <!-- Image -->
+                <div class="col-lg-6 col-md-6 col-12 mb-2 img-center">
                     <a href="@post.Permalink">
                         <img src="@Url.Content(WebApp.Media.ResizeImage(post.PrimaryImage, 300))" class="img-fluid-70 mx-auto d-block" alt="@post.PrimaryImage.Media.AltText">
                     </a>
                 </div>
 
-                <div class="col-lg-5 col-md-6 mr-lg-auto mt-lg-1 col-12">
+                <!-- Post details -->
+                <div class="col-lg-5 col-md-6 mr-lg-auto col-12">
                     <h2 class="mb-3"><a href="@post.Permalink">@post.Title</a></h2>
 
                     <p class="post-meta">
@@ -79,9 +80,7 @@
                 </div>
             </div>
 
-            <hr data-aos="fade-up" data-aos-delay="200" />
-
-            aosDelay = 200;
+            <hr data-aos="fade-up" />
         }
     }
 </section>
