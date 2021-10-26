@@ -2,12 +2,12 @@
 {
     using System;
 
-    internal class SaveCommentModel
+    public class SaveCommentModel
     {
-        internal Guid Id { get; set; }
-        internal string CommentAuthor { get; set; }
-        internal string CommentEmail { get; set; }
-        internal string CommentUrl { get; set; }
-        internal string CommentBody { get; set; }
+        public Guid Id { get; set; }
+        public string CommentAuthor { get; set; }
+        public string CommentEmail { get; set; }
+        public string CommentUrl { get; set; }
+        public string CommentBody { get; set; }
     }
 }

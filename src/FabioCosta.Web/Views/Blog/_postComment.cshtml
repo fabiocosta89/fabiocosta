@@ -1,6 +1,6 @@
 ﻿@model StandardPost
 
-<div class="highLight alert alert-comment col-lg-9 mx-auto col-md-11 col-12 my-3 pt-3" data-aos="fade-up">
+<div class="highLight alert alert-comment col-lg-9 mx-auto col-md-11 col-12 my-3 pt-3 mb-3 mt-5" data-aos="fade-up">
     <form action="@Model.Permalink/comment" method="post">
         @Html.AntiForgeryToken()
         @Html.Hidden("Id", Model.Id)

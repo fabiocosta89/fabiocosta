@@ -7,8 +7,11 @@
     using Piranha.AspNetCore.Services;
     using Piranha.Models;
 
+    using System;
     using System.Security.Claims;
     using System.Threading.Tasks;
+
+    using System.Linq;
 
     public class BlogService : IBlogService
     {
@@ -37,6 +40,13 @@
             return model;
         }
 
+        /// <summary>
+        /// Get a post by it's slug
+        /// </summary>
+        /// <param name="slug"></param>
+        /// <param name="user"></param>
+        /// <param name="draft"></param>
+        /// <returns></returns>
         public async Task<StandardPost> GetBlogPostBySlugAsync(string slug, ClaimsPrincipal user, bool draft)
         {
             var id = _webApp.CurrentPage.Id;
@@ -45,9 +55,33 @@
             if (post.IsCommentsOpen)
             {
                 post.Comments = await _api.Posts.GetAllCommentsAsync(post.Id, true);
+
+                post.Comments = post.Comments.OrderBy(c => c.ContentId);
             }
 
             return post;
+        }
+
+        /// <summary>
+        /// Get a post by it's Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        public async Task<StandardPost> GetBlogPostByIdAsync(Guid id, ClaimsPrincipal user)
+        {
+            return await _loader.GetPostAsync<StandardPost>(id, user);
+        }
+
+        /// <summary>
+        /// Save a new comment and verify if it should be approved
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="comment"></param>
+        /// <returns></returns>
+        public async Task SaveCommentAsync(Guid id, PostComment comment)
+        {
+            await _api.Posts.SaveCommentAndVerifyAsync(id, comment);
         }
     }
 }

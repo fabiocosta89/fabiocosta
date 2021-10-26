@@ -61,11 +61,15 @@
 <!-- Comments -->
 @if (Model.EnableComments)
 {
-    <div id="comments" class="container comments">
+    <section id="comments" class="container comments project pt-1" data-aos="fade-up">
+        <div class="col-lg-9 mx-auto col-md-10 col-12 mt-lg-4 text-center">
+            <h3>There are <strong>@Model.Comments.Count()</strong> Comments</h3>
+        </div>
+
+        @Html.DisplayFor(m => m.Comments)
         @if (Model.IsCommentsOpen)
         {
-            <partial name="_postComment"/>
+            <partial name="_postComment" />
         }
-        @Html.DisplayFor(m => m.Comments)
-    </div>
+    </section>
 }

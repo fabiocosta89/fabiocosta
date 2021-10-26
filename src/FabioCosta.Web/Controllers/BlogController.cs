@@ -1,9 +1,12 @@
 ﻿namespace FabioCosta.Web.Controllers
 {
     using FabioCosta.Web.Interfaces;
+    using FabioCosta.Web.Models;
 
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
+
+    using Piranha.Models;
 
     using System;
     using System.Threading.Tasks;
@@ -52,6 +55,50 @@
                 return View(model);
             }
             catch
+            {
+                return Unauthorized();
+            }
+        }
+
+        /// <summary>
+        /// Saves the given comment and then redirects to the post.
+        /// </summary>
+        /// <param name="id">The unique post id</param>
+        /// <param name="commentModel">The comment model</param>
+        [HttpPost]
+        [Route("/blog/{slug}/comment")]
+        public async Task<IActionResult> SavePostComment(SaveCommentModel commentModel)
+        {
+            try
+            {
+                var model = await _blogService.GetBlogPostByIdAsync(commentModel.Id, HttpContext.User);
+
+                // validation of the url
+                if (commentModel.CommentUrl != null)
+                {
+                    commentModel.CommentUrl = commentModel.CommentUrl.Trim();
+                    if (!commentModel.CommentUrl.StartsWith("http://")
+                        || commentModel.CommentUrl.StartsWith("https://"))
+                    {
+                        commentModel.CommentUrl = $"http://{commentModel.CommentUrl}";
+                    }
+                }
+
+                // Create the comment
+                var comment = new PostComment
+                {
+                    IpAddress = Request.HttpContext.Connection.RemoteIpAddress.ToString(),
+                    UserAgent = Request.Headers.ContainsKey("User-Agent") ? Request.Headers["User-Agent"].ToString() : "",
+                    Author = commentModel.CommentAuthor,
+                    Email = commentModel.CommentEmail,
+                    Url = commentModel.CommentUrl,
+                    Body = commentModel.CommentBody
+                };
+                await _blogService.SaveCommentAsync(commentModel.Id, comment);
+
+                return Redirect(model.Permalink + "#comments");
+            }
+            catch (UnauthorizedAccessException)
             {
                 return Unauthorized();
             }
