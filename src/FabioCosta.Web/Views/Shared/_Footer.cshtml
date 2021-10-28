@@ -8,9 +8,9 @@
                     Copyright &copy; @DateTime.Now.Year <a asp-controller="Home">Fábio Costa</a>
                 </p>
                 <ul class="footer-link">
-                    <li><a asp-controller="Version">@AssemblyHelper.GetAppVersionWithBuild()</a></li>
-                    <li><a asp-controller="Privacy">Privacy</a></li>
-                    <li><a asp-controller="SiteMap" action="SiteMap.xml">SiteMap</a></li>
+                    <li><a asp-controller="Version"  asp-action="Index">@AssemblyHelper.GetAppVersionWithBuild()</a></li>
+                    <li><a asp-controller="Privacy"  asp-action="Index">Privacy</a></li>
+                    <li><a asp-controller="SiteMap"  asp-action="Index">SiteMap</a></li>
                 </ul>
             </div>
         </div>

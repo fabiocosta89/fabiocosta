@@ -18,7 +18,7 @@
             _sitemapProvider = sitemapProvider;
         }
 
-        [HttpGet("SiteMap.xml")]
+        [Route("/SiteMap.xml")]
         [ResponseCache(CacheProfileName = CacheConstants.Weekly)]
         public IActionResult Index()
         {

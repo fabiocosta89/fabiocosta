@@ -1,5 +1,6 @@
 ﻿namespace FabioCosta.Web.Controllers
 {
+    using FabioCosta.Web.Constants;
     using FabioCosta.Web.Interfaces;
     using FabioCosta.Web.Models;
 
@@ -27,6 +28,7 @@
         /// Gets the blog archive with the given id.
         /// </summary>
         [Route("/blog")]
+        [ResponseCache(CacheProfileName = CacheConstants.Hourly)]
         public async Task<IActionResult> Index()
         {
             try
@@ -47,6 +49,7 @@
         /// <param name="id">The unique post id</param>
         /// <param name="draft">If a draft is requested</param>
         [Route("/blog/{slug}")]
+        [ResponseCache(CacheProfileName = CacheConstants.Hourly)]
         public async Task<IActionResult> Post(string slug, bool draft = false)
         {
             try
