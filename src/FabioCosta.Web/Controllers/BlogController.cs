@@ -9,6 +9,7 @@
     using Piranha.Models;
 
     using System;
+    using System.ComponentModel.DataAnnotations;
     using System.Threading.Tasks;
 
     public class BlogController : Controller
@@ -69,9 +70,11 @@
         [Route("/blog/{slug}/comment")]
         public async Task<IActionResult> SavePostComment(SaveCommentModel commentModel)
         {
+            StandardPost model = null;
+
             try
             {
-                var model = await _blogService.GetBlogPostByIdAsync(commentModel.Id, HttpContext.User);
+                model = await _blogService.GetBlogPostByIdAsync(commentModel.Id, HttpContext.User);
 
                 // validation of the url
                 if (commentModel.CommentUrl != null)
@@ -97,6 +100,10 @@
                 await _blogService.SaveCommentAsync(commentModel.Id, comment);
 
                 return Redirect(model.Permalink + "#comments");
+            }
+            catch (ValidationException)
+            {
+                return Redirect(model?.Permalink ?? "/blog");
             }
             catch (UnauthorizedAccessException)
             {
