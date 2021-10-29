@@ -9,7 +9,7 @@
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public class ErrorController : Controller
     {
-        [Route("/Error/{code:int}")]
+        [Route("/error/{code:int}")]
         public IActionResult Index(int code = 0)
         {
             var model = new PageErrorModel

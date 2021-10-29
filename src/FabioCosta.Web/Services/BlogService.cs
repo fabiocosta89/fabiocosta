@@ -8,10 +8,9 @@
     using Piranha.Models;
 
     using System;
+    using System.Linq;
     using System.Security.Claims;
     using System.Threading.Tasks;
-
-    using System.Linq;
 
     public class BlogService : IBlogService
     {
@@ -36,6 +35,19 @@
             var id = _webApp.CurrentPage.Id;
             var model = await _loader.GetPageAsync<StandardArchive>(id, user);
             model.Archive = await _api.Archives.GetByIdAsync<PostInfo>(id);
+
+            return model;
+        }
+
+        /// <summary>
+        /// Get a list of the blog posts, by the page slug
+        /// </summary>
+        /// <param name="slug"></param>
+        /// <returns></returns>
+        public async Task<StandardArchive> GetBlogPostsByPageSlugAsync(string slug)
+        {
+            var model = await _api.Pages.GetBySlugAsync<StandardArchive>(slug);
+            model.Archive = await _api.Archives.GetByIdAsync<PostInfo>(model.Id);
 
             return model;
         }

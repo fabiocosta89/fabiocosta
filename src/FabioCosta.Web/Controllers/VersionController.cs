@@ -6,7 +6,7 @@
 
     public class VersionController : Controller
     {
-        [HttpGet]
+        [Route("/version")]
         [ResponseCache(CacheProfileName = CacheConstants.Weekly)]
         public IActionResult Index()
         {

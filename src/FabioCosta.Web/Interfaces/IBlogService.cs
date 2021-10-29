@@ -18,6 +18,13 @@
         Task<StandardArchive> GetBlogPostsAsync(ClaimsPrincipal user);
 
         /// <summary>
+        /// Get a list of the blog posts, by the page slug
+        /// </summary>
+        /// <param name="slug"></param>
+        /// <returns></returns>
+        Task<StandardArchive> GetBlogPostsByPageSlugAsync(string slug);
+
+        /// <summary>
         /// Get a post by it's slug
         /// </summary>
         /// <param name="slug"></param>
