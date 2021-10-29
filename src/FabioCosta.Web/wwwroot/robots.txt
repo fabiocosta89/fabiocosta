@@ -1,4 +1,4 @@
 ﻿User-agent: *
 allow: /
 
-Sitemap: https://www.fabiocosta.eu/sitemap.xml
+Sitemap: https://fabiocosta.eu/sitemap.xml
