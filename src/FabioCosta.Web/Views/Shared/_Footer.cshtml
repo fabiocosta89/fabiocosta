@@ -5,12 +5,12 @@
         <div class="row">
             <div class="col-12 text-center">
                 <p class="copyright-text">
-                    Copyright &copy; @DateTime.Now.Year <a asp-controller="Home">Fábio Costa</a>
+                    Copyright &copy; @DateTime.Now.Year <a asp-controller="Home" asp-action="Index">Fábio Costa</a>
                 </p>
                 <ul class="footer-link">
-                    <li><a asp-controller="Version"  asp-action="Index">@AssemblyHelper.GetAppVersionWithBuild()</a></li>
-                    <li><a asp-controller="Privacy"  asp-action="Index">Privacy</a></li>
-                    <li><a asp-controller="SiteMap"  asp-action="Index">SiteMap</a></li>
+                    <li><a asp-controller="Version" asp-action="Index">@AssemblyHelper.GetAppVersionWithBuild()</a></li>
+                    <li><a asp-controller="Privacy" asp-action="Index">Privacy</a></li>
+                    <li><a asp-controller="SiteMap" asp-action="Index">SiteMap</a></li>
                 </ul>
             </div>
         </div>

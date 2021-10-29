@@ -71,7 +71,7 @@
                         @if (post.EnableComments && post.CommentCount > 0)
                         {
                             <span>
-                                <a href="">@post.CommentCount @(post.CommentCount == 1 ? "comment" : "comments")</a>
+                                <a href=@(post.Permalink + "#comments")>@post.CommentCount @(post.CommentCount == 1 ? "comment" : "comments")</a>
                             </span>
                         }
                     </p>

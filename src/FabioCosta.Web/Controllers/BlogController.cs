@@ -71,9 +71,11 @@
         /// <param name="commentModel">The comment model</param>
         [HttpPost]
         [Route("/blog/{slug}/comment")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> SavePostComment(SaveCommentModel commentModel)
         {
             StandardPost model = null;
+            TempData["Error"] = null;
 
             try
             {
@@ -98,15 +100,17 @@
                     Author = commentModel.CommentAuthor,
                     Email = commentModel.CommentEmail,
                     Url = commentModel.CommentUrl,
-                    Body = commentModel.CommentBody
+                    Body = commentModel.CommentBody,
+                    Created = DateTime.UtcNow
                 };
                 await _blogService.SaveCommentAsync(commentModel.Id, comment);
 
                 return Redirect(model.Permalink + "#comments");
             }
-            catch (ValidationException)
+            catch (ValidationException ve)
             {
-                return Redirect(model?.Permalink ?? "/blog");
+                TempData["Error"] = ve.Message;
+                return Redirect(model?.Permalink + "#leave-comment" ?? "/blog");
             }
             catch (UnauthorizedAccessException)
             {

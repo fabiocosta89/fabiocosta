@@ -1,6 +1,13 @@
 ﻿@model StandardPost
 
-<div class="highLight alert alert-comment col-lg-9 mx-auto col-md-11 col-12 my-3 pt-3 mb-3 mt-5" data-aos="fade-up">
+<div id="leave-comment" class="highLight alert alert-comment col-lg-9 mx-auto col-md-11 col-12 my-3 pt-3 mb-3 mt-5" data-aos="fade-up">
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["Error"]
+        </div>
+    }
+
     <form action="@Model.Permalink/comment" method="post">
         @Html.AntiForgeryToken()
         @Html.Hidden("Id", Model.Id)
