@@ -1,30 +1,40 @@
 namespace FabioCosta.Web
 {
     using FabioCosta.Web.Constants;
+    using FabioCosta.Web.Interfaces;
     using FabioCosta.Web.Security.Head.Csp;
+    using FabioCosta.Web.Services;
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.ResponseCompression;
+    using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
 
+    using Piranha;
+    using Piranha.AspNetCore.Identity.SQLServer;
+    using Piranha.AttributeBuilder;
+    using Piranha.Data.EF.SQLServer;
+    using Piranha.Manager.Editor;
+
     using SimpleMvcSitemap;
 
+    using System;
     using System.IO.Compression;
     using System.Linq;
 
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -34,6 +44,34 @@ namespace FabioCosta.Web
 
             // Services
             services.AddSingleton<ISitemapProvider, SitemapProvider>();
+            services.AddScoped<IBlogService, BlogService>();
+            services.AddHttpClient<IExternalService, ExternalService>(c =>
+            {
+                c.BaseAddress = new Uri($"{Configuration.GetValue(typeof(string), "Captcha:ValidationUrl")}");
+            });
+
+            // Service setup
+            services.AddPiranha(options =>
+            {
+                /**
+                 * This will enable automatic reload of .cshtml
+                 * without restarting the application. However since
+                 * this adds a slight overhead it should not be
+                 * enabled in production.
+                 */
+                options.AddRazorRuntimeCompilation = true;
+
+                options.DisableRouting();
+                options.UseFileStorage(naming: Piranha.Local.FileStorageNaming.UniqueFolderNames);
+                options.UseImageSharp();
+                options.UseManager();
+                options.UseTinyMCE();
+                options.UseMemoryCache();
+                options.UseEF<SQLServerDb>(db =>
+                    db.UseSqlServer(Configuration.GetConnectionString("Database")));
+                options.UseIdentityWithSeed<IdentitySQLServerDb>(db =>
+                    db.UseSqlServer(Configuration.GetConnectionString("Database")));
+            });
 
             services.AddCors();
 
@@ -102,7 +140,7 @@ namespace FabioCosta.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApi api)
         {
             app.UseResponseCompression();
 
@@ -117,6 +155,25 @@ namespace FabioCosta.Web
                 app.UseHsts();
             }
             app.UseStatusCodePagesWithReExecute("/Error/{0}");
+
+            // Initialize Piranha
+            App.Init(api);
+
+            // Build content types
+            new ContentTypeBuilder(api)
+                .AddAssembly(typeof(Startup).Assembly)
+                .Build()
+                .DeleteOrphans();
+
+            // Configure Tiny MCE
+            EditorConfig.FromFile("editorconfig.json");
+
+            // Middleware setup
+            app.UsePiranha(options => {
+                options.UseManager();
+                options.UseTinyMCE();
+                options.UseIdentity();
+            });
 
             // Content-Security-Policy
             app.UseCsp(builder =>

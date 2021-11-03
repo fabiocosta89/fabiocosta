@@ -1,0 +1,48 @@
+﻿@model StandardPost
+
+@{ 
+    var siteKey = @Configuration["Captcha:SiteKey"];
+}
+
+<div id="leave-comment" class="highLight alert alert-comment col-lg-9 mx-auto col-md-11 col-12 my-3 pt-3 mb-3 mt-5" data-aos="fade-up">
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["Error"]
+        </div>
+    }
+
+    <form action="@Model.Permalink/comment" method="post">
+        @Html.AntiForgeryToken()
+        @Html.Hidden("Id", Model.Id)
+
+        <h3 class="mb-3">Leave a comment</h3>
+        <p class="mb-4">
+            Please note that we won't show your email to others, or use it for sending
+            unwanted emails. We will only use it to render your Gravatar image and to
+            validate you as a real person.
+        </p>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input name="CommentAuthor" type="text" class="form-control" placeholder="Your name" required maxlength="128">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <input name="CommentEmail" type="text" class="form-control" placeholder="Your email address" required maxlength="128">
+            </div>
+        </div>
+        <div class="form-group">
+            <input name="CommentUrl" type="text" class="form-control" placeholder="An (optional) URL to your website" maxlength="256">
+        </div>
+        <div class="form-group">
+            <textarea name="CommentBody" rows="6" class="form-control" placeholder="Your awesome comment" required></textarea>
+        </div>
+        <div class="form-group">
+            <div class="g-recaptcha" data-sitekey="@siteKey"></div>
+        </div>
+        <div class="form-group text-left">
+            <button class="btn-primary btn">Post Comment</button>
+        </div>
+    </form>
+</div>

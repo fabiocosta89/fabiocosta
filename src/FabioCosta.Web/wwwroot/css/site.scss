@@ -17,13 +17,17 @@ html {
 }
 
 .btn-primary {
-    background: var(--secondary-color);
-    border-radius: var(--border-radius-large);
-    color: var(--white-color);
-    cursor: pointer;
-    font-size: var(--p-font-size);
-    line-height: 0px;
-    padding: 1.5em 1.3em;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+
+    &:hover {
+        cursor: pointer;
+        background-color: var(--secondary-color);
+    }
+
+    &:active {
+        background-color: var(--secondary-color);
+    }
 }
 
 /* Increase of the contact logos from */
@@ -56,6 +60,11 @@ html {
     margin: 0 0.3em;
 }
 
+.nav-text {
+    margin: 0 1em;
+    font-size: var(--h2-font-size);
+}
+
 #page-container {
     position: relative;
     min-height: 100vh;
@@ -67,6 +76,10 @@ html {
 
 .text-shadow {
     text-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+}
+
+.section-padding-quarter {
+    padding: 2em 0;
 }
 
 /* Cookie consent */
@@ -95,6 +108,10 @@ html {
     a {
         color: var(---secondary-color);
     }
+}
+
+.header {
+    color: var(---title-color);
 }
 
 /* Horizontal divider */
@@ -275,7 +292,8 @@ img {
     }
 }
 
-.currentJob {
+.highLight {
+    background-color: var(--white-color);
     border: 1px solid var(--secondary-color);
     border-radius: 16px;
     -webkit-box-shadow: 3px 3px 5px var(--secondary-color);
@@ -294,6 +312,10 @@ img {
 
 .blog-category {
     color: var(--secondary-color);
+}
+
+.small, small {
+    font-size: 70%;
 }
 
 /* Chart */
@@ -316,4 +338,10 @@ img {
     -webkit-box-shadow: 3px 3px 5px var(--secondary-color);
     -moz-box-shadow: 3px 3px 5px var(--secondary-color);
     box-shadow: 3px 3px 5px var(--secondary-color);
+}
+
+/* Blog */
+
+.post-meta {
+    font-size: .875rem;
 }

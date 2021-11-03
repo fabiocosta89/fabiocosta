@@ -14,7 +14,6 @@
             _logger = logger;
         }
 
-        [HttpGet]
         [ResponseCache(CacheProfileName = CacheConstants.Daily)]
         public IActionResult Index()
         {

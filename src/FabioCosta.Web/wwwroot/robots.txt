@@ -1,2 +1,4 @@
 ﻿User-agent: *
 allow: /
+
+Sitemap: https://fabiocosta.eu/sitemap.xml

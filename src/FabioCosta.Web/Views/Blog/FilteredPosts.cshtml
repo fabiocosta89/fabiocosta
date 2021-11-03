@@ -1,0 +1,59 @@
+﻿@model FilteredPosts
+
+@{
+    ViewData["Title"] = (!string.IsNullOrEmpty(Model.StandardArchive.MetaTitle) ? Model.StandardArchive.MetaTitle : Model.StandardArchive.Title) + " - Filtered";
+    ViewData["Description"] = "This is my blog. You can find some of my thougths in here.";
+
+    var posts = Model.StandardArchive.Archive != null ? Model.StandardArchive.Archive.Posts.Count : 0;
+
+    var title = !string.IsNullOrEmpty(Model.Category) ? Model.Category : Model.Tag;
+    var subTitle = !string.IsNullOrEmpty(Model.Category) ? "All the blog posts, from this category" : "All the blog posts, with this tag";
+}
+
+@section Scripts {
+    <script async src="~/js/bundleSite.js" asp-append-version="true"></script>
+}
+
+@section head {
+    @WebApp.MetaTags(Model.StandardArchive)
+}
+
+<!-- Blog -->
+<section class="container">
+    <div class="col-lg-9 mx-auto col-md-10 col-12 mt-lg-5 mb-5 text-center" data-aos="fade-up">
+        <h4 class="blog-category">Blog</h4>
+        <h2 class="header">My thoughts of the moment...</h2>
+
+        <div class="client-info">
+            <div class="d-flex justify-content-center align-items-center mt-3">
+                <img src="/images/shared/male-avatar.png"
+                     class="img-fluid"
+                     alt="male avatar"
+                     width="100"
+                     height="92">
+
+                <p>Fábio Costa</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="highLight col-lg-9 mx-auto col-md-10 col-12 mt-lg-5 mb-5 text-center" data-aos="fade-up">
+        <h1><strong>@title</strong></h1>
+        <p>@subTitle</p>
+    </div>
+
+    <!-- Posts -->
+    @if (posts > 0)
+    {
+        foreach (var post in Model.StandardArchive.Archive.Posts)
+        {
+            <partial name="_postCard" model="post" />
+
+            <hr data-aos="fade-up" />
+        }
+    }
+    else
+    { 
+        <p class="text-center">Sorry, no results...</p>
+    }
+</section>

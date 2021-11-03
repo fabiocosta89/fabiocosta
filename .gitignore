@@ -349,3 +349,6 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 /src/FabioCosta.Web/.config/dotnet-tools.json
+/src/FabioCosta.Web/appsettings.local.json
+/src/FabioCosta.Web/appsettings.Development.json
+/src/FabioCosta.Web/wwwroot/uploads/

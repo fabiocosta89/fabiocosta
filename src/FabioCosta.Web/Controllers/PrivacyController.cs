@@ -14,7 +14,7 @@
             _logger = logger;
         }
 
-        [HttpGet]
+        [Route("/privacy")]
         [ResponseCache(CacheProfileName = CacheConstants.Weekly)]
         public IActionResult Index()
         {
