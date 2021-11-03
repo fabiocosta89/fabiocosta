@@ -17,11 +17,13 @@
     {
         private readonly ILogger<BlogController> _logger;
         private readonly IBlogService _blogService;
+        private readonly IExternalService _externalService;
 
-        public BlogController(ILogger<BlogController> logger, IBlogService blogService)
+        public BlogController(ILogger<BlogController> logger, IBlogService blogService, IExternalService externalService)
         {
             _logger = logger;
             _blogService = blogService;
+            _externalService = externalService;
         }
 
         /// <summary>
@@ -95,50 +97,75 @@
         [HttpPost]
         [Route("/blog/{slug}/comment")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> SavePostComment(SaveCommentModel commentModel)
+        public async Task<IActionResult> SavePostComment(SaveCommentModel commentModel, string slug)
         {
-            StandardPost model = null;
             TempData["Error"] = null;
+            string redirectUrl = $"/blog/{slug}#leave-comment";
+            string captchaError = "The captcha is mandatory!";
 
-            try
+            if (ModelState.IsValid)
             {
-                model = await _blogService.GetBlogPostByIdAsync(commentModel.Id, HttpContext.User);
-
-                // validation of the url
-                if (commentModel.CommentUrl != null)
+                try
                 {
-                    commentModel.CommentUrl = commentModel.CommentUrl.Trim();
-                    if (!commentModel.CommentUrl.StartsWith("http://")
-                        || commentModel.CommentUrl.StartsWith("https://"))
+                    if (!Request.Form.ContainsKey("g-recaptcha-response"))
                     {
-                        commentModel.CommentUrl = $"http://{commentModel.CommentUrl}";
+                        TempData["Error"] = captchaError;
+                        return Redirect(redirectUrl);
                     }
+                    
+                    var captcha = Request.Form["g-recaptcha-response"].ToString();
+                    if (string.IsNullOrEmpty(captcha))
+                    {
+                        TempData["Error"] = captchaError;
+                        return Redirect(redirectUrl);
+                    }
+
+                    if (!await _externalService.IsCaptchaValid(captcha))
+                    {
+                        TempData["Error"] = captchaError;
+                        return Redirect(redirectUrl);
+                    }
+
+                    StandardPost model = await _blogService.GetBlogPostByIdAsync(commentModel.Id, HttpContext.User);
+
+                    // validation of the url
+                    if (commentModel.CommentUrl != null)
+                    {
+                        commentModel.CommentUrl = commentModel.CommentUrl.Trim();
+                        if (!commentModel.CommentUrl.StartsWith("http://")
+                            || commentModel.CommentUrl.StartsWith("https://"))
+                        {
+                            commentModel.CommentUrl = $"http://{commentModel.CommentUrl}";
+                        }
+                    }
+
+                    // Create the comment
+                    var comment = new PostComment
+                    {
+                        IpAddress = Request.HttpContext.Connection.RemoteIpAddress.ToString(),
+                        UserAgent = Request.Headers.ContainsKey("User-Agent") ? Request.Headers["User-Agent"].ToString() : "",
+                        Author = commentModel.CommentAuthor,
+                        Email = commentModel.CommentEmail,
+                        Url = commentModel.CommentUrl,
+                        Body = commentModel.CommentBody,
+                        Created = DateTime.UtcNow
+                    };
+                    await _blogService.SaveCommentAsync(commentModel.Id, comment);
+
+                    return Redirect(model.Permalink + "#comments");
                 }
-
-                // Create the comment
-                var comment = new PostComment
+                catch (ValidationException ve)
                 {
-                    IpAddress = Request.HttpContext.Connection.RemoteIpAddress.ToString(),
-                    UserAgent = Request.Headers.ContainsKey("User-Agent") ? Request.Headers["User-Agent"].ToString() : "",
-                    Author = commentModel.CommentAuthor,
-                    Email = commentModel.CommentEmail,
-                    Url = commentModel.CommentUrl,
-                    Body = commentModel.CommentBody,
-                    Created = DateTime.UtcNow
-                };
-                await _blogService.SaveCommentAsync(commentModel.Id, comment);
+                    TempData["Error"] = ve.Message;
+                    return Redirect(redirectUrl);
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    return Unauthorized();
+                }
+            }
 
-                return Redirect(model.Permalink + "#comments");
-            }
-            catch (ValidationException ve)
-            {
-                TempData["Error"] = ve.Message;
-                return Redirect(model?.Permalink + "#leave-comment" ?? "/blog");
-            }
-            catch (UnauthorizedAccessException)
-            {
-                return Unauthorized();
-            }
+            return Redirect(redirectUrl);
         }
     }
 }

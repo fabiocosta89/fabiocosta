@@ -23,6 +23,7 @@ namespace FabioCosta.Web
 
     using SimpleMvcSitemap;
 
+    using System;
     using System.IO.Compression;
     using System.Linq;
 
@@ -44,6 +45,10 @@ namespace FabioCosta.Web
             // Services
             services.AddSingleton<ISitemapProvider, SitemapProvider>();
             services.AddScoped<IBlogService, BlogService>();
+            services.AddHttpClient<IExternalService, ExternalService>(c =>
+            {
+                c.BaseAddress = new Uri($"{Configuration.GetValue(typeof(string), "Captcha:ValidationUrl")}");
+            });
 
             // Service setup
             services.AddPiranha(options =>

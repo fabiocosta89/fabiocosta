@@ -1,5 +1,9 @@
 ﻿@model StandardPost
 
+@{ 
+    var siteKey = @Configuration["Captcha:SiteKey"];
+}
+
 <div id="leave-comment" class="highLight alert alert-comment col-lg-9 mx-auto col-md-11 col-12 my-3 pt-3 mb-3 mt-5" data-aos="fade-up">
     @if (TempData["Error"] != null)
     {
@@ -33,6 +37,9 @@
         </div>
         <div class="form-group">
             <textarea name="CommentBody" rows="6" class="form-control" placeholder="Your awesome comment" required></textarea>
+        </div>
+        <div class="form-group">
+            <div class="g-recaptcha" data-sitekey="@siteKey"></div>
         </div>
         <div class="form-group text-left">
             <button class="btn-primary btn">Post Comment</button>
