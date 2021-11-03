@@ -22,8 +22,9 @@
         /// </summary>
         /// <param name="user">User Context</param>
         /// <param name="category">category</param>
+        /// <param name="tag">tag</param>
         /// <returns>List of blog posts</returns>
-        Task<StandardArchive> GetBlogPostsFilteredAsync(ClaimsPrincipal user, string category = null);
+        Task<StandardArchive> GetBlogPostsFilteredAsync(ClaimsPrincipal user, string category = null, string tag = null);
 
         /// <summary>
         /// Get a list of the blog posts, by the page slug

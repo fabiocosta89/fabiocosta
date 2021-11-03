@@ -6,8 +6,8 @@
 
     var posts = Model.StandardArchive.Archive != null ? Model.StandardArchive.Archive.Posts.Count : 0;
 
-    var title = Model.Category;
-    var subTitle = Model.Category != null ? "All the blog posts, from this category" : "";
+    var title = !string.IsNullOrEmpty(Model.Category) ? Model.Category : Model.Tag;
+    var subTitle = !string.IsNullOrEmpty(Model.Category) ? "All the blog posts, from this category" : "All the blog posts, with this tag";
 }
 
 @section Scripts {

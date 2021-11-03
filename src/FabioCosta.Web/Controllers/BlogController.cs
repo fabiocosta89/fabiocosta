@@ -44,16 +44,18 @@
         }
 
         [Route("/blog/category/{category}")]
-        public async Task<IActionResult> FilteredPosts(string category = null)
+        [Route("/blog/tag/{tag}")]
+        public async Task<IActionResult> FilteredPosts(string category = null, string tag = null)
         {
             try
             {
-                var archive = await _blogService.GetBlogPostsFilteredAsync(HttpContext.User, category);
+                var archive = await _blogService.GetBlogPostsFilteredAsync(HttpContext.User, category, tag);
 
                 var model = new FilteredPosts
                 {
                     StandardArchive = archive,
-                    Category = category
+                    Category = category,
+                    Tag = tag
                 };
 
                 return View(model);

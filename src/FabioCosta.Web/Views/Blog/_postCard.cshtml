@@ -20,7 +20,7 @@
                 Tags
                 @foreach (var tag in Model.Tags)
                 {
-                    <a href="">#@tag.Slug</a>
+                    <a href="/blog/tag/@tag.Slug">#@tag.Slug</a>
                 }
             </span>
             @if (Model.IsPublished)

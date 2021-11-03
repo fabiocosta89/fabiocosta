@@ -45,8 +45,9 @@
         /// </summary>
         /// <param name="user">User Context</param>
         /// <param name="category">category</param>
+        /// <param name="tag">tag</param>
         /// <returns>List of blog posts</returns>
-        public async Task<StandardArchive> GetBlogPostsFilteredAsync(ClaimsPrincipal user, string category = null)
+        public async Task<StandardArchive> GetBlogPostsFilteredAsync(ClaimsPrincipal user, string category = null, string tag = null)
         {
             var id = _webApp.CurrentPage.Id;
             var model = await _loader.GetPageAsync<StandardArchive>(id, user);
@@ -57,14 +58,19 @@
                 categoryId = (await _api.Posts.GetCategoryBySlugAsync(id, category))?.Id;
             }
 
-            if (!categoryId.HasValue)
+            Guid? tagId = null;
+            if (!string.IsNullOrWhiteSpace(tag))
+            {
+                tagId = (await _api.Posts.GetTagBySlugAsync(id, tag))?.Id;
+            }
+
+            if (!categoryId.HasValue && !tagId.HasValue)
             {
                 model.Archive = null;
                 return model;
             }
             
-
-            model.Archive = await _api.Archives.GetByIdAsync<PostInfo>(archiveId: id, categoryId: categoryId);
+            model.Archive = await _api.Archives.GetByIdAsync<PostInfo>(archiveId: id, categoryId: categoryId, tagId: tagId);
 
             return model;
         }
