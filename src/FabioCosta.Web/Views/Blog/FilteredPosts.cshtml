@@ -4,7 +4,7 @@
     ViewData["Title"] = (!string.IsNullOrEmpty(Model.StandardArchive.MetaTitle) ? Model.StandardArchive.MetaTitle : Model.StandardArchive.Title) + " - Filtered";
     ViewData["Description"] = "This is my blog. You can find some of my thougths in here.";
 
-    var posts = Model.StandardArchive.Archive.Posts.Count;
+    var posts = Model.StandardArchive.Archive != null ? Model.StandardArchive.Archive.Posts.Count : 0;
 
     var title = Model.Category;
     var subTitle = Model.Category != null ? "All the blog posts, from this category" : "";
@@ -51,5 +51,9 @@
 
             <hr data-aos="fade-up" />
         }
+    }
+    else
+    { 
+        <p class="text-center">Sorry, no results...</p>
     }
 </section>

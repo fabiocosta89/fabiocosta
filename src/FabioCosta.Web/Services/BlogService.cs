@@ -54,8 +54,15 @@
             Guid? categoryId = null;
             if (!string.IsNullOrWhiteSpace(category))
             {
-                categoryId = (await _api.Posts.GetCategoryBySlugAsync(id, category)).Id;
+                categoryId = (await _api.Posts.GetCategoryBySlugAsync(id, category))?.Id;
             }
+
+            if (!categoryId.HasValue)
+            {
+                model.Archive = null;
+                return model;
+            }
+            
 
             model.Archive = await _api.Archives.GetByIdAsync<PostInfo>(archiveId: id, categoryId: categoryId);
 
