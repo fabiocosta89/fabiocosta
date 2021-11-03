@@ -18,6 +18,14 @@
         Task<StandardArchive> GetBlogPostsAsync(ClaimsPrincipal user);
 
         /// <summary>
+        /// Get list of blog posts filtered
+        /// </summary>
+        /// <param name="user">User Context</param>
+        /// <param name="category">category</param>
+        /// <returns>List of blog posts</returns>
+        Task<StandardArchive> GetBlogPostsFilteredAsync(ClaimsPrincipal user, string category = null);
+
+        /// <summary>
         /// Get a list of the blog posts, by the page slug
         /// </summary>
         /// <param name="slug"></param>

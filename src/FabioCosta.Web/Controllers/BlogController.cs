@@ -43,6 +43,27 @@
             }
         }
 
+        [Route("/blog/category/{category}")]
+        public async Task<IActionResult> FilteredPosts(string category = null)
+        {
+            try
+            {
+                var archive = await _blogService.GetBlogPostsFilteredAsync(HttpContext.User, category);
+
+                var model = new FilteredPosts
+                {
+                    StandardArchive = archive,
+                    Category = category
+                };
+
+                return View(model);
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return Unauthorized();
+            }
+        }
+
         /// <summary>
         /// Gets the post with the given id.
         /// </summary>

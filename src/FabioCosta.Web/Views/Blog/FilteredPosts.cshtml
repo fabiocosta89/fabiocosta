@@ -1,10 +1,13 @@
-﻿@model StandardArchive
+﻿@model FilteredPosts
 
 @{
-    ViewData["Title"] = !string.IsNullOrEmpty(Model.MetaTitle) ? Model.MetaTitle : Model.Title;
+    ViewData["Title"] = (!string.IsNullOrEmpty(Model.StandardArchive.MetaTitle) ? Model.StandardArchive.MetaTitle : Model.StandardArchive.Title) + " - Filtered";
     ViewData["Description"] = "This is my blog. You can find some of my thougths in here.";
 
-    var posts = Model.Archive.Posts.Count;
+    var posts = Model.StandardArchive.Archive.Posts.Count;
+
+    var title = Model.Category;
+    var subTitle = Model.Category != null ? "All the blog posts, from this category" : "";
 }
 
 @section Scripts {
@@ -12,14 +15,14 @@
 }
 
 @section head {
-    @WebApp.MetaTags(Model)
+    @WebApp.MetaTags(Model.StandardArchive)
 }
 
 <!-- Blog -->
 <section class="container">
     <div class="col-lg-9 mx-auto col-md-10 col-12 mt-lg-5 mb-5 text-center" data-aos="fade-up">
         <h4 class="blog-category">Blog</h4>
-        <h1>My thoughts of the moment...</h1>
+        <h2 class="header">My thoughts of the moment...</h2>
 
         <div class="client-info">
             <div class="d-flex justify-content-center align-items-center mt-3">
@@ -34,10 +37,15 @@
         </div>
     </div>
 
+    <div class="highLight col-lg-9 mx-auto col-md-10 col-12 mt-lg-5 mb-5 text-center" data-aos="fade-up">
+        <h1><strong>@title</strong></h1>
+        <p>@subTitle</p>
+    </div>
+
     <!-- Posts -->
     @if (posts > 0)
     {
-        foreach (var post in Model.Archive.Posts)
+        foreach (var post in Model.StandardArchive.Archive.Posts)
         {
             <partial name="_postCard" model="post" />
 

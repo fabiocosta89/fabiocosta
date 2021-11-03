@@ -34,7 +34,30 @@
         {
             var id = _webApp.CurrentPage.Id;
             var model = await _loader.GetPageAsync<StandardArchive>(id, user);
+
             model.Archive = await _api.Archives.GetByIdAsync<PostInfo>(id);
+
+            return model;
+        }
+
+        /// <summary>
+        /// Get list of blog posts filtered
+        /// </summary>
+        /// <param name="user">User Context</param>
+        /// <param name="category">category</param>
+        /// <returns>List of blog posts</returns>
+        public async Task<StandardArchive> GetBlogPostsFilteredAsync(ClaimsPrincipal user, string category = null)
+        {
+            var id = _webApp.CurrentPage.Id;
+            var model = await _loader.GetPageAsync<StandardArchive>(id, user);
+
+            Guid? categoryId = null;
+            if (!string.IsNullOrWhiteSpace(category))
+            {
+                categoryId = (await _api.Posts.GetCategoryBySlugAsync(id, category)).Id;
+            }
+
+            model.Archive = await _api.Archives.GetByIdAsync<PostInfo>(archiveId: id, categoryId: categoryId);
 
             return model;
         }
