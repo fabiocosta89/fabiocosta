@@ -50,7 +50,7 @@
             @foreach (var block in Model.Blocks)
             {
                 <div class="row block @block.CssName()">
-                    <div class="container">
+                    <div class="container my-2">
                         @Html.DisplayFor(m => block, block.GetType().Name)
                     </div>
                 </div>
