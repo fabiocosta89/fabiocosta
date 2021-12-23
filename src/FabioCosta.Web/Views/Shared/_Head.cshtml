@@ -12,14 +12,14 @@
 <meta property="og:url" content="https://fabiocosta.eu/">
 <meta property="og:title" content="@ViewData["Title"] - Fabio Costa">
 <meta property="og:description" content="@ViewData["Description"]">
-<meta property="og:image" content="/images/shared/profile-pic.png">
+<meta property="og:image" content='@(ViewData["Image"] ?? $"{Context.Request.Scheme}://{Context.Request.Host}/images/shared/profile-pic.png")'>
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:url" content="https://fabiocosta.eu/">
 <meta property="twitter:title" content="@ViewData["Title"] - Fabio Costa">
 <meta property="twitter:description" content="@ViewData["Description"]">
-<meta property="twitter:image" content="/images/shared/profile-pic.png">
+<meta property="twitter:image" content='@(ViewData["Image"] ?? $"{Context.Request.Scheme}://{Context.Request.Host}/images/shared/profile-pic.png")'>
 
 <link rel="canonical" href="https://@Context.Request.Host@Context.Request.Path">
 <meta name="theme-color" content="#4191EB">
