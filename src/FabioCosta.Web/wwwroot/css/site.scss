@@ -16,6 +16,10 @@ html {
     scroll-behavior: smooth;
 }
 
+p {
+    line-height: 1.8em;
+}
+
 .btn-primary {
     background-color: var(--primary-color);
     border-color: var(--primary-color);
