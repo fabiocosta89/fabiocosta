@@ -2,4 +2,4 @@
 function gtag() { dataLayer.push(arguments); }
 gtag('js', new Date());
 
-gtag('config', '@Configuration["GoogleAnalytics:ConfigKey"]');
+gtag('config', googleAnalyticsKey);

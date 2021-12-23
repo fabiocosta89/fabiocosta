@@ -57,6 +57,15 @@
 <!-- MAIN CSS -->
 <link async rel="stylesheet" href="/css/bundle.css" asp-append-version="true" />
 
+<!-- JS Global keys -->
+<script type="text/javascript">
+    const googleAnalyticsKey = @Json.Serialize(@Configuration["GoogleAnalytics:ConfigKey"]);
+    const microsoftClarityKey = @Json.Serialize(@Configuration["Microsoft:ClarityKey"]);
+</script>
+
 <!-- Google analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=@Configuration["GoogleAnalytics:ConfigKey"]"></script>
-<script src="~/js/gtag.js" ></script>
+<script src="~/js/gtag.js"></script>
+
+<!-- Microsoft Clarity -->
+<script src="~/js/clarity.js"></script>

@@ -36,5 +36,6 @@ jobs:
         Captcha.ValidationUrl: ${{ secrets.CAPTCHA_VALIDATION_URL }}
         Captcha.SiteKey: ${{ secrets.CAPTCHA_SITEKEY }}
         Captcha.SecretKey: ${{ secrets.CAPTCHA_SECRETKEY }}
+        Microsoft.ClarityKey: ${{ secrets.MICROSOFT_CLARITY_KEY }}
     - name: dotnet publish
       run: dotnet publish -c Release --no-restore --no-build -p:PublishProfile=PTisp -p:Password=${{secrets.PUBLISH_PASSWORD}} -o ${{ secrets.PUBLISH_OUTPUT }}
