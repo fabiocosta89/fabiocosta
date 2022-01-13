@@ -1,10 +1,10 @@
 ﻿@model StandardPost
 @{
     ViewData["Title"] = !string.IsNullOrEmpty(Model.MetaTitle) ? Model.MetaTitle : Model.Title;
-    ViewData["Description"] = "This is my blog. You can find some of my thougths in here.";
+    ViewData["Description"] = !string.IsNullOrEmpty(Model.MetaDescription) ? Model.MetaDescription : Model.Excerpt;
 
     var hasImage = Model.PrimaryImage.HasValue;
-    if (hasImage) ViewData["Image"] = 
+    if (hasImage) ViewData["Image"] =
             $"{Context.Request.Scheme}://{Context.Request.Host}{Model.PrimaryImage.Media.PublicUrl.Replace("~", string.Empty)}";
 
     var archive = await WebApp.Api.Pages.GetByIdAsync(Model.BlogId);
