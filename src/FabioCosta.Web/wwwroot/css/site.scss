@@ -1,4 +1,4 @@
-﻿/* Template colour override */
+﻿/* Template override */
 :root {
     --primary-color: #4191EB;
     --secondary-color: #f1c111;
@@ -10,6 +10,8 @@
     --gray-color: #C2C2C2;
     --link-color: #3261E3;
     --p-color: #666262;
+
+    --h2-font-size: 30px;
 }
 
 html {
@@ -40,7 +42,7 @@ figure {
 
 /* Increase of the contact logos from */
 .fab, .fa {
-    font-size: 40px;
+    font-size: 30px;
 }
 
 /* Nav */
@@ -70,7 +72,7 @@ figure {
 
 .nav-text {
     margin: 0 1em;
-    font-size: var(--h2-font-size);
+    font-size: var(--h3-font-size);
 }
 
 #page-container {
@@ -273,8 +275,8 @@ iframe {
 #backTopButton {
     display: inline-block;
     background-color: var(--primary-color);
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
     text-align: center;
     border-radius: 4px;
     position: fixed;
@@ -294,7 +296,7 @@ iframe {
         font-weight: normal;
         font-style: normal;
         font-size: 2em;
-        line-height: 60px;
+        line-height: 55px;
         color: #fff;
     }
 
