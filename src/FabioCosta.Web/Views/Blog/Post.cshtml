@@ -46,7 +46,7 @@
 {
     <div class="full-image text-center" data-aos="zoom-in">
         <figure>
-            <img src=@Url.Content(WebApp.Media.ResizeImage(Model.PrimaryImage, Model.PrimaryImage.Media.Width.Value)) class="img-fluid-70" title="@Model.PrimaryImage.Media.Title" alt="@Model.PrimaryImage.Media.AltText">
+            <img src=@Url.Content(WebApp.Media.ResizeImage(Model.PrimaryImage, Model.PrimaryImage.Media.Width.Value)) class="img-fluid" title="@Model.PrimaryImage.Media.Title" alt="@Model.PrimaryImage.Media.AltText">
             <figcaption><i>@Html.Raw(Model.PrimaryImage.Media.Description)</i></figcaption>
         </figure>
     </div>
