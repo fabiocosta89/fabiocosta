@@ -1,9 +1,8 @@
-﻿namespace FabioCosta.Web.Models
-{
-    public class CookieConsentModel
-    {
-        public bool ShowBanner { get; set; }
+﻿namespace FabioCosta.Web.Models;
 
-        public string CookieString { get; set; }
-    }
+public class CookieConsentModel
+{
+    public bool ShowBanner { get; set; }
+
+    public string CookieString { get; set; }
 }

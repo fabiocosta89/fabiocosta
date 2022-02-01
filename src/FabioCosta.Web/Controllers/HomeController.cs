@@ -1,23 +1,22 @@
-﻿namespace FabioCosta.Web.Controllers
+﻿namespace FabioCosta.Web.Controllers;
+
+using FabioCosta.Web.Constants;
+
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+
+public class HomeController : Controller
 {
-    using FabioCosta.Web.Constants;
+    private readonly ILogger<HomeController> _logger;
 
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Logging;
-
-    public class HomeController : Controller
+    public HomeController(ILogger<HomeController> logger)
     {
-        private readonly ILogger<HomeController> _logger;
+        _logger = logger;
+    }
 
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
-        [ResponseCache(CacheProfileName = CacheConstants.Daily)]
-        public IActionResult Index()
-        {
-            return View();
-        }
+    [ResponseCache(CacheProfileName = CacheConstants.Daily)]
+    public IActionResult Index()
+    {
+        return View();
     }
 }

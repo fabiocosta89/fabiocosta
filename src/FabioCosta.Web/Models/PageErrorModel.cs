@@ -1,7 +1,6 @@
-﻿namespace FabioCosta.Web.Models
+﻿namespace FabioCosta.Web.Models;
+
+public class PageErrorModel
 {
-    public class PageErrorModel
-    {
-        public int Code { get; set; }
-    }
+    public int Code { get; set; }
 }

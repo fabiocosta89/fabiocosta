@@ -1,34 +1,34 @@
-﻿namespace FabioCosta.Web.Controllers
+﻿namespace FabioCosta.Web.Controllers;
+
+using FabioCosta.Web.Constants;
+using FabioCosta.Web.Interfaces;
+
+using Microsoft.AspNetCore.Mvc;
+
+using SimpleMvcSitemap;
+
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+public class SiteMapController : Controller
 {
-    using FabioCosta.Web.Constants;
-    using FabioCosta.Web.Interfaces;
+    private readonly ISitemapProvider _sitemapProvider;
+    private readonly IBlogService _blogService;
 
-    using Microsoft.AspNetCore.Mvc;
-
-    using SimpleMvcSitemap;
-
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-
-    public class SiteMapController : Controller
+    public SiteMapController(ISitemapProvider sitemapProvider, IBlogService blogService)
     {
-        private readonly ISitemapProvider _sitemapProvider;
-        private readonly IBlogService _blogService;
+        _sitemapProvider = sitemapProvider;
+        _blogService = blogService;
+    }
 
-        public SiteMapController(ISitemapProvider sitemapProvider, IBlogService blogService)
-        {
-            _sitemapProvider = sitemapProvider;
-            _blogService = blogService;
-        }
-
-        [Route("/SiteMap.xml")]
-        [ResponseCache(CacheProfileName = CacheConstants.Daily)]
-        public async Task<IActionResult> Index()
-        {
-            var nodes = new List<SitemapNode>
+    [Route("/SiteMap.xml")]
+    [ResponseCache(CacheProfileName = CacheConstants.Daily)]
+    public async Task<IActionResult> Index()
+    {
+        var nodes = new List<SitemapNode>
             {
                 new SitemapNode(Url.Action("Index","Home"))
-                { 
+                {
                     ChangeFrequency = ChangeFrequency.Weekly,
                     Priority = 1.0M
                 },
@@ -49,21 +49,20 @@
                 }
             };
 
-            // Blog posts
-            var posts = await _blogService.GetBlogPostsByPageSlugAsync("blog");
-            foreach (var post in posts.Archive.Posts)
+        // Blog posts
+        var posts = await _blogService.GetBlogPostsByPageSlugAsync("blog");
+        foreach (var post in posts.Archive.Posts)
+        {
+            var node = new SitemapNode(Url.Action("Post", "Blog", new { slug = post.Slug }))
             {
-                var node = new SitemapNode(Url.Action("Post", "Blog", new { slug = post.Slug }))
-                {
-                    ChangeFrequency = ChangeFrequency.Weekly,
-                    LastModificationDate = post.LastModified,
-                    Priority = 1.0M
-                };
+                ChangeFrequency = ChangeFrequency.Weekly,
+                LastModificationDate = post.LastModified,
+                Priority = 1.0M
+            };
 
-                nodes.Add(node);
-            }
-
-            return _sitemapProvider.CreateSitemap(new SitemapModel(nodes));
+            nodes.Add(node);
         }
+
+        return _sitemapProvider.CreateSitemap(new SitemapModel(nodes));
     }
 }
