@@ -37,6 +37,6 @@ public sealed class CspMiddleware
         return value;
     }
 
-    private string GetDirective(string directive, List<string> sources)
+    private static string GetDirective(string directive, List<string> sources)
         => sources.Count > 0 ? $"{directive} {string.Join(" ", sources)}; " : "";
 }

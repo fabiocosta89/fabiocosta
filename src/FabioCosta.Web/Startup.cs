@@ -1,5 +1,7 @@
 namespace FabioCosta.Web;
 
+using AspNetCore.SassCompiler;
+
 using FabioCosta.Web.Constants;
 using FabioCosta.Web.Interfaces;
 using FabioCosta.Web.Security.Head.Csp;
@@ -53,15 +55,23 @@ public class Startup
         // Service setup
         services.AddPiranha(options =>
         {
-                /**
-                 * This will enable automatic reload of .cshtml
-                 * without restarting the application. However since
-                 * this adds a slight overhead it should not be
-                 * enabled in production.
-                 */
-            options.AddRazorRuntimeCompilation = true;
+            /**
+             * This will enable automatic reload of .cshtml
+             * without restarting the application. However since
+             * this adds a slight overhead it should not be
+             * enabled in production.
+             */
+            //options.AddRazorRuntimeCompilation = true;
 
-            options.DisableRouting();
+            options.UseCms(opt =>
+            {
+                opt.UseSiteRouting = false;
+                opt.UseAliasRouting = false;
+                opt.UseStartpageRouting = false;
+                opt.UseArchiveRouting = false;
+                opt.UsePostRouting = false;
+            });
+            //options.DisableRouting();
             options.UseFileStorage(naming: Piranha.Local.FileStorageNaming.UniqueFolderNames);
             options.UseImageSharp();
             options.UseManager();
@@ -93,9 +103,10 @@ public class Startup
 
         services.AddWebOptimizer(pipeline =>
         {
-            pipeline.AddScssBundle("/css/bundle.css",
-                "/css/templatemo-digital-trend.css",
-                "/css/site.scss");
+            // Bug on the WebOptimizer
+            //pipeline.AddScssBundle("/css/bundle.css",
+            //    "/css/template.css",
+            //    "/css/site.scss");
 
             pipeline.AddJavaScriptBundle("/js/bundleSite.js",
                 "/js/site.js");
@@ -104,6 +115,9 @@ public class Startup
                 "/js/site.js",
                 "/js/home.js");
         });
+
+        // Alternative to the WebOptimizer to complile scss files
+        services.AddSassCompiler();
 
         services.AddMvc(options =>
         {
@@ -137,6 +151,7 @@ public class Startup
         });
 
         services.AddResponseCaching();
+        //services.AddMemoryCache();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public sealed class CspOptionsBuilder
 {
-    private readonly CspOptions options = new CspOptions();
+    private readonly CspOptions options = new();
 
     internal CspOptionsBuilder() { }
 
