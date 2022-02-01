@@ -39,7 +39,7 @@
 
                 return (bool)success;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }

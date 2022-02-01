@@ -5,7 +5,6 @@
     using FabioCosta.Web.Models;
 
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Logging;
 
     using Piranha.Models;
 
@@ -15,13 +14,11 @@
 
     public class BlogController : Controller
     {
-        private readonly ILogger<BlogController> _logger;
         private readonly IBlogService _blogService;
         private readonly IExternalService _externalService;
 
-        public BlogController(ILogger<BlogController> logger, IBlogService blogService, IExternalService externalService)
+        public BlogController(IBlogService blogService, IExternalService externalService)
         {
-            _logger = logger;
             _blogService = blogService;
             _externalService = externalService;
         }
