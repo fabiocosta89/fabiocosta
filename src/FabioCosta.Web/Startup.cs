@@ -55,14 +55,6 @@ public class Startup
         // Service setup
         services.AddPiranha(options =>
         {
-            /**
-             * This will enable automatic reload of .cshtml
-             * without restarting the application. However since
-             * this adds a slight overhead it should not be
-             * enabled in production.
-             */
-            //options.AddRazorRuntimeCompilation = true;
-
             options.UseCms(opt =>
             {
                 opt.UseSiteRouting = false;
@@ -70,8 +62,9 @@ public class Startup
                 opt.UseStartpageRouting = false;
                 opt.UseArchiveRouting = false;
                 opt.UsePostRouting = false;
+                opt.UsePageRouting = false;
+                opt.UseSitemapRouting = false;
             });
-            //options.DisableRouting();
             options.UseFileStorage(naming: Piranha.Local.FileStorageNaming.UniqueFolderNames);
             options.UseImageSharp();
             options.UseManager();
@@ -151,7 +144,7 @@ public class Startup
         });
 
         services.AddResponseCaching();
-        //services.AddMemoryCache();
+        services.AddMemoryCache();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -199,6 +192,7 @@ public class Startup
 
             builder.Scripts
                    .AllowSelf()
+                   .Allow("https://plausible.fabiocosta.eu")
                    .Allow("https://code.jquery.com")
                    .Allow("https://cdn.jsdelivr.net")
                    .Allow("https://cdnjs.cloudflare.com")
