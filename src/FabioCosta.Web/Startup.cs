@@ -110,7 +110,7 @@ public class Startup
         });
 
         // Alternative to the WebOptimizer to complile scss files
-        services.AddSassCompiler();
+        //services.AddSassCompiler();
 
         services.AddMvc(options =>
         {
