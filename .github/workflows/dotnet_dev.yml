@@ -42,4 +42,4 @@ jobs:
       run: dotnet publish -c Release --no-restore --no-build -p:PublishProfile=PTisp_dev -p:Password=${{secrets.PUBLISH_PASSWORD}} -o ${{ secrets.PUBLISH_OUTPUT }}
     
     - name: Run tmate
-      uses: mxschmitt/action-tmate@v3.9
+      uses: mxschmitt/action-tmate@v2
