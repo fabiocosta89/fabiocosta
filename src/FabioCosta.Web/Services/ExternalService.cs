@@ -1,48 +1,47 @@
-﻿namespace FabioCosta.Web.Services
+﻿namespace FabioCosta.Web.Services;
+
+using FabioCosta.Web.Interfaces;
+
+using Microsoft.Extensions.Configuration;
+
+using Newtonsoft.Json.Linq;
+
+using System;
+using System.Net.Http;
+using System.Threading.Tasks;
+
+public class ExternalService : IExternalService
 {
-    using FabioCosta.Web.Interfaces;
+    private readonly HttpClient _captchaClient;
+    private readonly IConfiguration _configuration;
 
-    using Microsoft.Extensions.Configuration;
-
-    using Newtonsoft.Json.Linq;
-
-    using System;
-    using System.Net.Http;
-    using System.Threading.Tasks;
-
-    public class ExternalService : IExternalService
+    public ExternalService(HttpClient captchaClient, IConfiguration configuration)
     {
-        private readonly HttpClient _captchaClient;
-        private readonly IConfiguration _configuration;
+        _captchaClient = captchaClient;
+        _configuration = configuration;
+    }
 
-        public ExternalService(HttpClient captchaClient, IConfiguration configuration)
+    /// <summary>
+    /// Validate Captcha
+    /// </summary>
+    /// <param name="captcha">Captcha response</param>
+    /// <returns></returns>
+    public async Task<bool> IsCaptchaValid(string captcha)
+    {
+        try
         {
-            _captchaClient = captchaClient;
-            _configuration = configuration;
+            var secretKey = _configuration.GetValue(typeof(string), "Captcha:SecretKey");
+            var postTask = await _captchaClient
+                .PostAsync($"?secret={secretKey}&response={captcha}", new StringContent(""));
+            var result = await postTask.Content.ReadAsStringAsync();
+            var resultObject = JObject.Parse(result);
+            dynamic success = resultObject["success"];
+
+            return (bool)success;
         }
-
-        /// <summary>
-        /// Validate Captcha
-        /// </summary>
-        /// <param name="captcha">Captcha response</param>
-        /// <returns></returns>
-        public async Task<bool> IsCaptchaValid(string captcha)
+        catch (Exception)
         {
-            try
-            {
-                var secretKey = _configuration.GetValue(typeof(string), "Captcha:SecretKey");
-                var postTask = await _captchaClient
-                    .PostAsync($"?secret={secretKey}&response={captcha}", new StringContent(""));
-                var result = await postTask.Content.ReadAsStringAsync();
-                var resultObject = JObject.Parse(result);
-                dynamic success = resultObject["success"];
-
-                return (bool)success;
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
+            return false;
         }
     }
 }
