@@ -1,48 +1,47 @@
-﻿namespace FabioCosta.Web.Security.Head.Csp
+﻿namespace FabioCosta.Web.Security.Head.Csp;
+
+using System.Collections.Generic;
+
+public sealed class CspOptionsBuilder
 {
-    using System.Collections.Generic;
+    private readonly CspOptions options = new();
 
-    public sealed class CspOptionsBuilder
+    internal CspOptionsBuilder() { }
+
+    public CspDirectiveBuilder Connects { get; set; } = new CspDirectiveBuilder();
+    public CspDirectiveBuilder Defaults { get; set; } = new CspDirectiveBuilder();
+    public CspDirectiveBuilder Scripts { get; set; } = new CspDirectiveBuilder();
+    public CspDirectiveBuilder Styles { get; set; } = new CspDirectiveBuilder();
+    public CspDirectiveBuilder Images { get; set; } = new CspDirectiveBuilder();
+    public CspDirectiveBuilder Fonts { get; set; } = new CspDirectiveBuilder();
+    public CspDirectiveBuilder Media { get; set; } = new CspDirectiveBuilder();
+
+    internal CspOptions Build()
     {
-        private readonly CspOptions options = new CspOptions();
-
-        internal CspOptionsBuilder() { }
-
-        public CspDirectiveBuilder Connects { get; set; } = new CspDirectiveBuilder();
-        public CspDirectiveBuilder Defaults { get; set; } = new CspDirectiveBuilder();
-        public CspDirectiveBuilder Scripts { get; set; } = new CspDirectiveBuilder();
-        public CspDirectiveBuilder Styles { get; set; } = new CspDirectiveBuilder();
-        public CspDirectiveBuilder Images { get; set; } = new CspDirectiveBuilder();
-        public CspDirectiveBuilder Fonts { get; set; } = new CspDirectiveBuilder();
-        public CspDirectiveBuilder Media { get; set; } = new CspDirectiveBuilder();
-
-        internal CspOptions Build()
-        {
-            this.options.Connects = this.Defaults.Sources;
-            this.options.Defaults = this.Defaults.Sources;
-            this.options.Scripts = this.Scripts.Sources;
-            this.options.Styles = this.Styles.Sources;
-            this.options.Images = this.Images.Sources;
-            this.options.Fonts = this.Fonts.Sources;
-            this.options.Media = this.Media.Sources;
-            return this.options;
-        }
+        this.options.Connects = this.Defaults.Sources;
+        this.options.Defaults = this.Defaults.Sources;
+        this.options.Scripts = this.Scripts.Sources;
+        this.options.Styles = this.Styles.Sources;
+        this.options.Images = this.Images.Sources;
+        this.options.Fonts = this.Fonts.Sources;
+        this.options.Media = this.Media.Sources;
+        return this.options;
     }
+}
 
-    public sealed class CspDirectiveBuilder
+public sealed class CspDirectiveBuilder
+{
+    internal CspDirectiveBuilder() { }
+
+    internal List<string> Sources { get; set; } = new List<string>();
+
+    public CspDirectiveBuilder AllowSelf() => Allow("'self'");
+    public CspDirectiveBuilder AllowNone() => Allow("none");
+    public CspDirectiveBuilder AllowAny() => Allow("*");
+
+    public CspDirectiveBuilder Allow(string source)
     {
-        internal CspDirectiveBuilder() { }
-
-        internal List<string> Sources { get; set; } = new List<string>();
-
-        public CspDirectiveBuilder AllowSelf() => Allow("'self'");
-        public CspDirectiveBuilder AllowNone() => Allow("none");
-        public CspDirectiveBuilder AllowAny() => Allow("*");
-
-        public CspDirectiveBuilder Allow(string source)
-        {
-            this.Sources.Add(source);
-            return this;
-        }
+        this.Sources.Add(source);
+        return this;
     }
 }

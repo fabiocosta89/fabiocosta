@@ -1,24 +1,15 @@
-﻿namespace FabioCosta.Web.Controllers
+﻿namespace FabioCosta.Web.Controllers;
+
+using FabioCosta.Web.Constants;
+
+using Microsoft.AspNetCore.Mvc;
+
+public class PrivacyController : Controller
 {
-    using FabioCosta.Web.Constants;
-
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Logging;
-
-    public class PrivacyController : Controller
+    [Route("/privacy")]
+    [ResponseCache(CacheProfileName = CacheConstants.Weekly)]
+    public IActionResult Index()
     {
-        private readonly ILogger<PrivacyController> _logger;
-
-        public PrivacyController(ILogger<PrivacyController> logger)
-        {
-            _logger = logger;
-        }
-
-        [Route("/privacy")]
-        [ResponseCache(CacheProfileName = CacheConstants.Weekly)]
-        public IActionResult Index()
-        {
-            return View();
-        }
+        return View();
     }
 }
