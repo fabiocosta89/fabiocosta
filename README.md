@@ -1,8 +1,8 @@
 # My Portfolio website
 
-This is a simple portfolio website, where I show my skills and my CV.
+This is a simple portfolio website, where I show my skills and my CV. Also includes a blog section.
 
-As a tech stack, I used .NET 5 MVC.
+As a tech stack, I used .NET 6 MVC, SQL Server and PiranhaCMS as headless CMS.
 
 I will gradually add more features to the website.
 
