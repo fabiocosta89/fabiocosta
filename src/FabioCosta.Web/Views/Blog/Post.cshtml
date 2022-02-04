@@ -34,7 +34,7 @@
                             <p class="mb-0">Fábio Costa</p>
                             @if (Model.IsPublished)
                             {
-                                <p><small>Posted on @Model.Published.Value.ToShortDateString()</small></p>
+                                <p><em><small>Posted on @Model.Published.Value.ToShortDateString()</small></em></p>
                             }
                         </div>
                     </div>
@@ -50,7 +50,7 @@
     <div class="full-image text-center" data-aos="zoom-in">
         <figure>
             <img src=@Url.Content(WebApp.Media.ResizeImage(Model.PrimaryImage, Model.PrimaryImage.Media.Width.Value)) class="img-fluid" title="@Model.PrimaryImage.Media.Title" alt="@Model.PrimaryImage.Media.AltText">
-            <figcaption><i>@Html.Raw(Model.PrimaryImage.Media.Description)</i></figcaption>
+            <figcaption><em>@Html.Raw(Model.PrimaryImage.Media.Description)</em></figcaption>
         </figure>
     </div>
 }
