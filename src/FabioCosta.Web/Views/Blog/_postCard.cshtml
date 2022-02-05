@@ -26,7 +26,7 @@
             @if (Model.IsPublished)
             {
                 <span>
-                    Published @Model.Published.Value.ToShortDateString()
+                    Posted on @Model.Published.Value.ToShortDateString()
                 </span>
             }
             @if (Model.EnableComments && Model.CommentCount > 0)
