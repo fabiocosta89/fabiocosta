@@ -1,4 +1,4 @@
-﻿@model StandardPost
+@model StandardPost
 @{
     ViewData["Title"] = !string.IsNullOrEmpty(Model.MetaTitle) ? Model.MetaTitle : Model.Title;
     ViewData["Description"] = !string.IsNullOrEmpty(Model.MetaDescription) ? Model.MetaDescription : Model.Excerpt;
