@@ -1,7 +1,5 @@
 namespace FabioCosta.Web;
 
-using AspNetCore.SassCompiler;
-
 using FabioCosta.Web.Constants;
 using FabioCosta.Web.Interfaces;
 using FabioCosta.Web.Security.Head.Csp;
@@ -96,10 +94,9 @@ public class Startup
 
         services.AddWebOptimizer(pipeline =>
         {
-            // Bug on the WebOptimizer
-            //pipeline.AddScssBundle("/css/bundle.css",
-            //    "/css/template.css",
-            //    "/css/site.scss");
+            pipeline.AddScssBundle("/css/bundle.css",
+                "/css/template.css",
+                "/css/site.scss");
 
             pipeline.AddJavaScriptBundle("/js/bundleSite.js",
                 "/js/site.js");
@@ -108,9 +105,6 @@ public class Startup
                 "/js/site.js",
                 "/js/home.js");
         });
-
-        // Alternative to the WebOptimizer to complile scss files
-        //services.AddSassCompiler();
 
         services.AddMvc(options =>
         {
