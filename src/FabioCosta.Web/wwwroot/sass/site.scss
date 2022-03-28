@@ -336,6 +336,10 @@ iframe {
 
 .profile-pic {
     background-color: var(--secondary-color);
+
+    &:hover {
+        border: 2px solid var(--primary-color);
+    }
 }
 
 /* Generic */
