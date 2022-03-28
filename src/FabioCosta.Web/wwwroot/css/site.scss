@@ -72,11 +72,12 @@ figure {
 
 #page-container {
     position: relative;
-    min-height: 100vh
+    min-height: 100vh;
 }
 
 #content-wrap {
-    padding-bottom: 2.5rem
+    padding-bottom: 2.5rem;
+    min-height: 100vh;
 }
 
 .text-shadow {
