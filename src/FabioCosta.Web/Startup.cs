@@ -96,7 +96,7 @@ public class Startup
         {
             pipeline.AddScssBundle("/css/bundle.css",
                 "/css/template.css",
-                "/css/site.scss");
+                "/sass/site.scss");
 
             pipeline.AddJavaScriptBundle("/js/bundleSite.js",
                 "/js/site.js");
