@@ -46,6 +46,11 @@ figure {
 }
 
 /* Nav */
+
+.navbar {
+    padding: 0.5em ;
+}
+
 /* Only stick if you can fit */
 @media (min-height: 300px) {
     .navbar, .container {
@@ -59,8 +64,7 @@ figure {
     width: var(--h2-font-size);
 }
 
-.navbar-small {
-    padding: 0 0 0 1em;
+.navbar-effects {
     -webkit-box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
     -moz-box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
     box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
