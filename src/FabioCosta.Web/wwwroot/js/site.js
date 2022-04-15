@@ -29,9 +29,9 @@
 
     function scrollFunction() {
         if (window.scrollY > 80) {
-            document.getElementById("navbar").classList.add("navbar-small");
+            document.getElementById("navbar").classList.add("navbar-effects");
         } else {
-            document.getElementById("navbar").classList.remove("navbar-small");
+            document.getElementById("navbar").classList.remove("navbar-effects");
         }
     }
 
