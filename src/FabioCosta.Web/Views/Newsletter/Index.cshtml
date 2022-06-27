@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Newsletter";
+    ViewData["Description"] = "This is where you can subscribe to my newsletter. Stay tuned :)";
+}
+
+@section Scripts {
+    <script async src="~/js/bundleSite.js" asp-append-version="true"></script>
+}
+
+<section class="project-detail">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 mx-auto col-md-10 col-12 mt-lg-5 text-center" data-aos="fade-up">
+                <h4 class="blog-category">Stay tuned</h4>
+                <h1>Newsletter</h1>
+            </div>
+            <div class="col-lg-9 mx-auto col-md-11 col-12 my-5 pt-3" data-aos="fade-up" data-aos-delay="100">
+                <script async data-uid=@Configuration["Newsletter:Code"] src=@Configuration["Newsletter:Url"]></script>
+            </div>
+        </div>
+    </div>
+</section>
