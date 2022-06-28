@@ -34,7 +34,7 @@
                             <p class="mb-0">Fábio Costa</p>
                             @if (Model.IsPublished)
                             {
-                                <p><em><small>Posted on @Model.Published.Value.ToShortDateString()</small></em></p>
+                                <p><em><small>Posted on @Model.Published.Value.ToString("dd/MM/yyyy")</small></em></p>
                             }
                         </div>
                     </div>
