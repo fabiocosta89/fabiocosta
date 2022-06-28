@@ -28,8 +28,12 @@
                 <h1>@Model.Title</h1>
                 <div class="client-info">
                     <div class="d-flex justify-content-center align-items-center mt-3">
-                        <img src="/images/shared/FabioEmoji.PNG" class="img-fluid profile-pic rounded-circle" alt="male avatar"
-                             width="100" height="92">
+                        <img src="/images/shared/FabioEmoji.PNG" 
+                            class="img-fluid profile-pic rounded-circle" 
+                            alt="male avatar"
+                            width="100" 
+                            height="92"
+                            loading="lazy">
                         <div>
                             <p class="mb-0">Fábio Costa</p>
                             @if (Model.IsPublished)
@@ -49,7 +53,13 @@
 {
     <div class="full-image text-center" data-aos="zoom-in">
         <figure>
-            <img src=@Url.Content(WebApp.Media.ResizeImage(Model.PrimaryImage, Model.PrimaryImage.Media.Width.Value)) class="img-fluid" title="@Model.PrimaryImage.Media.Title" alt="@Model.PrimaryImage.Media.AltText">
+            <img src=@Url.Content(WebApp.Media.ResizeImage(Model.PrimaryImage, Model.PrimaryImage.Media.Width.Value)) 
+                class="img-fluid" 
+                title="@Model.PrimaryImage.Media.Title" 
+                alt="@Model.PrimaryImage.Media.AltText"
+                width="@Model.PrimaryImage.Media.Width.Value"
+                height="@Model.PrimaryImage.Media.Height.Value"
+                loading="lazy">
             <figcaption><em>@Html.Raw(Model.PrimaryImage.Media.Description)</em></figcaption>
         </figure>
     </div>

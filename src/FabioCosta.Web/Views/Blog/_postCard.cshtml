@@ -4,7 +4,13 @@
     <!-- Image -->
     <div class="col-lg-6 col-md-6 col-12 mb-2 img-center">
         <a href="@Model.Permalink">
-            <img src="@Url.Content(WebApp.Media.ResizeImage(Model.PrimaryImage, 500))" class="img-fluid mx-auto d-block" alt="@Model.PrimaryImage.Media.AltText">
+            <img 
+                src="@Url.Content(WebApp.Media.ResizeImage(Model.PrimaryImage, 500))"
+                width="500"
+                height="@Model.PrimaryImage.Media.Height"
+                class="img-fluid mx-auto d-block" 
+                alt="@Model.PrimaryImage.Media.AltText"
+                loading="lazy">
         </a>
     </div>
 

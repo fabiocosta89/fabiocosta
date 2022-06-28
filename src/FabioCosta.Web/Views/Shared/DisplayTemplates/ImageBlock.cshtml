@@ -1,7 +1,12 @@
 @model Piranha.Extend.Blocks.ImageBlock
 
 <figure>
-    <img src="@Url.Content(WebApp.Media.ResizeImage(Model, Model.Body.Media.Width.Value))" alt="@Model.Body.Media.AltText" title="@Model.Body.Media.Title"
-         width="@Model.Body.Media.Width" height="@Model.Body.Media.Height" class="img-fluid" loading="lazy">
+    <img src="@Url.Content(WebApp.Media.ResizeImage(Model, Model.Body.Media.Width.Value))" 
+        alt="@Model.Body.Media.AltText" 
+        title="@Model.Body.Media.Title"
+        width="@Model.Body.Media.Width" 
+        height="@Model.Body.Media.Height" 
+        class="img-fluid" 
+        loading="lazy">
     <figcaption class="text-center"><em>@Html.Raw(Model.Body.Media.Description)</em></figcaption>
 </figure>
