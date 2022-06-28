@@ -31,7 +31,6 @@ jobs:
         files: ${{ secrets.APPSETTINGS_PATH }}
       env:
         ApplicationInsights.InstrumentationKey: ${{ secrets.APPLICATIONINSIGHTS_INSTRUMENTATIONKEY }}
-        GoogleAnalytics.ConfigKey: ${{ secrets.GOOGLEANALYTICS_CONFIGKEY }}
         ConnectionStrings.Database: ${{ secrets.CONNECTIONSTRING_DATABASE }}
         Captcha.ValidationUrl: ${{ secrets.CAPTCHA_VALIDATION_URL }}
         Captcha.SiteKey: ${{ secrets.CAPTCHA_SITEKEY }}
@@ -40,5 +39,7 @@ jobs:
         Plausible.Domain: ${{ secrets.PLAUSIBLE_DOMAIN }}
         Newsletter.Code: ${{ secrets.NEWSLETTER_CODE }}
         Newsletter.Url: ${{ secrets.NEWSLETTER_URL }}
+        Umami.Id: ${{ secrets.UMAMI_ID }}
+        Umami.Url: ${{ secrets.UMAMI_URL }}
     - name: dotnet publish
       run: dotnet publish -c Release --no-restore --no-build -p:PublishProfile=PTisp -p:Password=${{secrets.PUBLISH_PASSWORD}} -o ${{ secrets.PUBLISH_OUTPUT }}
