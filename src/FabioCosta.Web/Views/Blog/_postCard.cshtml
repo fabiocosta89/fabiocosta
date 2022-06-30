@@ -10,7 +10,7 @@
                 height="@Model.PrimaryImage.Media.Height"
                 class="img-fluid mx-auto d-block" 
                 alt="@Model.PrimaryImage.Media.AltText"
-                loading="lazy">
+                 @(ViewData["FirstPost"] == null ? "loading=lazy" : "")>
         </a>
     </div>
 

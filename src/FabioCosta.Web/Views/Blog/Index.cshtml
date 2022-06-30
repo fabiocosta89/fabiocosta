@@ -36,9 +36,11 @@
     <!-- Posts -->
     @if (posts > 0)
     {
+        ViewData["FirstPost"] = true;
         foreach (var post in Model.Archive.Posts)
         {
             <partial name="_postCard" model="post" />
+            if (ViewData["FirstPost"] != null) ViewData["FirstPost"] = null;
 
             <hr data-aos="fade-up" />
         }
