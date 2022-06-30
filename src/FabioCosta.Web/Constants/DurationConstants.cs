@@ -12,4 +12,9 @@ public static class DurationConstants
 
         public const int Week = 60 * 60 * 24 * 7;
     }
+
+    public static class ReadingInMinutes
+    {
+        public const int ReadingAvgEnglish = 220;
+    }
 }

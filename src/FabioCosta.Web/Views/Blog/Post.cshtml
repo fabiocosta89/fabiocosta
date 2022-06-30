@@ -8,6 +8,8 @@
             $"{Context.Request.Scheme}://{Context.Request.Host}{Model.PrimaryImage.Media.PublicUrl.Replace("~", string.Empty)}";
 
     var archive = await WebApp.Api.Pages.GetByIdAsync(Model.BlogId);
+
+    int minutesToRead = Model.GetTimeToRead();
 }
 
 @section Scripts {
@@ -38,8 +40,9 @@
                             <p class="mb-0">Fábio Costa</p>
                             @if (Model.IsPublished)
                             {
-                                <p><em><small>Posted on @Model.Published.Value.ToString("dd/MM/yyyy")</small></em></p>
+                                <p class="mb-0"><em><small>Posted on @Model.Published.Value.ToString("dd/MM/yyyy")</small></em></p>
                             }
+                            <p class="mb-0"><em><small>@minutesToRead minutes read</small></em></p>
                         </div>
                     </div>
                 </div>
