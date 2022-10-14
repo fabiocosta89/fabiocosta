@@ -215,6 +215,8 @@ public class Startup
 
         app.UseRouting();
 
+        app.UseSentryTracing();
+
         app.UseCors();
 
         app.UseAuthorization();
