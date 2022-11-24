@@ -39,9 +39,6 @@ public class Startup
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
-        // Application Insights
-        services.AddApplicationInsightsTelemetry();
-
         // Services
         services.AddSingleton<ISitemapProvider, SitemapProvider>();
         services.AddScoped<IBlogService, BlogService>();
@@ -186,7 +183,6 @@ public class Startup
 
             builder.Scripts
                    .AllowSelf()
-                   .Allow("https://plausible.fabiocosta.eu")
                    .Allow("https://code.jquery.com")
                    .Allow("https://cdn.jsdelivr.net")
                    .Allow("https://cdnjs.cloudflare.com")

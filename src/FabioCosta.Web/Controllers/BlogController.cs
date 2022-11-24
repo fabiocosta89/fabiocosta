@@ -26,15 +26,22 @@ public class BlogController : Controller
     /// <summary>
     /// Gets the blog archive with the given id.
     /// </summary>
+    [Route("/blog/page/{number}")]
     [Route("/blog")]
     [ResponseCache(CacheProfileName = CacheConstants.Hourly)]
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(int? number = null)
     {
         try
         {
-            var model = await _blogService.GetBlogPostsAsync(HttpContext.User);
+            if (!number.HasValue) number = 1;
 
-            return View(model);
+            StandardArchive posts = await _blogService.GetBlogPostsAsync(HttpContext.User, number.Value);
+            var postsModel = new PostList
+            {
+                Posts = posts
+            };
+
+            return View(postsModel);
         }
         catch (UnauthorizedAccessException)
         {
@@ -77,6 +84,7 @@ public class BlogController : Controller
         try
         {
             var model = await _blogService.GetBlogPostBySlugAsync(slug, HttpContext.User, draft);
+            if (model == null) return NotFound();
 
             return View(model);
         }

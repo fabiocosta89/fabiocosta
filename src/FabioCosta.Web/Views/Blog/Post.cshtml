@@ -34,8 +34,7 @@
                             class="img-fluid profile-pic rounded-circle" 
                             alt="male avatar"
                             width="100" 
-                            height="92"
-                            loading="lazy">
+                            height="92">
                         <div>
                             <p class="mb-0">Fábio Costa</p>
                             @if (Model.IsPublished)
@@ -61,8 +60,7 @@
                 title="@Model.PrimaryImage.Media.Title" 
                 alt="@Model.PrimaryImage.Media.AltText"
                 width="@Model.PrimaryImage.Media.Width.Value"
-                height="@Model.PrimaryImage.Media.Height.Value"
-                loading="lazy">
+                height="@Model.PrimaryImage.Media.Height.Value">
             <figcaption><em>@Html.Raw(Model.PrimaryImage.Media.Description)</em></figcaption>
         </figure>
     </div>

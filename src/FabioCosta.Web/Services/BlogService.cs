@@ -29,13 +29,14 @@ public class BlogService : IBlogService
     /// Get list of blog posts
     /// </summary>
     /// <param name="user">User Context</param>
+    /// <param name="page">the page to recover</param>
     /// <returns>List of blog posts</returns>
-    public async Task<StandardArchive> GetBlogPostsAsync(ClaimsPrincipal user)
+    public async Task<StandardArchive> GetBlogPostsAsync(ClaimsPrincipal user, int pageNumber)
     {
         var id = _webApp.CurrentPage.Id;
         var model = await _loader.GetPageAsync<StandardArchive>(id, user);
 
-        model.Archive = await _api.Archives.GetByIdAsync<PostInfo>(id);
+        model.Archive = await _api.Archives.GetByIdAsync<PostInfo>(id, currentPage: pageNumber);
 
         return model;
     }
@@ -99,6 +100,7 @@ public class BlogService : IBlogService
     {
         var id = _webApp.CurrentPage.Id;
         var post = await _api.Posts.GetBySlugAsync<StandardPost>(id, slug);
+        if (post == null) return null;
 
         if (post.IsCommentsOpen)
         {

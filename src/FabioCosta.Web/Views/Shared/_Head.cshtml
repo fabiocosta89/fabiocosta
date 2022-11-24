@@ -57,13 +57,5 @@
 <!-- MAIN CSS -->
 <link async defer rel="stylesheet" href="/css/bundle.css" asp-append-version="true" />
 
-<!-- JS Global keys -->
-<script type="text/javascript">
-    const microsoftClarityKey = @Json.Serialize(@Configuration["Microsoft:ClarityKey"]);
-</script>
- 
-<!-- Microsoft Clarity -->
-<script async defer src="~/js/clarity.js"></script>
-
 <!-- Umami -->
 <script async defer data-website-id="@Configuration["Umami:Id"]" src="@Configuration["Umami:Url"]"></script>

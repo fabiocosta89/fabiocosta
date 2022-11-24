@@ -1,10 +1,10 @@
-﻿@model StandardArchive
+﻿@model PostList
 
 @{
-    ViewData["Title"] = !string.IsNullOrEmpty(Model.MetaTitle) ? Model.MetaTitle : Model.Title;
+    ViewData["Title"] = !string.IsNullOrEmpty(Model.Posts.MetaTitle) ? Model.Posts.MetaTitle : Model.Posts.Title;
     ViewData["Description"] = "This is my blog. You can find some of my thougths in here.";
 
-    var posts = Model.Archive.Posts.Count;
+    var posts = Model.Posts.Archive.TotalPosts;
 }
 
 @section Scripts {
@@ -12,7 +12,7 @@
 }
 
 @section head {
-    @WebApp.MetaTags(Model)
+    @WebApp.MetaTags(Model.Posts)
 }
 
 <!-- Blog -->
@@ -37,13 +37,15 @@
     @if (posts > 0)
     {
         ViewData["FirstPost"] = true;
-        foreach (var post in Model.Archive.Posts)
+        foreach (var post in Model.Posts.Archive.Posts)
         {
             <partial name="_postCard" model="post" />
             if (ViewData["FirstPost"] != null) ViewData["FirstPost"] = null;
 
             <hr data-aos="fade-up" />
         }
+
+        <partial name="_pagination" model="Model.Posts.Archive" />
     }
     else
     {

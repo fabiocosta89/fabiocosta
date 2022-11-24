@@ -15,7 +15,7 @@ public interface IBlogService
     /// </summary>
     /// <param name="user">User Context</param>
     /// <returns>List of blog posts</returns>
-    Task<StandardArchive> GetBlogPostsAsync(ClaimsPrincipal user);
+    Task<StandardArchive> GetBlogPostsAsync(ClaimsPrincipal user, int pageNumber);
 
     /// <summary>
     /// Get list of blog posts filtered
