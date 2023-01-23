@@ -30,7 +30,7 @@ jobs:
       with:
         files: ${{ secrets.APPSETTINGS_PATH }}
       env:
-        ConnectionStrings.Database: ${{ secrets.CONNECTIONSTRING_DATABASE }}
+        ConnectionStrings.Database: ${{ secrets.CONNECTIONSTRING_DATABASE_POSTGRE }}
         Captcha.ValidationUrl: ${{ secrets.CAPTCHA_VALIDATION_URL }}
         Captcha.SiteKey: ${{ secrets.CAPTCHA_SITEKEY }}
         Captcha.SecretKey: ${{ secrets.CAPTCHA_SECRETKEY }}
