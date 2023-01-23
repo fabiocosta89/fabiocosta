@@ -207,7 +207,6 @@ public class Startup
                    .AllowAny();
         });
 
-        app.UseHttpsRedirection();
         app.UseWebOptimizer();
         app.UseStaticFiles();
 
