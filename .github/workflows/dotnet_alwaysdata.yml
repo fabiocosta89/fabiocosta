@@ -53,14 +53,3 @@ jobs:
         forceSsl: true
         # Local directory
         localDir: ./Release/
-    - name: FTP Deploy
-      uses: SamKirkland/FTP-Deploy-Action@3.1.2
-      with:
-        # Deployment destination server & path. Formatted as protocol://domain.com:port/full/destination/path/
-        ftp-server: ${{ secrets.FTP_SERVER }}
-        # FTP account username
-        ftp-username: ${{ secrets.FTP_USERNAME }}
-        # FTP account password
-        ftp-password: ${{ secrets.FTP_PASSWORD }}
-        # The local folder to copy, defaults to root project folder
-        local-dir: /home/runner/work/fabiocosta/fabiocosta/Release/
