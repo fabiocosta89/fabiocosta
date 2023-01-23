@@ -1,17 +1,17 @@
-name: .NET Dev
+name: .NET Alwaysdata
 
 on:
   push:
-    branches: [ dev ]
+    branches: [ Features/Alwaysdata ]
   pull_request:
-    branches: [ dev ]
+    branches: [ Features/Alwaysdata ]
   workflow_dispatch:
 
 jobs:
   build-and-deploy:
-    environment: Development
+    environment: Production
 
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
@@ -39,4 +39,15 @@ jobs:
         Microsoft.ClarityKey: ${{ secrets.MICROSOFT_CLARITY_KEY }}
         Plausible.Domain: ${{ secrets.PLAUSIBLE_DOMAIN }}
     - name: dotnet publish
-      run: dotnet publish -c Release --no-restore --no-build -p:PublishProfile=PTisp_dev -p:Password=${{secrets.PUBLISH_PASSWORD}} -o ${{ secrets.PUBLISH_OUTPUT }}
+      run: dotnet publish -c Release --no-restore --no-build -p:UseAppHost=false -o ./Release
+    - name: FTP Deploy
+      uses: SamKirkland/FTP-Deploy-Action@3.1.2
+      with:
+        # Deployment destination server & path. Formatted as protocol://domain.com:port/full/destination/path/
+        ftp-server: ${{ secrets.FTP_SERVER }}
+        # FTP account username
+        ftp-username: ${{ secrets.FTP_USERNAME }}
+        # FTP account password
+        ftp-password: ${{ secrets.FTP_PASSWORD }}
+        # The local folder to copy, defaults to root project folder
+        local-dir: ./Release/

@@ -11,8 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "web", "web", "{B84667E8-476
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Github", "Github", "{A8417FEE-114F-460A-A566-BEC0C52DD8CE}"
 	ProjectSection(SolutionItems) = preProject
-		.github\workflows\dotnet_dev.yml = .github\workflows\dotnet_dev.yml
 		.github\workflows\dotnet_prod.yml = .github\workflows\dotnet_prod.yml
+		.github\workflows\dotnet_alwaysdata.yml = .github\workflows\dotnet_alwaysdata.yml
 	EndProjectSection
 EndProject
 Global
