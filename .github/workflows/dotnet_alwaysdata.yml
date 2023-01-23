@@ -39,7 +39,7 @@ jobs:
         Microsoft.ClarityKey: ${{ secrets.MICROSOFT_CLARITY_KEY }}
         Plausible.Domain: ${{ secrets.PLAUSIBLE_DOMAIN }}
     - name: dotnet publish
-      run: dotnet publish -c Release --no-restore --no-build -p:UseAppHost=false -o ./Release
+      run: dotnet publish -c Release --no-restore --no-build -p:UseAppHost=false --output ./Release
     - name: FTP Deploy
       uses: SamKirkland/FTP-Deploy-Action@3.1.2
       with:
@@ -49,6 +49,5 @@ jobs:
         ftp-username: ${{ secrets.FTP_USERNAME }}
         # FTP account password
         ftp-password: ${{ secrets.FTP_PASSWORD }}
-        forceSsl: true
         # The local folder to copy, defaults to root project folder
         local-dir: ./Release/
