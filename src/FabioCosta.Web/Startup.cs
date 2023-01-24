@@ -16,9 +16,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 using Piranha;
-using Piranha.AspNetCore.Identity.SQLServer;
+using Piranha.AspNetCore.Identity.PostgreSQL;
 using Piranha.AttributeBuilder;
-using Piranha.Data.EF.SQLServer;
+using Piranha.Data.EF.PostgreSql;
 using Piranha.Manager.Editor;
 
 using SimpleMvcSitemap;
@@ -65,11 +65,15 @@ public class Startup
             options.UseManager();
             options.UseTinyMCE();
             options.UseMemoryCache();
-            options.UseEF<SQLServerDb>(db =>
-                db.UseSqlServer(Configuration.GetConnectionString("Database")));
-            options.UseIdentityWithSeed<IdentitySQLServerDb>(db =>
-                db.UseSqlServer(Configuration.GetConnectionString("Database")));
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
+            options.UseEF<PostgreSqlDb>(db =>
+                db.UseNpgsql(Configuration.GetConnectionString("Database")));
+            options.UseIdentityWithSeed<IdentityPostgreSQLDb>(db =>
+                db.UseNpgsql(Configuration.GetConnectionString("Database")));
+
         });
+
 
         services.AddCors();
 
@@ -203,7 +207,6 @@ public class Startup
                    .AllowAny();
         });
 
-        app.UseHttpsRedirection();
         app.UseWebOptimizer();
         app.UseStaticFiles();
 
