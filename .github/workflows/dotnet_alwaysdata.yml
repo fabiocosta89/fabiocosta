@@ -2,9 +2,9 @@ name: .NET Alwaysdata
 
 on:
   push:
-    branches: [ Features/Alwaysdata ]
+    branches: [ main ]
   pull_request:
-    branches: [ Features/Alwaysdata ]
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
