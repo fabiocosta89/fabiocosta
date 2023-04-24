@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <UserSecretsId>0cc6c1d1-a8c8-46e7-8b51-000a03bb8bb8</UserSecretsId>
-    <Version>1.6.0</Version>
+    <Version>1.7.0</Version>
     <Authors>Fabio Costa</Authors>
     <Product>FabioCosta</Product>
     <ApplicationInsightsResourceId>/subscriptions/053f2733-8d6c-4dec-9877-c55c43048bc1/resourceGroups/fabiocosta/providers/microsoft.insights/components/fabiocosta_insights</ApplicationInsightsResourceId>

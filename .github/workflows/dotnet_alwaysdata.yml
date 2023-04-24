@@ -40,7 +40,7 @@ jobs:
         Umami.Url: ${{ secrets.UMAMI_URL }}
         Sentry.Dsn: ${{ secrets.SENTRY_DSN }}
     - name: dotnet publish
-      run: dotnet publish -c Release --no-restore --no-build --sc true -p:UseAppHost=false -o ./Release/
+      run: dotnet publish -c Release --no-restore --no-build --sc true -f net7.0 -r linux-x64 -p:UseAppHost=false -o ./Release/
     - name: FTP Deploy
       uses: sebastianpopp/ftp-action@v2.0.0
       with:
