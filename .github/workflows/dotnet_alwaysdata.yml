@@ -18,7 +18,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: 7.0.x
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
@@ -40,7 +40,7 @@ jobs:
         Umami.Url: ${{ secrets.UMAMI_URL }}
         Sentry.Dsn: ${{ secrets.SENTRY_DSN }}
     - name: dotnet publish
-      run: dotnet publish -c Release --no-restore --no-build -p:UseAppHost=false -o ./Release/
+      run: dotnet publish -c Release --no-restore --no-build --sc true -p:UseAppHost=false -o ./Release/
     - name: FTP Deploy
       uses: sebastianpopp/ftp-action@v2.0.0
       with:

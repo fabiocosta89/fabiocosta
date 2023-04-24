@@ -352,3 +352,4 @@ MigrationBackup/
 /src/FabioCosta.Web/appsettings.local.json
 /src/FabioCosta.Web/appsettings.Development.json
 /src/FabioCosta.Web/wwwroot/uploads/
+/src/FabioCosta.Web/FabioCosta.Web.csproj.user
