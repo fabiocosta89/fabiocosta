@@ -25,7 +25,6 @@ using SimpleMvcSitemap;
 
 using System;
 using System.IO.Compression;
-using System.Linq;
 
 public class Startup
 {
@@ -79,18 +78,22 @@ public class Startup
 
         services.AddControllersWithViews();
 
+        services.Configure<BrotliCompressionProviderOptions>(options =>
+        {
+            options.Level = CompressionLevel.Optimal;
+        });
+
         services.Configure<GzipCompressionProviderOptions>(options =>
         {
-            options.Level = CompressionLevel.Fastest;
+            options.Level = CompressionLevel.Optimal;
         });
 
         services.AddResponseCompression(options =>
         {
+            options.EnableForHttps = true;
             options.Providers.Add<BrotliCompressionProvider>();
             options.Providers.Add<GzipCompressionProvider>();
-            options.MimeTypes =
-                ResponseCompressionDefaults.MimeTypes.Concat(
-                    new[] { "image/svg+xml" });
+            options.MimeTypes = ResponseCompressionDefaults.MimeTypes;
         });
 
         services.AddWebOptimizer(pipeline =>
