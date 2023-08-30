@@ -56,7 +56,6 @@ public class SiteMapController : Controller
             var node = new SitemapNode(Url.Action("Post", "Blog", new { slug = post.Slug }))
             {
                 ChangeFrequency = ChangeFrequency.Weekly,
-                LastModificationDate = post.LastModified.ToLocalTime(),
                 Priority = 1.0M
             };
 
