@@ -20,7 +20,7 @@ public sealed class CspMiddleware
 
     public async Task Invoke(HttpContext context)
     {
-        context.Response.Headers.Add(HEADER, GetHeaderValue());
+        context.Response.Headers.Append(HEADER, GetHeaderValue());
         await this.next(context);
     }
 

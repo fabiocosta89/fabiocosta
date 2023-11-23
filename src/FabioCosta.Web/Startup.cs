@@ -28,11 +28,11 @@ using System.IO.Compression;
 
 public class Startup
 {
-    public IConfiguration Configuration { get; }
+    private readonly IConfiguration _configuration;
 
     public Startup(IConfiguration configuration)
     {
-        Configuration = configuration;
+        _configuration = configuration;
     }
 
     // This method gets called by the runtime. Use this method to add services to the container.
@@ -43,7 +43,7 @@ public class Startup
         services.AddScoped<IBlogService, BlogService>();
         services.AddHttpClient<IExternalService, ExternalService>(c =>
         {
-            c.BaseAddress = new Uri($"{Configuration.GetValue(typeof(string), "Captcha:ValidationUrl")}");
+            c.BaseAddress = new Uri($"{_configuration.GetValue(typeof(string), "Captcha:ValidationUrl")}");
         });
 
         // Service setup
@@ -67,9 +67,9 @@ public class Startup
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
             options.UseEF<PostgreSqlDb>(db =>
-                db.UseNpgsql(Configuration.GetConnectionString("Database")));
+                db.UseNpgsql(_configuration.GetConnectionString("Database")));
             options.UseIdentityWithSeed<IdentityPostgreSQLDb>(db =>
-                db.UseNpgsql(Configuration.GetConnectionString("Database")));
+                db.UseNpgsql(_configuration.GetConnectionString("Database")));
 
         });
 
@@ -221,6 +221,7 @@ public class Startup
         app.UseCors();
 
         app.UseAuthorization();
+        app.UseAuthentication();
 
         app.UseResponseCompression();
         app.UseResponseCaching();
