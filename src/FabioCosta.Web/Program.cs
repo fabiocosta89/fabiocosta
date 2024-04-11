@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 
-public class Program
+public static class Program
 {
     public static void Main(string[] args)
     {
@@ -26,7 +26,7 @@ public class Program
                     sentry.Dsn = configuration.GetValue(typeof(string), "Sentry:Dsn")?.ToString();
                     sentry.Debug = true;
                     // Set TracesSampleRate to 1.0 to capture 100% of transactions for performance monitoring.
-                    sentry.TracesSampleRate = 1.0;
+                    sentry.TracesSampleRate = 0.2;
                 });
             });
 }

@@ -30,7 +30,7 @@
     <PackageReference Include="Piranha.Manager" Version="11.0.0" />
     <PackageReference Include="Piranha.Manager.LocalAuth" Version="11.0.0" />
     <PackageReference Include="Piranha.Manager.TinyMCE" Version="11.0.0" />
-    <PackageReference Include="Sentry.AspNetCore" Version="4.2.1" />
+    <PackageReference Include="Sentry.AspNetCore" Version="4.3.0" />
     <PackageReference Include="SimpleMvcSitemap" Version="4.0.1" />
     <PackageReference Include="System.ServiceModel.Syndication" Version="8.0.0" />
   </ItemGroup>
