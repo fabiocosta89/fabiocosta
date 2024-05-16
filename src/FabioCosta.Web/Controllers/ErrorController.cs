@@ -12,6 +12,11 @@ public class ErrorController : Controller
     [Route("/error/{code:int}")]
     public IActionResult Index(int code = 0)
     {
+        if (!ModelState.IsValid)
+        {
+            return View();
+        }
+
         var model = new PageErrorModel
         {
             Code = code

@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
 
+[Route("/")]
 public class FeedController : Controller
 {
     private readonly IBlogService _blogService;
@@ -25,7 +26,7 @@ public class FeedController : Controller
         _blogService = blogService;
     }
 
-    [Route("/feed")]
+    [Route("feed")]
     [ResponseCache(CacheProfileName = CacheConstants.Daily)]
     public async Task<IActionResult> Index()
     {
@@ -74,12 +75,12 @@ public class FeedController : Controller
         {
             var rssFormatter = new Rss20FeedFormatter(feed, false);
             rssFormatter.WriteTo(xmlWriter);
-            xmlWriter.Flush();
+            await xmlWriter.FlushAsync();
         }
         return File(stream.ToArray(), "application/rss+xml; charset=utf-8");
     }
 
-    [Route("/rss")]
+    [Route("rss")]
     public RedirectToActionResult RedirectToFeed()
     {
         return RedirectToActionPermanent("Index");

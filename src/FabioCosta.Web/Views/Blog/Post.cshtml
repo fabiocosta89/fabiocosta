@@ -7,8 +7,6 @@
     if (hasImage) ViewData["Image"] =
             $"{Context.Request.Scheme}://{Context.Request.Host}{Model.PrimaryImage.Media.PublicUrl.Replace("~", string.Empty)}";
 
-    var archive = await WebApp.Api.Pages.GetByIdAsync(Model.BlogId);
-
     int minutesToRead = Model.GetTimeToRead();
 }
 

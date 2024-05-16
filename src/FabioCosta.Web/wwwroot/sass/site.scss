@@ -298,7 +298,7 @@ iframe {
 
     &::after {
         content: "\f077";
-        font-family: 'Font Awesome 5 Free';
+        font-family: 'Font Awesome 5 Free', sans-serif;
         font-weight: normal;
         font-style: normal;
         font-size: 2em;
@@ -365,7 +365,6 @@ iframe {
 
 .chart-tooltip {
     position: absolute;
-    //left: 50%;
     width: fit-content;
     -webkit-transform: translate(-50%, 0);
     -webkit-transition: all .1s ease;

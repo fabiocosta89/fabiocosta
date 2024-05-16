@@ -10,6 +10,7 @@ using SimpleMvcSitemap;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+[Route("/")]
 public class SiteMapController : Controller
 {
     private readonly ISitemapProvider _sitemapProvider;
@@ -21,28 +22,30 @@ public class SiteMapController : Controller
         _blogService = blogService;
     }
 
-    [Route("/SiteMap.xml")]
+    [Route("SiteMap.xml")]
     [ResponseCache(CacheProfileName = CacheConstants.Daily)]
     public async Task<IActionResult> Index()
     {
+        const string indexString = "Index";
+
         var nodes = new List<SitemapNode>
             {
-                new SitemapNode(Url.Action("Index","Home"))
+                new (Url.Action(indexString,"Home"))
                 {
                     ChangeFrequency = ChangeFrequency.Weekly,
                     Priority = 1.0M
                 },
-                new SitemapNode(Url.Action("Index","Privacy"))
+                new (Url.Action(indexString,"Privacy"))
                 {
                     ChangeFrequency = ChangeFrequency.Yearly,
                     Priority = 0.3M
                 },
-                new SitemapNode(Url.Action("Index","Version"))
+                new (Url.Action(indexString,"Version"))
                 {
                     ChangeFrequency = ChangeFrequency.Weekly,
                     Priority = 0.5M
                 },
-                new SitemapNode(Url.Action("Index","Blog"))
+                new (Url.Action(indexString,"Blog"))
                 {
                     ChangeFrequency = ChangeFrequency.Daily,
                     Priority = 0.8M

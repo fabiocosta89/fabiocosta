@@ -12,6 +12,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 
+[Route("/blog")]
 public class BlogController : Controller
 {
     private readonly IBlogService _blogService;
@@ -26,11 +27,16 @@ public class BlogController : Controller
     /// <summary>
     /// Gets the blog archive with the given id.
     /// </summary>
-    [Route("/blog/page/{number}")]
-    [Route("/blog")]
+    [Route("page/{number}")]
+    [Route("")]
     [ResponseCache(CacheProfileName = CacheConstants.Hourly)]
     public async Task<IActionResult> Index(int? number = null)
     {
+        if (!ModelState.IsValid)
+        {
+            return View();
+        }
+
         try
         {
             if (!number.HasValue) number = 1;
@@ -49,10 +55,15 @@ public class BlogController : Controller
         }
     }
 
-    [Route("/blog/category/{category}")]
-    [Route("/blog/tag/{tag}")]
+    [Route("category/{category}")]
+    [Route("tag/{tag}")]
     public async Task<IActionResult> FilteredPosts(string category = null, string tag = null)
     {
+        if (!ModelState.IsValid)
+        {
+            return View();
+        }
+
         try
         {
             var archive = await _blogService.GetBlogPostsFilteredAsync(HttpContext.User, category, tag);
@@ -77,10 +88,15 @@ public class BlogController : Controller
     /// </summary>
     /// <param name="id">The unique post id</param>
     /// <param name="draft">If a draft is requested</param>
-    [Route("/blog/{slug}")]
+    [Route("{slug}")]
     [ResponseCache(CacheProfileName = CacheConstants.Hourly)]
     public async Task<IActionResult> Post(string slug, bool draft = false)
     {
+        if (!ModelState.IsValid)
+        {
+            return View();
+        }
+
         try
         {
             var model = await _blogService.GetBlogPostBySlugAsync(slug, HttpContext.User, draft);
@@ -100,76 +116,77 @@ public class BlogController : Controller
     /// <param name="id">The unique post id</param>
     /// <param name="commentModel">The comment model</param>
     [HttpPost]
-    [Route("/blog/{slug}/comment")]
+    [Route("{slug}/comment")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> SavePostComment(SaveCommentModel commentModel, string slug)
     {
-        TempData["Error"] = null;
+        const string error = "Error";
+        TempData[error] = null;
         string redirectUrl = $"/blog/{slug}#leave-comment";
         string captchaError = "The captcha is mandatory!";
 
-        if (ModelState.IsValid)
+        if (!ModelState.IsValid)
         {
-            try
-            {
-                if (!Request.Form.ContainsKey("g-recaptcha-response"))
-                {
-                    TempData["Error"] = captchaError;
-                    return Redirect(redirectUrl);
-                }
-
-                var captcha = Request.Form["g-recaptcha-response"].ToString();
-                if (string.IsNullOrEmpty(captcha))
-                {
-                    TempData["Error"] = captchaError;
-                    return Redirect(redirectUrl);
-                }
-
-                if (!await _externalService.IsCaptchaValid(captcha))
-                {
-                    TempData["Error"] = captchaError;
-                    return Redirect(redirectUrl);
-                }
-
-                StandardPost model = await _blogService.GetBlogPostByIdAsync(commentModel.Id, HttpContext.User);
-
-                // validation of the url
-                if (commentModel.CommentUrl != null)
-                {
-                    commentModel.CommentUrl = commentModel.CommentUrl.Trim();
-                    if (!commentModel.CommentUrl.StartsWith("http://")
-                        || commentModel.CommentUrl.StartsWith("https://"))
-                    {
-                        commentModel.CommentUrl = $"http://{commentModel.CommentUrl}";
-                    }
-                }
-
-                // Create the comment
-                var comment = new PostComment
-                {
-                    IpAddress = Request.HttpContext.Connection.RemoteIpAddress.ToString(),
-                    UserAgent = Request.Headers.ContainsKey("User-Agent") ? Request.Headers["User-Agent"].ToString() : "",
-                    Author = commentModel.CommentAuthor,
-                    Email = commentModel.CommentEmail,
-                    Url = commentModel.CommentUrl,
-                    Body = commentModel.CommentBody,
-                    Created = DateTime.UtcNow
-                };
-                await _blogService.SaveCommentAsync(commentModel.Id, comment);
-
-                return Redirect(model.Permalink + "#comments");
-            }
-            catch (ValidationException ve)
-            {
-                TempData["Error"] = ve.Message;
-                return Redirect(redirectUrl);
-            }
-            catch (UnauthorizedAccessException)
-            {
-                return Unauthorized();
-            }
+            return Redirect(redirectUrl);
         }
 
-        return Redirect(redirectUrl);
+        try
+        {
+            if (!Request.Form.ContainsKey("g-recaptcha-response"))
+            {
+                TempData[error] = captchaError;
+                return Redirect(redirectUrl);
+            }
+
+            var captcha = Request.Form["g-recaptcha-response"].ToString();
+            if (string.IsNullOrEmpty(captcha))
+            {
+                TempData[error] = captchaError;
+                return Redirect(redirectUrl);
+            }
+
+            if (!await _externalService.IsCaptchaValid(captcha))
+            {
+                TempData[error] = captchaError;
+                return Redirect(redirectUrl);
+            }
+
+            StandardPost model = await _blogService.GetBlogPostByIdAsync(commentModel.Id, HttpContext.User);
+
+            // validation of the url
+            if (commentModel.CommentUrl != null)
+            {
+                commentModel.CommentUrl = commentModel.CommentUrl.Trim();
+                if (!commentModel.CommentUrl.StartsWith("http://")
+                    || commentModel.CommentUrl.StartsWith("https://"))
+                {
+                    commentModel.CommentUrl = $"http://{commentModel.CommentUrl}";
+                }
+            }
+
+            // Create the comment
+            var comment = new PostComment
+            {
+                IpAddress = Request.HttpContext.Connection.RemoteIpAddress.ToString(),
+                UserAgent = Request.Headers.ContainsKey("User-Agent") ? Request.Headers.UserAgent.ToString() : "",
+                Author = commentModel.CommentAuthor,
+                Email = commentModel.CommentEmail,
+                Url = commentModel.CommentUrl,
+                Body = commentModel.CommentBody,
+                Created = DateTime.UtcNow
+            };
+            await _blogService.SaveCommentAsync(commentModel.Id, comment);
+
+            return Redirect(model.Permalink + "#comments");
+        }
+        catch (ValidationException ve)
+        {
+            TempData[error] = ve.Message;
+            return Redirect(redirectUrl);
+        }
+        catch (UnauthorizedAccessException)
+        {
+            return Unauthorized();
+        }
     }
 }

@@ -16,7 +16,7 @@
     // SMOOTH SCROLL
     $(function () {
         $('.smoothScroll').on('click', function (event) {
-            var $anchor = $(this);
+            const $anchor = $(this);
             $('html, body').stop().animate({
                 scrollTop: $($anchor.attr('href')).offset().top - 0
             }, 1000);
@@ -36,7 +36,7 @@
     }
 
     // Back to top button
-    var btn = $('#backTopButton');
+    const btn = $('#backTopButton');
 
     $(window).scroll(function () {
         if ($(window).scrollTop() > 300) {

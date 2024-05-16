@@ -1,6 +1,6 @@
 ﻿@{
     // Calculation of my time experience in years
-    TimeSpan experienceYearsSpan = DateTime.Today - (new DateTime(2014, 7, 1));
+    TimeSpan experienceYearsSpan = DateTime.Today - (new DateTime(2014, 7, 1, 0, 0, 0, DateTimeKind.Local));
     int totalYears = (int)experienceYearsSpan.TotalDays / 365;
 }
 

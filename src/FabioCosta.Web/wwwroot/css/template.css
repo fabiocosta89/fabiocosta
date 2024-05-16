@@ -120,18 +120,18 @@ https://templatemo.com/tm-538-digital-trend
     margin: 0;
   }
 
-  .quote::after {
-    content: "“";
-    position: absolute;
-    bottom: -80px;
-    left: 20px;
-    font-family: times;
-    color: var(--gray-color);
-    font-weight: var(--font-weight-bold);
-    font-size: 14em;
-    line-height: 0;
-    opacity: 0.10;
-  }
+    .quote::after {
+        content: "“";
+        position: absolute;
+        bottom: -80px;
+        left: 20px;
+        font-family: times, sans-serif;
+        color: var(--gray-color);
+        font-weight: var(--font-weight-bold);
+        font-size: 14em;
+        line-height: 0;
+        opacity: 0.10;
+    }
 
   blockquote {
     border-left: 5px solid rgba(0,0,0,0.05);
@@ -388,12 +388,12 @@ https://templatemo.com/tm-538-digital-trend
     padding: 32px;
   }
 
-  .project-info small {
-    font-family: Plain-Bold;
-    color: var(--gray-color);
-    position: relative;
-    top: 2px;
-  }
+    .project-info small {
+        font-family: Plain-Bold, sans-serif;
+        color: var(--gray-color);
+        position: relative;
+        top: 2px;
+    }
 
   .project-info a {
     color: var(--primary-color);
