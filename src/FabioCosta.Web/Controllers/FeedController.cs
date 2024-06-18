@@ -30,7 +30,9 @@ public class FeedController : Controller
     [ResponseCache(CacheProfileName = CacheConstants.Daily)]
     public async Task<IActionResult> Index()
     {
-        var urlBase = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host.Value}";
+        string scheme = HttpContext.Request.Scheme == "http" ? $"{HttpContext.Request.Scheme}s" : HttpContext.Request.Scheme;
+
+        var urlBase = $"{scheme}://{HttpContext.Request.Host.Value}";
         // feed object creation
         var feed = new SyndicationFeed(
             "FabioCosta",
@@ -55,7 +57,7 @@ public class FeedController : Controller
         StandardArchive posts = await _blogService.GetBlogPostsByPageSlugAsync("blog");
         foreach (var post in posts.Archive.Posts)
         {
-            var postUrl = Url.Action("Post", "Blog", new { slug = post.Slug }, HttpContext.Request.Scheme);
+            var postUrl = Url.Action("Post", "Blog", new { slug = post.Slug }, scheme);
             var title = post.Title;
             var description = post.Excerpt;
             items.Add(new SyndicationItem(title, description, new Uri(postUrl), post.Slug, post.Created));

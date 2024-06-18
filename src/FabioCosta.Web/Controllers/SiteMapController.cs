@@ -53,10 +53,11 @@ public class SiteMapController : Controller
             };
 
         // Blog posts
+        string scheme = HttpContext.Request.Scheme == "http" ? $"{HttpContext.Request.Scheme}s" : HttpContext.Request.Scheme;
         var posts = await _blogService.GetBlogPostsByPageSlugAsync("blog");
         foreach (var post in posts.Archive.Posts)
         {
-            var node = new SitemapNode(Url.Action("Post", "Blog", new { slug = post.Slug }))
+            var node = new SitemapNode(Url.Action("Post", "Blog", new { slug = post.Slug }, scheme))
             {
                 ChangeFrequency = ChangeFrequency.Weekly,
                 Priority = 1.0M
