@@ -27,25 +27,26 @@ public class SiteMapController : Controller
     public async Task<IActionResult> Index()
     {
         const string indexString = "Index";
+        string scheme = HttpContext.Request.Scheme == "http" ? $"{HttpContext.Request.Scheme}s" : HttpContext.Request.Scheme;
 
         var nodes = new List<SitemapNode>
             {
-                new (Url.Action(indexString,"Home"))
+                new (Url.Action(indexString,"Home", null, scheme))
                 {
                     ChangeFrequency = ChangeFrequency.Weekly,
                     Priority = 1.0M
                 },
-                new (Url.Action(indexString,"Privacy"))
+                new (Url.Action(indexString,"Privacy", null, scheme))
                 {
                     ChangeFrequency = ChangeFrequency.Yearly,
                     Priority = 0.3M
                 },
-                new (Url.Action(indexString,"Version"))
+                new (Url.Action(indexString,"Version", null, scheme))
                 {
                     ChangeFrequency = ChangeFrequency.Weekly,
                     Priority = 0.5M
                 },
-                new (Url.Action(indexString,"Blog"))
+                new (Url.Action(indexString, "Blog", null, scheme))
                 {
                     ChangeFrequency = ChangeFrequency.Daily,
                     Priority = 0.8M
@@ -53,7 +54,6 @@ public class SiteMapController : Controller
             };
 
         // Blog posts
-        string scheme = HttpContext.Request.Scheme == "http" ? $"{HttpContext.Request.Scheme}s" : HttpContext.Request.Scheme;
         var posts = await _blogService.GetBlogPostsByPageSlugAsync("blog");
         foreach (var post in posts.Archive.Posts)
         {
