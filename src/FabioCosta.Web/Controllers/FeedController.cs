@@ -77,7 +77,6 @@ public class FeedController : Controller
         {
             var rssFormatter = new Rss20FeedFormatter(feed, false);
             rssFormatter.WriteTo(xmlWriter);
-            await xmlWriter.FlushAsync();
         }
         return File(stream.ToArray(), "application/rss+xml; charset=utf-8");
     }
