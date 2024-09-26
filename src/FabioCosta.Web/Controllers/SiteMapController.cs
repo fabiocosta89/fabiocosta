@@ -41,11 +41,6 @@ public class SiteMapController : Controller
                     ChangeFrequency = ChangeFrequency.Yearly,
                     Priority = 0.3M
                 },
-                new (Url.Action(indexString,"Version", null, scheme))
-                {
-                    ChangeFrequency = ChangeFrequency.Weekly,
-                    Priority = 0.5M
-                },
                 new (Url.Action(indexString, "Blog", null, scheme))
                 {
                     ChangeFrequency = ChangeFrequency.Daily,
