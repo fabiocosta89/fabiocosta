@@ -11,19 +11,14 @@ public static class Program
         CreateHostBuilder(args).Build().Run();
     }
 
-    public static IHostBuilder CreateHostBuilder(string[] args) =>
+    private static IHostBuilder CreateHostBuilder(string[] args) =>
         Host.CreateDefaultBuilder(args)
             .ConfigureWebHostDefaults(webBuilder =>
             {
-                var configuration = new ConfigurationBuilder()
-                    .AddJsonFile("appsettings.json")
-                    .AddJsonFile("appsettings.Development.json", true)
-                    .Build();
-
                 webBuilder.UseStartup<Startup>();
-                webBuilder.UseSentry(sentry =>
+                webBuilder.UseSentry((context, sentry) =>
                 {                   
-                    sentry.Dsn = configuration.GetValue(typeof(string), "Sentry:Dsn")?.ToString();
+                    sentry.Dsn = context.Configuration.GetValue(typeof(string), "Sentry:Dsn")?.ToString();
                     sentry.Debug = true;
                     // Set TracesSampleRate to 1.0 to capture 100% of transactions for performance monitoring.
                     sentry.TracesSampleRate = 0.2;
