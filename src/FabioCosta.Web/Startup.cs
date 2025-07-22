@@ -1,3 +1,6 @@
+using JavaScriptEngineSwitcher.Extensions.MsDependencyInjection;
+using JavaScriptEngineSwitcher.V8;
+
 namespace FabioCosta.Web;
 
 using FabioCosta.Web.Constants;
@@ -90,6 +93,13 @@ public class Startup(IConfiguration configuration)
             options.Providers.Add<GzipCompressionProvider>();
             options.MimeTypes = ResponseCompressionDefaults.MimeTypes;
         });
+
+        services.AddJsEngineSwitcher(options =>
+            {
+                options.AllowCurrentProperty = false;
+                options.DefaultEngineName = V8JsEngine.EngineName;
+            })
+            .AddV8();
 
         services.AddWebOptimizer(pipeline =>
         {
