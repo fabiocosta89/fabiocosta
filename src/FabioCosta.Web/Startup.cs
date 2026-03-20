@@ -1,8 +1,6 @@
 using JavaScriptEngineSwitcher.Extensions.MsDependencyInjection;
 using JavaScriptEngineSwitcher.V8;
 
-namespace FabioCosta.Web;
-
 using FabioCosta.Web.Constants;
 using FabioCosta.Web.Interfaces;
 using FabioCosta.Web.Security.Head.Csp;
@@ -28,6 +26,8 @@ using SimpleMvcSitemap;
 
 using System;
 using System.IO.Compression;
+
+namespace FabioCosta.Web;
 
 public class Startup(IConfiguration configuration)
 {
@@ -220,8 +220,6 @@ public class Startup(IConfiguration configuration)
         app.UseCookiePolicy();
 
         app.UseRouting();
-
-        app.UseSentryTracing();
 
         app.UseCors();
 

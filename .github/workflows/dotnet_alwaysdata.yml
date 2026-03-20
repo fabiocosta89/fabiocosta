@@ -18,7 +18,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 8.0.x
+        dotnet-version: 10.0.x
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
@@ -34,11 +34,6 @@ jobs:
         Captcha.ValidationUrl: ${{ secrets.CAPTCHA_VALIDATION_URL }}
         Captcha.SiteKey: ${{ secrets.CAPTCHA_SITEKEY }}
         Captcha.SecretKey: ${{ secrets.CAPTCHA_SECRETKEY }}
-        Newsletter.Code: ${{ secrets.NEWSLETTER_CODE }}
-        Newsletter.Url: ${{ secrets.NEWSLETTER_URL }}
-        Umami.Id: ${{ secrets.UMAMI_ID }}
-        Umami.Url: ${{ secrets.UMAMI_URL }}
-        Sentry.Dsn: ${{ secrets.SENTRY_DSN }}
     - name: dotnet publish
       run: dotnet publish -c Release --no-restore --no-build -p:UseAppHost=false -o ./Release/
     - name: FTP Deploy
